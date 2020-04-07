@@ -1,4 +1,4 @@
-package domain;
+package dt.cms.domain;
 
 public class Evaluation {
     private User reviewer;

@@ -1,4 +1,4 @@
-package domain;
+package dt.cms.domain;
 
 import java.util.List;
 

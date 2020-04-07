@@ -29,7 +29,7 @@ public class Submission {
     @JoinColumn(name = "conference_id")
     private Conference conference;
 
-    @Column(name = "evaluations", nullable = false)
+    @OneToMany
     private List<Evaluation> evaluations;
 
 

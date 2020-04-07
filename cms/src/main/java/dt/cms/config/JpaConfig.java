@@ -28,11 +28,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 
-
+/*
 @Configuration
 @EnableJpaRepositories({"dt.cms.repository"})
 @EnableTransactionManagement
 @EnableCaching
+
+ */
 public class JpaConfig {
     //@Value("${db.jdbcUrl}")
     private String jdbcUrl =  "jdbc:postgresql://localhost:5432/cms";
@@ -53,49 +55,44 @@ public class JpaConfig {
      * @return
      */
 
-    @Bean
-    public DataSource dataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(jdbcUrl);
-        config.setUsername(username);
-        config.setPassword(password);
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.setDriverClassName("org.postgresql.Driver");
-        HikariDataSource dataSource = new HikariDataSource(config);
-        return dataSource;
+    //@Bean
+    public DataSource datasource() {
+        return DataSourceBuilder.create()
+                .driverClassName("org.postgresql.Driver")
+                .url("jdbc:postgresql://localhost:5432/cms")
+                .username("postgres")
+                .password("1234")
+                .build();
     }
 
 
-    @Bean
+
     public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(generateDDL);
-        vendorAdapter.setDatabase(Database.MYSQL);
+        vendorAdapter.setDatabase(Database.POSTGRESQL);
         vendorAdapter.setShowSql(true);
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("ro.ubb.donation.core.model");
-        factory.setDataSource(dataSource());
+        factory.setPackagesToScan("dt.cms.domain");
+        factory.setDataSource(datasource());
         factory.afterPropertiesSet();
         return factory.getObject();
     }
 
-    @Bean
+
     public EntityManager entityManager() {
         return entityManagerFactory().createEntityManager();
     }
 
-    @Bean
+
     PlatformTransactionManager transactionManager() {
         JpaTransactionManager manager = new JpaTransactionManager();
         manager.setEntityManagerFactory(entityManagerFactory());
         return manager;
     }
 
-    @Bean
+
     public HibernateExceptionTranslator hibernateExceptionTranslator() {
         return new HibernateExceptionTranslator();
     }

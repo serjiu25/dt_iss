@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Builder
 
 public class Paper {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

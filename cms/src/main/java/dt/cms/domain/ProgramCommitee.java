@@ -19,20 +19,28 @@ public class ProgramCommitee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pc_id;
 
+    @OneToMany
     @Column(name = "chair", nullable = false)
     private User chair;
-
-    @OneToMany(mappedBy = "CUser", fetch = FetchType.EAGER)
-    private List<User> co_chairs = new ArrayList<>();
-    @OneToMany(mappedBy = "CUser", fetch = FetchType.EAGER)
-    private List<User> reviewers = new ArrayList<>();
+/*
+    @ManyToMany(mappedBy = "Program Comitee", fetch = FetchType.EAGER)
+    private List<User> co_chairs;
+    @OneToMany(mappedBy = "Program Comitee", fetch = FetchType.EAGER)
+    private List<User> reviewers;
+ */
+    @ManyToMany
+    @JoinTable(
+        name="FK_USER",
+        joinColumns={@JoinColumn(name="PC_ID")},
+        inverseJoinColumns={@JoinColumn(name="USER_ID")})
+    private List<User> co_chairs;
 
     @Override
     public String toString() {
         return "ProgramCommitee{" +
                 "chair=" + chair + '\n' +
-                ", co_chairs=" + co_chairs + '\n' +
-                ", reviewers=" + reviewers +
+                //", co_chairs=" + co_chairs + '\n' +
+                //", reviewers=" + reviewers +
                 '}';
     }
 }

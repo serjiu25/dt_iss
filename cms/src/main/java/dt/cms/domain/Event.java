@@ -1,26 +1,33 @@
 package dt.cms.domain;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "Event")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
     private List<Section> sections;
 
-    public Event(List<Section> sections) {
-        this.sections = sections;
-    }
 
-    public List<Section> getSections() {
-        return sections;
-    }
-
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "conference_id")
+    private Conference conference;
 
     @Override
     public String toString() {
-        return "Event{" +
-                "sections=" + sections +
-                '}';
+        return  "Event { id=" + id + " }";
+
     }
 }

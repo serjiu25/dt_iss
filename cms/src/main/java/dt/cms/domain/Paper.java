@@ -1,61 +1,36 @@
 package dt.cms.domain;
 
-import java.util.List;
+import lombok.*;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "Paper")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 
 public class Paper {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "URL", nullable = false)
     private String URL;
-    private List<String> keywords;
-    private List<String> topics;
-    private List<String> other_authors;
 
-    public Paper(String name, String URL, List<String> keywords, List<String> topics, List<String> other_authors) {
-        this.name = name;
-        this.URL = URL;
-        this.keywords = keywords;
-        this.topics = topics;
-        this.other_authors = other_authors;
-    }
+    @Column(name = "keywords", nullable = false)
+    private String keywords;
 
-    public String getName() {
-        return name;
-    }
+    @Column(name = "topics", nullable = false)
+    private String topics;
 
-    public String getURL() {
-        return URL;
-    }
-
-    public List<String> getKeywords() {
-        return keywords;
-    }
-
-    public List<String> getTopics() {
-        return topics;
-    }
-
-    public List<String> getOther_authors() {
-        return other_authors;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
-    public void setKeywords(List<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    public void setTopics(List<String> topics) {
-        this.topics = topics;
-    }
-
-    public void setOther_authors(List<String> other_authors) {
-        this.other_authors = other_authors;
-    }
+    @Column(name = "otherAuthors", nullable = false)
+    private String other_authors;
 
     @Override
     public String toString() {

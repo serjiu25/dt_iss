@@ -1,41 +1,37 @@
 package dt.cms.domain;
 
-import java.util.List;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.List;
+@Entity
+@Table (name = "Section")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Submission {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "author", nullable = false)
     private User author;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "paper_id")
     private Paper paper;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "conference_id")
+    private Conference conference;
+
+    @Column(name = "evaluations", nullable = false)
     private List<Evaluation> evaluations;
 
-    public Submission(User author, Paper paper, List<Evaluation> evaluations) {
-        this.author = author;
-        this.paper = paper;
-        this.evaluations = evaluations;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public Paper getPaper() {
-        return paper;
-    }
-
-    public void setPaper(Paper paper) {
-        this.paper = paper;
-    }
-
-    public List<Evaluation> getEvaluations() {
-        return evaluations;
-    }
-
-    public void setEvaluations(List<Evaluation> evaluations) {
-        this.evaluations = evaluations;
-    }
 
     @Override
     public String toString() {

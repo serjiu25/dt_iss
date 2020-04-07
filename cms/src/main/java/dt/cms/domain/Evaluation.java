@@ -1,40 +1,30 @@
 package dt.cms.domain;
 
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="Evaluation")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Evaluation {
-    private User reviewer;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "result", nullable = false)
     private String result;
+    @Column(name = "justification", nullable = false)
     private String justification;
-
-    public Evaluation(User reviewer, String result, String justification) {
-        this.reviewer = reviewer;
-        this.result = result;
-        this.justification = justification;
-    }
-
-    public User getReviewer() {
-        return reviewer;
-    }
-
-    public void setReviewer(User reviewer) {
-        this.reviewer = reviewer;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getJustification() {
-        return justification;
-    }
-
-    public void setJustification(String justification) {
-        this.justification = justification;
-    }
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subm_id")
+    private Submission submission;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User reviewer;
     @Override
     public String toString() {
         return "Evaluation{" +

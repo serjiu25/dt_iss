@@ -1,61 +1,38 @@
 package dt.cms.domain;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "Conference")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Conference {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "description", nullable = false)
     private String description;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pc_id")
     private ProgramCommitee commitee;
+
+    @Column(name = "phase", nullable = false)
     private String phase;
+
+    @OneToMany(mappedBy = "conference", fetch = FetchType.EAGER)
     private List<Submission> submissions;
-
-    public Conference(String title, String description, ProgramCommitee commitee, String phase, List<Submission> submissions) {
-        this.title = title;
-        this.description = description;
-        this.commitee = commitee;
-        this.phase = phase;
-        this.submissions = submissions;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ProgramCommitee getCommitee() {
-        return commitee;
-    }
-
-    public void setCommitee(ProgramCommitee commitee) {
-        this.commitee = commitee;
-    }
-
-    public String getPhase() {
-        return phase;
-    }
-
-    public void setPhase(String phase) {
-        this.phase = phase;
-    }
-
-    public List<Submission> getSubmissions() {
-        return submissions;
-    }
-
-    public void setSubmissions(List<Submission> submissions) {
-        this.submissions = submissions;
-    }
 
     @Override
     public String toString() {

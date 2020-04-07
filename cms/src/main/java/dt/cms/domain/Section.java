@@ -1,51 +1,40 @@
 package dt.cms.domain;
 
-import java.util.List;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+@Entity
+@Table (name = "Section")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Section {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "chair", nullable = false)
     private User chair;
+
+    @Column(name = "speakers", nullable = false)
     private List<User> speakers;
+
+    @Column(name = "listener", nullable = false)
     private List<User> listener;
+
+    @Column(name = "room", nullable = false)
     private String room;
 
-    public Section(User chair, List<User> speakers, List<User> listener, String room) {
-        this.chair = chair;
-        this.speakers = speakers;
-        this.listener = listener;
-        this.room = room;
-    }
 
-    public User getChair() {
-        return chair;
-    }
-
-    public void setChair(User chair) {
-        this.chair = chair;
-    }
-
-    public List<User> getSpeakers() {
-        return speakers;
-    }
-
-    public void setSpeakers(List<User> speakers) {
-        this.speakers = speakers;
-    }
-
-    public List<User> getListener() {
-        return listener;
-    }
-
-    public void setListener(List<User> listener) {
-        this.listener = listener;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id")
+    private Event event;
 
     @Override
     public String toString() {

@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "CUser")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

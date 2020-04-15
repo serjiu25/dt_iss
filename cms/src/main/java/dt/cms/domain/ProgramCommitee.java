@@ -23,9 +23,10 @@ public class ProgramCommitee {
     private User chair;
 
     @OneToMany(mappedBy = "CUser", fetch = FetchType.EAGER)
-    private List<User> co_chairs = new ArrayList<>();
+    private List<User> co_chairs;
+
     @OneToMany(mappedBy = "CUser", fetch = FetchType.EAGER)
-    private List<User> reviewers = new ArrayList<>();
+    private List<User> reviewers;
 
     @Override
     public String toString() {

@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-
 public class Paper {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,8 +19,11 @@ public class Paper {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "URL", nullable = false)
-    private String URL;
+    @Column(name = "abstractURL", nullable = false)
+    private String abstractURL;
+
+    @Column(name = "fullURL", nullable = false)
+    private String fullURL;
 
     @Column(name = "keywords", nullable = false)
     private String keywords;
@@ -36,7 +38,8 @@ public class Paper {
     public String toString() {
         return "Paper{" +
                 "name='" + name + '\'' +
-                ", URL='" + URL + '\'' +
+                ", abstractURL='" + abstractURL + '\'' +
+                ", fullURL='" + fullURL + '\'' +
                 ", keywords=" + keywords +
                 ", topics=" + topics +
                 ", other_authors=" + other_authors +

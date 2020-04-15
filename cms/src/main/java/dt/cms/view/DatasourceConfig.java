@@ -11,9 +11,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 
-@Configuration
+//@Configuration
 public class DatasourceConfig {
-    @Bean
+//    @Bean
     public DataSource datasource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
@@ -23,7 +23,7 @@ public class DatasourceConfig {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.POSTGRESQL);

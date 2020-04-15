@@ -33,7 +33,6 @@ import java.net.URISyntaxException;
 @Configuration
 @EnableJpaRepositories({"dt.cms.repository"})
 @EnableTransactionManagement
-@EnableCaching
 public class JpaConfig {
     //@Value("${db.jdbcUrl}")
     private String jdbcUrl =  "jdbc:postgresql://localhost:5432/cms";
@@ -51,7 +50,7 @@ public class JpaConfig {
     public DataSource dataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:postgres://chlibsawfldjfk:fa6afd782998e6dd758793297950c5429ea35703eb8923e66926cae66787a71c@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/dd1qsj7uonb0pb");
+        dataSourceBuilder.url("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/dd1qsj7uonb0pb");
         dataSourceBuilder.username("chlibsawfldjfk");
         dataSourceBuilder.password("fa6afd782998e6dd758793297950c5429ea35703eb8923e66926cae66787a71c");
         return dataSourceBuilder.build();

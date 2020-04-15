@@ -34,6 +34,10 @@ public class Conference {
     @OneToMany(mappedBy = "conference", fetch = FetchType.EAGER)
     private List<Submission> submissions;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    private Event event;
+
     @Override
     public String toString() {
         return "Conference{" +

@@ -35,8 +35,8 @@ public class Section {
     @Column(name = "room", nullable = false)
     private String room;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "event_id")
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
     @Override

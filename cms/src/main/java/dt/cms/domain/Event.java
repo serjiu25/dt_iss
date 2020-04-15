@@ -17,13 +17,11 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "event")
     private List<Section> sections;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "conference_id")
-    private Conference conference;
+//    @OneToOne(mappedBy = "event")
+////    private Conference conference;
 
     @Override
     public String toString() {

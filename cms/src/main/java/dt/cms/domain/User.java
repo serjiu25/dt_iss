@@ -4,9 +4,10 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "CUser")
+@Table(name = "cuser")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -35,6 +36,13 @@ public class User {
 
     @Column(name = "validated", nullable = false)
     private Boolean validated;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    private Section section;
+
+    @ManyToMany(mappedBy = "co_chairs")
+    private List<ProgramCommitee> pc_co_chairs;
 
     @Override
     public String toString() {

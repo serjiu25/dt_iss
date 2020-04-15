@@ -26,7 +26,7 @@ public class Conference {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pc_id")
-    private ProgramCommitee commitee;
+    private ProgramCommitee committee;
 
     @Column(name = "phase", nullable = false)
     private String phase;
@@ -39,7 +39,7 @@ public class Conference {
         return "Conference{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", commitee=" + commitee +
+                ", commitee=" + committee +
                 ", phase='" + phase + '\'' +
                 ", submissions=" + submissions +
                 '}';

@@ -81,7 +81,7 @@ public class JpaConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-//        factory.setPackagesToScan("ro.ubb.donation.core.model");
+        factory.setPackagesToScan("dt.cms.domain");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
         return factory.getObject();

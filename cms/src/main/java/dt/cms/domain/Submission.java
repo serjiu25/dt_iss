@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table (name = "Section")
+@Table(name = "Submission")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -17,7 +17,8 @@ public class Submission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "author", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private User author;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -29,7 +30,7 @@ public class Submission {
     @JoinColumn(name = "conference_id")
     private Conference conference;
 
-    @Column(name = "evaluations", nullable = false)
+    @OneToMany
     private List<Evaluation> evaluations;
 
 

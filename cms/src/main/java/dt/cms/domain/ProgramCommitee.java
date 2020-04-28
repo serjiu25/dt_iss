@@ -31,9 +31,9 @@ public class ProgramCommitee {
 
     @ManyToMany
     @JoinTable(
-            name="FK_USER",
-            joinColumns={@JoinColumn(name="PC_ID")},
-            inverseJoinColumns={@JoinColumn(name="USER_ID")})
+        name="FK_USER",
+        joinColumns={@JoinColumn(name="PC_ID")},
+        inverseJoinColumns={@JoinColumn(name="USER_ID")})
     private List<User> co_chairs;
 
     @Override

@@ -26,7 +26,7 @@ public class Conference {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pc_id")
-    private ProgramCommitee commitee;
+    private ProgramCommitee committee;
 
     @Column(name = "phase", nullable = false)
     private String phase;
@@ -34,12 +34,16 @@ public class Conference {
     @OneToMany(mappedBy = "conference", fetch = FetchType.EAGER)
     private List<Submission> submissions;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    private Event event;
+
     @Override
     public String toString() {
         return "Conference{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", commitee=" + commitee +
+                ", commitee=" + committee +
                 ", phase='" + phase + '\'' +
                 ", submissions=" + submissions +
                 '}';

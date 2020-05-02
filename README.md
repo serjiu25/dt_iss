@@ -37,4 +37,5 @@ password: admin
 2. Create *Tomcat Local Server* configuration
 ![Image](https://i.imgur.com/zrnLDba.png)
 3. Start Tomcat Server from IntelliJ
-4. Go inside [webapp/](app/app-web/src/main/webapp) directory and start Angular running `ng serve`
+4. Go inside [webapp/](app/app-web/src/main/webapp) directory and install dependencies by running `npm install`
+5. Start Angular by running `ng serve`

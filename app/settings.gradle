@@ -1,4 +1,4 @@
-rootProject.name = 'cms'
-include 'cms-core'
-include 'cms-web'
+rootProject.name = 'app'
+include 'app-core'
+include 'app-web'
 

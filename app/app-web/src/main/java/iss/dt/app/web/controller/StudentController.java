@@ -14,7 +14,6 @@ import iss.dt.app.web.dto.StudentDto;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 public class StudentController {
 

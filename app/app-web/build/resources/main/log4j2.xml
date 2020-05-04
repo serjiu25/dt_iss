@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="filename">./log/catalog.log</Property>
-        <Property name="filenamePattern">log/catalog-%i.log</Property>
+        <Property name="filename">./log/app.log</Property>
+        <Property name="filenamePattern">log/app-%i.log</Property>
         <Property name="pattern">%d{ISO8601} %-5p [%t]: %-36.36c{1} - %m %n
         </Property>
     </Properties>
@@ -29,12 +29,12 @@
     <Loggers>
 
         <!-- Spring framework -->
-        <!--<Logger name="org.hibernate.stat" level="INFO" />-->
+        <Logger name="org.hibernate.stat" level="INFO" />
         <Logger name="org.springframework.data" level="WARN"/>
         <Logger name="org.springframework.web" level="WARN"/>
         <Logger name="org.springframework.http.converter.json" level="WARN"/>
         <Logger name="com.fasterxml.jackson.databind" level="WARN"/>
-        <Logger name="ro.ubb.catalog" level="TRACE"/>
+        <Logger name="iss.dt.app" level="TRACE"/>
 
         <!-- ROOT -->
         <Root level="WARN">

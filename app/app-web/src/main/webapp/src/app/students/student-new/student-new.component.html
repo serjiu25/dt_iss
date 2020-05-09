@@ -1,0 +1,20 @@
+<label>Serial number:
+  <input #serialNumber/>
+  <br/>
+</label>
+
+<label>Name:
+  <input #name/>
+  <br/>
+</label>
+
+<label>Group number:
+  <input #groupNumber/>
+  <br/>
+</label>
+
+<button (click)="saveStudent(serialNumber.value,name.value, groupNumber.value)">
+  Save
+</button>
+
+

@@ -33,6 +33,8 @@ hs_err_pid*
 
 # dependencies
 */node_modules
+/node_modules
+/app-web/src/main/webapp/node_modules
 
 # IDEs and editors
 */*.idea
@@ -66,4 +68,6 @@ testem.log
 
 # System Files
 .DS_Store
+*/.DS_Store
 Thumbs.db
+node_modules

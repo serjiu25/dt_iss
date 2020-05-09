@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="catalogngjpa@localhost" uuid="9b63dfe4-b9b5-4033-ae67-3c771281005f">
+    <data-source source="LOCAL" name="Heroku DT" uuid="77b943c9-c557-4602-b04f-beba7b525f53">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/catalogngjpa</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/dd1qsj7uonb0pb</jdbc-url>
     </data-source>
   </component>
 </project>

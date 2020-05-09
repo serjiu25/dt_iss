@@ -1,0 +1,8 @@
+<section id="login">
+    <h1>Login</h1>
+    <p (click)="goToRegister()">Not registered yet?</p>
+    <input type="text" [(ngModel)]="email" name="email" id="email" placeholder="Email">
+    <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password">
+    <p *ngIf="hasErrors">{{ error }}</p>
+    <button type="submit" (click)="onSubmit()">Login</button>
+</section>

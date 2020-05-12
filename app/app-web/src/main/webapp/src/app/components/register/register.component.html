@@ -1,1 +1,15 @@
-<p>register works!</p>
+<section id="register">
+  <h1 class="register-title">Register</h1>
+  <p class="btn btn-link login-link" (click)="goToLogin()">Already registered?</p>
+
+
+  <input class="form-control mb-2" type="email" [(ngModel)]="email" name="email" id="email" placeholder="Email">
+  <input class="form-control mb-2" type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password">
+  <input class="form-control mb-2" type="text" [(ngModel)]="firstName" name="firstName" id="firstName" placeholder="First Name">
+  <input class="form-control mb-2" type="text" [(ngModel)]="lastName" name="lastName" id="lastName" placeholder="Last Name">
+
+  <button class="btn btn-primary"  type="submit" (click)="onSubmit()">Register</button>
+
+
+
+</section>

@@ -1,5 +1,5 @@
 <section id="auth">
     <!-- <p (click)="toggleComponents()">Toggle Components</p> -->
     <app-login      *ngIf="weAreOnLoginPage" (switchComponent)="toggleComponents()"></app-login>
-    <app-register   *ngIf="!weAreOnLoginPage"></app-register>
+    <app-register   *ngIf="!weAreOnLoginPage" (switchComponent)="toggleComponents()"></app-register>
 </section>

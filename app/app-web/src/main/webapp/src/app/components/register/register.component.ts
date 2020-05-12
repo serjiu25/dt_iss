@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
+  @Output() switchComponent = new EventEmitter<boolean>();
+  email = '';
+  password = '';
+  lastName = '';
+  firstName = '';
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  goToLogin() {
+    this.switchComponent.emit(true);
+  }
+  onSubmit(){
+    console.log('registered');
+  }
 }

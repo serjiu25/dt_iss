@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @Output() switchComponent = new EventEmitter<boolean>();
 
-  email: string = '';
-  password: string = '';
-  hasErrors: boolean = false;
-  error: string = '';
+  email = '';
+  password = '';
+  hasErrors = false;
+  error = '';
 
   constructor(
     private authService: AuthService,
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
         this.hasErrors = true;
         this.error = 'Invalid email/password combination';
       }
-    });
+    },
+      (error) => console.error(error));
   }
 
   goToRegister() {

@@ -1,0 +1,16 @@
+#register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15%;
+  width: 300px;
+  border-radius: 15px;
+  background-color: cadetblue;
+  box-shadow: 2px 3px 8px 1px #3a6365;
+}
+.register-title{
+  color: white;
+}
+.login-link{
+  color: whitesmoke;
+}

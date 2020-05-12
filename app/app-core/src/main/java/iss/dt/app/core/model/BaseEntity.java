@@ -1,4 +1,4 @@
-package iss.dt.app.core.model;
+/*package iss.dt.app.core.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,3 +30,4 @@ public abstract class BaseEntity <ID extends Serializable> implements Serializab
                 '}';
     }
 }
+*/

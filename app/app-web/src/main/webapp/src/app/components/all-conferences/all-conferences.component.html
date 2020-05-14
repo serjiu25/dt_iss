@@ -1,0 +1,37 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary my-nav">
+
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+       <a href="#">
+         <i class="material-icons icon">person</i>
+       </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">{{username}}</a>
+      </li>
+
+
+      <li >
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle></button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>Author Profile</button>
+            <button ngbDropdownItem>PC Member Profile</button>
+            <button ngbDropdownItem>Settings</button>
+            <button ngbDropdownItem>Log Out</button>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a  class="right-home" href="#">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a  class="right-conferences" href="#">All Conferences</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>

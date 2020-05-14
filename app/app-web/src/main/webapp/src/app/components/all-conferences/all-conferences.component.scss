@@ -1,0 +1,27 @@
+.icon{
+  font-size: 32px;
+  color: antiquewhite;
+}
+.my-nav{
+  display: flex;
+  flex-direction: row;
+
+}
+.right-home{
+  color: white;
+  position: relative;
+  float: right;
+  top: 6px;
+  font-size: 18px;
+  left: 3550%;
+}
+.right-conferences{
+  color: white;
+  //easter-egg-for-sergiu
+  position: relative;
+  float: right;
+  top: 6px;
+  font-size: 18px;
+  left: 1175%;
+  font-weight: bold;
+}

@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 $primary: #007373;
-@import '~bootstrap';
+//@import '~bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
 html, body, app-root {
   height: 100%;
@@ -13,3 +14,5 @@ html, body, app-root {
 }
 
 
+
+/* Importing Bootstrap SCSS file. */

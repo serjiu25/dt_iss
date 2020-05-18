@@ -1,5 +1,8 @@
 package iss.dt.app.web.dto;
 
+import iss.dt.app.core.model.Conference;
+import iss.dt.app.core.model.Paper;
+import iss.dt.app.core.model.User;
 import lombok.*;
 
 @NoArgsConstructor
@@ -8,10 +11,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class SubmissionDto extends BaseDto{
-    private int authorId;
-    private int conferenceId;
-    private int paperId;
-    //private CuserDto author; ???
-    //private conferenceDto conference;
-    //private PaperDto paper;
+    private CuserDto author;
+    private PaperDto paper;
+    private ConferenceDto conference;
 }

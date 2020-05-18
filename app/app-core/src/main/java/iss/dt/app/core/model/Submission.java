@@ -14,7 +14,7 @@ public class Submission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ManyToOne
     private User author;
@@ -28,4 +28,10 @@ public class Submission {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "submission")
     private List<Evaluation> evaluations;
 
+    public Submission(Long id, User convertDtoToModel, Paper convertDtoToModel1, Conference convertDtoToModel2) {
+        this.id=id;
+        this.author=convertDtoToModel;
+        this.paper=convertDtoToModel1;
+        this.conference=convertDtoToModel2;
+    }
 }

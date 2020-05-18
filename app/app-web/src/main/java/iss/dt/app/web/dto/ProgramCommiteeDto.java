@@ -2,12 +2,14 @@ package iss.dt.app.web.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ProgramCommiteeDto extends BaseDto{
-    private int chairId;
-    //private CuserDto chair; ???
+    private CuserDto chair;
+    private List<CuserDto> co_chairs;
 }

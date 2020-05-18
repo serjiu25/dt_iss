@@ -15,7 +15,7 @@ public class ProgramCommitee {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User chair;

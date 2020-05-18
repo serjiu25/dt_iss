@@ -2,18 +2,19 @@ package iss.dt.app.web.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class CuserDto extends BaseDto{
-    private Boolean admin;
+    private String name;
     private String affiliation;
     private String email;
-    private String name;
-    //Cuser should not have password field
+    private Boolean admin;
     private Boolean validated;
-    private int sectionId;
-    //private SectionDto section;
+
+//    private List<ProgramCommiteeDto> pc_co_chairs;
 }

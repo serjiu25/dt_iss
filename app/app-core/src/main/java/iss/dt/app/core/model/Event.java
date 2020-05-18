@@ -14,7 +14,7 @@ import java.util.List;
 public class Event {
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     private List<Section> sections;
@@ -22,4 +22,8 @@ public class Event {
     @OneToOne(mappedBy = "event")
     private Conference conference;
 
+    public Event(Long id, Conference convertDtoToModel) {
+        this.id=id;
+        this.conference=convertDtoToModel;
+    }
 }

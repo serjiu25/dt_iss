@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     private String name;
     private String affiliation;
@@ -31,5 +31,16 @@ public class User {
     // TODO: maybe use another table?
     @ManyToMany
     private List<ProgramCommitee> pc_co_chairs;
+    //Converter constructor
 
+    public User (Long id, String name, String affiliation, String email, Boolean admin, Boolean validated){
+        this.id=id;
+        this.name=name;
+        this.affiliation=affiliation;
+        this.email=email;
+        this.admin=admin;
+        this.validated=validated;
+        //this.section=section;
+//        this.pc_co_chairs=cc;
+    }
 }

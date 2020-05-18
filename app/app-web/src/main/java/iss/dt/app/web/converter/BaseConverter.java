@@ -1,3 +1,4 @@
+/*
 package iss.dt.app.web.converter;
 
 import iss.dt.app.core.model.BaseEntity;
@@ -27,3 +28,4 @@ public abstract class BaseConverter<Model extends BaseEntity<Long>, Dto extends 
                 .collect(Collectors.toSet());
     }
 }
+*/

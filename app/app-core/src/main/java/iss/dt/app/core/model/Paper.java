@@ -14,8 +14,7 @@ import javax.persistence.*;
 public class Paper {
     @Id
     @GeneratedValue
-    private int id;
-
+    private Long id;
     private String name;
     private String abstractURL;
     private String fullURL;

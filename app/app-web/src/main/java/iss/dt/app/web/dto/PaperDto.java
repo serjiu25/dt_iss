@@ -8,10 +8,10 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class PaperDto extends BaseDto{
-    private String abstractUrl;
-    private String fullUrl;
-    private String keywords;
     private String name;
-    private String otherAuthors;
+    private String abstractURL;
+    private String fullURL;
+    private String keywords;
     private String topics;
+    private String other_authors;
 }

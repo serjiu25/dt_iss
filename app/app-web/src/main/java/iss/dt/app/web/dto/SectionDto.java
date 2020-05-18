@@ -1,5 +1,7 @@
 package iss.dt.app.web.dto;
 
+import iss.dt.app.core.model.Event;
+import iss.dt.app.core.model.User;
 import lombok.*;
 
 @NoArgsConstructor
@@ -8,9 +10,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class SectionDto extends BaseDto{
+    private CuserDto chair;
     private String room;
-    private int chairId;
-    private int eventId;
-    //private CuserDto chair; ???
-    //private EventDto event;
+    private EventDto event;
 }

@@ -23,4 +23,7 @@ public class Paper {
     private String topics;
     private String other_authors;
 
+    @OneToOne(mappedBy = "paper")
+    private Submission submission;
+
 }

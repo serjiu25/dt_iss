@@ -1,5 +1,8 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.Conference;
+
+import java.util.List;
+
 public interface ConferenceService {
     List<Conference> findAll();
 
@@ -7,7 +10,7 @@ public interface ConferenceService {
 
     Conference findOne(Long id);
 
-    Conference updateConference(); //todo :getparams
+    Conference updateConference(Conference conference); //todo :getparams
 
     Conference saveConference(Conference conference);
 

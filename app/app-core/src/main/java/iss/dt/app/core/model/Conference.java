@@ -21,8 +21,8 @@ public class Conference implements Serializable {
     private String description;
     private String phase;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ProgramCommitee committee;
+    @OneToOne(cascade = CascadeType.ALL)
+    private ProgramCommittee committee;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
     private List<Submission> submissions;

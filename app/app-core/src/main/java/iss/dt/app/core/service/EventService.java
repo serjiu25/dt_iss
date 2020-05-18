@@ -5,7 +5,7 @@ public interface EventService {
 
     Event findOne(Long id);
 
-    Event updateEvent(); //todo :getparams
+    Event updateEvent(Event event); //todo :getparams
 
     Event saveEvent(Event event);
 

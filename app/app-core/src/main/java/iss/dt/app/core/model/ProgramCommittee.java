@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class ProgramCommitee {
+public class ProgramCommittee {
 
     @Id
     @GeneratedValue
@@ -29,5 +29,8 @@ public class ProgramCommitee {
     // TODO: maybe use another table?
     @ManyToMany
     private List<User> co_chairs;
+
+    @OneToOne(mappedBy = "committee")
+    private Conference conference;
 
 }

@@ -1,6 +1,7 @@
 package iss.dt.app.web.controller;
 
 import iss.dt.app.core.model.Paper;
+import iss.dt.app.core.service.PaperService;
 import iss.dt.app.web.converter.PaperConverter;
 import iss.dt.app.web.dto.PaperDto;
 import org.springframework.beans.factory.annotation.Autowired;

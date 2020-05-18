@@ -30,6 +30,6 @@ public class User {
 
     // TODO: maybe use another table?
     @ManyToMany
-    private List<ProgramCommitee> pc_co_chairs;
+    private List<ProgramCommittee> pc_co_chairs;
 
 }

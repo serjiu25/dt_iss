@@ -1,31 +1,29 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.Section;
+import iss.dt.app.core.repository.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class SectionServiceImpl implements SectionService{
     @Autowired
-    private SectionRepo repo;
+    private SectionRepository repo;
     @Override
     public List<Section> findByConference(Long id){
-        return repo.findAll().stream().filter(sec->sec.getConference().equals(id)).collect(Collectors.toList());
+        return repo.findAll().stream().filter(sec->sec.getEvent().getConference().getId() == id).collect(Collectors.toList());
     }
     @Override
     public Section findOne(Long id){
-        return repo.findAll().stream().filter(section->section.getId().equals(id)).findAny().orElse(null);
+        return repo.findAll().stream().filter(section->section.getId() == id).findAny().orElse(null);
     }
     @Override
     @Transactional
-    public Section updateSection() {
-        Optional<Section> section = repo.findById(sectionID);
-        section.ifPresent(s -> {
-            //update
-        });
-        return section.orElse(null);
+    public Section updateSection(Section section) {
+        return repo.save(section);
     }
     @Override
     public Section saveSection(Section section){
@@ -33,6 +31,6 @@ public class SectionServiceImpl implements SectionService{
     }
     @Override
     public void deleteSection(Long id){
-        repo.deleteById(id);
+        repo.deleteById(Math.toIntExact(id));
     }
 }

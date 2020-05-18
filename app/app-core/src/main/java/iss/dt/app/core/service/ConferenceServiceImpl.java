@@ -1,15 +1,18 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.Conference;
+import iss.dt.app.core.repository.ConferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class ConferenceServiceImpl implements ConferenceService{
     @Autowired
-    private ConferenceRepo repo;
+    private ConferenceRepository repo;
     @Override
     public List<Conference> findAll(){
         return repo.findAll();
@@ -19,16 +22,12 @@ public class ConferenceServiceImpl implements ConferenceService{
     }
     @Override
     public Conference findOne(Long id){
-        return repo.findAll().stream().filter(conference->conference.getId().equals(id)).findAny().orElse(null);
+        return repo.findAll().stream().filter(conference->conference.getId() == id).findAny().orElse(null);
     }
     @Override
     @Transactional
-    public Conference updateConference() {
-        Optional<Conference> conference = repo.findById(conferenceID);
-        conference.ifPresent(u -> {
-            //update
-        });
-        return conference.orElse(null);
+    public Conference updateConference(Conference conference) {
+        return repo.save(conference);
     }
     @Override
     public Conference saveConference(Conference conference){
@@ -36,6 +35,6 @@ public class ConferenceServiceImpl implements ConferenceService{
     }
     @Override
     public void deleteConference(Long id){
-        repo.deleteById(id);
+        repo.deleteById(Math.toIntExact(id));
     }
 }

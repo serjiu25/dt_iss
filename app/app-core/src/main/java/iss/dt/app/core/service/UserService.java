@@ -1,11 +1,14 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.User;
+
+import java.util.List;
+
 public interface UserService {
     List<User> findAll();
 
     User findOne(Long id);
 
-    User updateUser(); //todo :getparams
+    User updateUser(User user); //todo :getparams
 
     User saveUser(User user);
 

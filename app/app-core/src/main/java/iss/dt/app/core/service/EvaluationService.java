@@ -1,5 +1,8 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.Evaluation;
+
+import java.util.List;
+
 public interface EvaluationService {
     List<Evaluation> findAll();
 
@@ -7,7 +10,7 @@ public interface EvaluationService {
 
     Evaluation findOne(Long id);
 
-    Evaluation updateEvaluation(); //todo :getparams
+    Evaluation updateEvaluation(Evaluation evaluation); //todo :getparams
 
     Evaluation saveEvaluation(Evaluation evaluation);
 

@@ -1,4 +1,4 @@
-package iss.dt.app.core.model;
+/*package iss.dt.app.core.model;
 
 import lombok.*;
 
@@ -23,4 +23,4 @@ public class Student extends BaseEntity<Long> {
                 ", groupNumber=" + groupNumber +
                 "} " + super.toString();
     }
-}
+}*/

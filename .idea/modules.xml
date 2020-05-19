@@ -2,20 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-core.iml" filepath="$PROJECT_DIR$/.idea/modules/app-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-web.iml" filepath="$PROJECT_DIR$/.idea/modules/app-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-core/app.app-core.iml" filepath="$PROJECT_DIR$/.idea/modules/app-core/app.app-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-core/app.app-core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app-core/app.app-core.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-core/app.app-core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app-core/app.app-core.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-web/app.app-web.iml" filepath="$PROJECT_DIR$/.idea/modules/app-web/app.app-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-web/app.app-web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app-web/app.app-web.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-web/app.app-web.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app-web/app.app-web.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cms.iml" filepath="$PROJECT_DIR$/.idea/modules/cms.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/cms.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/cms.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dt_iss.iml" filepath="$PROJECT_DIR$/.idea/dt_iss.iml" />
     </modules>
   </component>

@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="conference-page-container">
+  <div class="page-navigation-container">
+    <div>
+      <h5><u>All conferences</u></h5>
+      <i class="material-icons" id="add-conference-button">control_point</i>
+    </div>
+    <div class="active-pink-3 active-pink-4 mb-4">
+      <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search">
+    </div>
+  </div>
+  <div class="conference-list-container" *ngFor="let conference of conferences">
+    <app-card [conference] = "conference"></app-card>
+  </div>
+</div>

@@ -10,8 +10,6 @@ import lombok.*;
 public class EvaluationDto extends BaseDto{
     private String result;
     private String justification;
-
-
     private SubmissionDto submission;
     private UserDto reviewer;
 

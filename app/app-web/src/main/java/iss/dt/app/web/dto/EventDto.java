@@ -10,6 +10,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class EventDto extends BaseDto{
-//    private List<SectionDto> sections;
     private ConferenceDto conference;
 }

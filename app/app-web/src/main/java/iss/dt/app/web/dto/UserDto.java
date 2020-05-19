@@ -17,5 +17,4 @@ public class UserDto extends BaseDto{
     private Boolean admin;
     private Boolean validated;
 
-//    private List<ProgramCommiteeDto> pc_co_chairs;
 }

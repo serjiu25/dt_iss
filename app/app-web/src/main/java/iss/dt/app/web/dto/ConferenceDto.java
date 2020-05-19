@@ -12,8 +12,5 @@ public class ConferenceDto extends BaseDto{
     private String description;
     private String phase;
     private String title;
-    //private int pcId;
-    //private int eventId;
-    private ProgramCommitteeDto pc;
-    private EventDto event;
+    private Long eventID;
 }

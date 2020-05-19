@@ -22,4 +22,5 @@ public class Evaluation {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User reviewer;
+
 }

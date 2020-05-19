@@ -16,9 +16,7 @@ public class PaperConverter extends BaseConverter<Paper, PaperDto> {
                              ,dto.getFullURL()
                              ,dto.getKeywords()
                              ,dto.getTopics()
-                             ,dto.getOther_authors()
-                             ,new SubmissionConverter().convertDtoToModel(dto.getSubmission())
-        );
+                             ,dto.getOther_authors());
     }
 
     @Override
@@ -28,9 +26,7 @@ public class PaperConverter extends BaseConverter<Paper, PaperDto> {
                                       ,paper.getFullURL()
                                       ,paper.getKeywords()
                                       ,paper.getTopics()
-                                      ,paper.getOther_authors()
-                                      ,new SubmissionConverter().convertModelToDto(paper.getSubmission())
-        );
+                                      ,paper.getOther_authors());
 
         paperDto.setId(paper.getId());
 

@@ -11,6 +11,6 @@ import java.util.List;
 @ToString(callSuper = true)
 public class ProgramCommitteeDto extends BaseDto{
     private UserDto chair;
-    private List<UserDto> co_chairs;
+    private List<UserDto> co_chairs; // we forgot to make UsersDto like mpp or don't need?
     private ConferenceDto conference;
 }

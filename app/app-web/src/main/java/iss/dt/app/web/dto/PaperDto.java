@@ -14,5 +14,4 @@ public class PaperDto extends BaseDto{
     private String keywords;
     private String topics;
     private String other_authors;
-    private SubmissionDto submission;
 }

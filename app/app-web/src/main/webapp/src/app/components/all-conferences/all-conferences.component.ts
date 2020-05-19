@@ -11,7 +11,8 @@ import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 
 export class AllConferencesComponent implements OnInit {
   conferences: Conference[];
-  conference: Conference;
+
+  conference = new Conference();
 
   constructor(
     private conferenceService: ConferenceService,

@@ -33,4 +33,10 @@ public class ProgramCommittee {
     @OneToOne(mappedBy = "committee")
     private Conference conference;
 
+    public ProgramCommittee (Long id, User chair, List<User> co_chairs) {
+        this.id = id;
+        this.chair = chair;
+        this.co_chairs = co_chairs;
+    }
+
 }

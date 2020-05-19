@@ -35,4 +35,10 @@ public class Section {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Event event;
+
+    public Section (Long id, User chair, String room) {
+        this.id = id;
+        this.chair = chair;
+        this.room = room;
+    }
 }

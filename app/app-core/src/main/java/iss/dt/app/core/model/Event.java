@@ -22,8 +22,7 @@ public class Event {
     @OneToOne(mappedBy = "event")
     private Conference conference;
 
-    public Event(Long id, Conference convertDtoToModel) {
+    public Event(Long id) {
         this.id=id;
-        this.conference=convertDtoToModel;
     }
 }

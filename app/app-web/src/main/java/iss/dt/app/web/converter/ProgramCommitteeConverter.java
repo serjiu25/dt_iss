@@ -20,8 +20,7 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
         return new ProgramCommittee(
                 dto.getId(),
                 userConverter.convertDtoToModel(dto.getChair()),
-                co_chairs,
-                dto.getConferenceId()
+                co_chairs
         );
     }
 
@@ -29,10 +28,11 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
     public ProgramCommitteeDto convertModelToDto(ProgramCommittee programCommittee) {
         UserConverter userConverter = new UserConverter();
         List<UserDto> co_chairs = programCommittee.getCo_chairs().stream().map(userConverter::convertModelToDto).collect(Collectors.toList());
-        ProgramCommitteeDto pcd = new ProgramCommitteeDto(
+        ProgramCommitteeDto pcd = new ProgramCommitteeDto (
                 userConverter.convertModelToDto(programCommittee.getChair()),
                 co_chairs,
-                programCommittee.getConferenceId()
+                programCommittee.getConference().getId()
+
         );
         pcd.setId(programCommittee.getId());
 

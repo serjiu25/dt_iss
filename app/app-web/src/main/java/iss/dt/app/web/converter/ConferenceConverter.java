@@ -9,11 +9,10 @@ public class ConferenceConverter extends BaseConverter<Conference, ConferenceDto
     @Override
     public Conference convertDtoToModel(ConferenceDto dto) {
         ProgramCommitteeConverter pcc = new ProgramCommitteeConverter();
-        Conference conference = new Conference(dto.getId(),
+        return new Conference(dto.getId(),
                                                dto.getTitle(),
                                                dto.getDescription(),
                                                dto.getPhase());
-        return conference;
     }
 
     @Override

@@ -11,8 +11,11 @@ public class SectionConverter extends BaseConverter<Section, SectionDto> {
         EventConverter ec = new EventConverter();
         UserConverter cc = new UserConverter();
 
-
-        return new Section(dto.getId(), cc.convertDtoToModel(dto.getChair()), dto.getRoom(), dto.getEventId());
+        return new Section(
+                dto.getId(),
+                cc.convertDtoToModel(dto.getChair()),
+                dto.getRoom()
+        );
     }
 
     @Override

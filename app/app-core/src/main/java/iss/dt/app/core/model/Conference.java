@@ -32,13 +32,10 @@ public class Conference implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Event event;
 
-    public Conference(Long id, String title, String description, String phase,
-                      ProgramCommittee convertDtoToModel, Event convertDtoToModel1) {
+    public Conference(Long id, String title, String description, String phase) {
         this.id=id;
         this.title=title;
         this.description=description;
         this.phase=phase;
-        this.committee=convertDtoToModel;
-        this.event=convertDtoToModel1;
     }
 }

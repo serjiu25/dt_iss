@@ -19,17 +19,13 @@ public class EventConverter extends BaseConverter<Event, EventDto> {
     @Override
     public Event convertDtoToModel(EventDto dto) {
         /*SectionConverter sc = new SectionConverter();*/
-        ConferenceConverter cc = new ConferenceConverter();
 
         /*List<Section> slist= dto.get
                 .stream()
                 .map(sc::convertDtoToModel)
                 .collect(Collectors.toList());*/
 
-        Event event = new Event(dto.getId()
-                                ,dto.getConferenceId());
-
-        return event;
+        return new Event(dto.getId());
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+
 public class ProgramCommitteeDto extends BaseDto{
     private UserDto chair;
     private List<UserDto> co_chairs; // we forgot to make UsersDto like mpp or don't need?

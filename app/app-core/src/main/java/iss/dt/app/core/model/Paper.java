@@ -11,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Data
 @Builder
+
 public class Paper {
     @Id
     @GeneratedValue
@@ -24,5 +25,16 @@ public class Paper {
 
     @OneToOne(mappedBy = "paper")
     private Submission submission;
+
+    public Paper(Long id, String name, String abstractURL, String fullURL,
+                 String keywords, String topics, String other_authors) {
+        this.id = id;
+        this.name = name;
+        this.abstractURL = abstractURL;
+        this.fullURL = fullURL;
+        this.keywords = keywords;
+        this.topics = topics;
+        this.other_authors = other_authors;
+    }
 
 }

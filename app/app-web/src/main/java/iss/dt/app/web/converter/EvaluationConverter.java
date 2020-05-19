@@ -11,12 +11,11 @@ public class EvaluationConverter extends BaseConverter<Evaluation, EvaluationDto
     public Evaluation convertDtoToModel(EvaluationDto dto) {
         UserConverter cuc=new UserConverter();
         SubmissionConverter sc=new SubmissionConverter();
-        Evaluation evaluation = new Evaluation(dto.getId()
+        return new Evaluation(dto.getId()
                                               ,dto.getResult()
                                               ,dto.getJustification()
                                               ,sc.convertDtoToModel(dto.getSubmission())
                                               ,cuc.convertDtoToModel(dto.getReviewer()));
-        return evaluation;
     }
 
     @Override

@@ -15,8 +15,7 @@ public class SubmissionConverter extends BaseConverter<Submission, SubmissionDto
         return new Submission(
                 dto.getId(),
                 cuc.convertDtoToModel(dto.getAuthor()),
-                pc.convertDtoToModel(dto.getPaper()),
-                dto.getConferenceId()
+                pc.convertDtoToModel(dto.getPaper())
         );
     }
 

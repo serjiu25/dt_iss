@@ -21,14 +21,14 @@
   content: " ";
   display: block;
   margin: 0 auto;
-  transition: all 1s ease-in-out;
+  transition: all 0.7s ease-in-out;
   width: 0;
 }
 
 .conference-container:hover:after,
 .conference-container:hover:before {
   border-color: black;
-  transition: width 1s ease-in-out;
+  transition: width 0.7s ease-in-out;
   width: 80%;
 }
 

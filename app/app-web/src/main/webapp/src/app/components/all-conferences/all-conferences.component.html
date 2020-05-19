@@ -4,7 +4,7 @@
   <div class="page-navigation-container">
     <div>
       <h5><u>All conferences</u></h5>
-      <i class="material-icons" id="add-conference-button">control_point</i>
+      <i class="material-icons" id="add-conference-button" (click)="open(content)">control_point</i>
     </div>
     <div class="active-pink-3 active-pink-4 mb-4">
       <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search">
@@ -14,3 +14,23 @@
     <app-card [conference] = "conference"></app-card>
   </div>
 </div>
+
+
+<ng-template #content let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Add Conference: </p>
+    <input type="text" class="form-fields" placeholder="Title" [(ngModel)]="conference.title">
+    <input type="text" class="form-fields" placeholder="Description" [(ngModel)]="conference.description">
+    <input type="text" class="form-fields" placeholder="Program Committee">
+    <input type="text" class="form-fields" placeholder="Add co-chair: ">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="saveConference()">Save</button>
+  </div>
+</ng-template>

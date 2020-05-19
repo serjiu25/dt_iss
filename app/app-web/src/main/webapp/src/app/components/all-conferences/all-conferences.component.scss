@@ -29,7 +29,7 @@
   opacity: 100%;
   transition: 1s;
   animation-name: spin;
-  animation-duration: 1500ms;
+  animation-duration: 500ms;
   //animation-iteration-count: infinite;
   //animation-timing-function: linear; --> pls Sergiu don't delete these
 }
@@ -93,4 +93,11 @@
 
 .conference-body {
   padding: 0 2% 2%;
+}
+
+.form-fields{
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #a2edef;
 }

@@ -19,8 +19,10 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedHeaders("*")
-                        .allowedOrigins("http://localhost:4200", "http://localhost:8080")
+                        .allowedOrigins("http://localhost:4200", "http://localhost:8080",
+                                        "http://192.168.1.4:4200")
                         .allowedMethods("GET", "PUT", "PATCH", "POST", "DELETE", "OPTIONS")
+                        .exposedHeaders("Access-Control-Allow-Origin:*")
                         .maxAge(9600);
             }
         };

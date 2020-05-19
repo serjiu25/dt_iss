@@ -9,7 +9,6 @@ import {Conference} from "../../models/conference.model";
 })
 
 export class AllConferencesComponent implements OnInit {
-  username = 'MyNameMyBack...';
   conferences: Conference[];
   constructor(
     private conferenceService: ConferenceService

@@ -1,40 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary my-nav">
+<app-header></app-header>
 
-
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a href="#">
-          <i class="material-icons icon">person</i>
-        </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">{{username}}</a>
-      </li>
-      <li>
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle></button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Author Profile</button>
-            <button ngbDropdownItem>PC Member Profile</button>
-            <button ngbDropdownItem>Settings</button>
-            <button ngbDropdownItem>Log Out</button>
-          </div>
-        </div>
-      </li>
-    </ul>
-
-    <div class="navbar-right-container">
-      <div class="nav-item active">
-        <a class="right-home" href="#">Home</a>
-      </div>
-      <div class="nav-item">
-        <a class="right-conferences" routerLink="/all-conferences" routerLinkActive="active">All Conferences</a>
-      </div>
-    </div>
-  </div>
-
-</nav>
 <div class="conference-page-container">
   <div class="page-navigation-container">
     <div>
@@ -46,23 +11,6 @@
     </div>
   </div>
   <div class="conference-list-container" *ngFor="let conference of conferences">
-    <div class="conference-container">
-      <div class="conference-header">
-        <h4 class="conference-title">{{conference.title}}</h4>
-        <p class="conference-phase"></p>
-      </div>
-      <p class="conference-body">{{conference.body}}</p>
-    </div>
-<!--    <div class="conference-container">-->
-<!--      <div class="conference-header">-->
-<!--        <h4 class="conference-title">Title</h4>-->
-<!--        <p class="conference-phase"></p>-->
-<!--      </div>-->
-<!--      <p class="conference-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
-<!--        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-<!--        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit-->
-<!--        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui-->
-<!--        officia deserunt mollit anim id est laborum."</p>-->
-<!--    </div>-->
+    <app-card [conference] = "conference"></app-card>
   </div>
 </div>

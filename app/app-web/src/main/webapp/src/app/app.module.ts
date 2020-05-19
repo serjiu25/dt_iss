@@ -12,13 +12,18 @@ import { AuthService } from './services/auth.service';
 import { AllConferencesComponent } from './components/all-conferences/all-conferences.component';
 import {NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConferenceService} from "./services/conference.service";
+import { CardComponent } from './components/card/card.component';
+import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    AllConferencesComponent
+    AllConferencesComponent,
+    CardComponent,
+    AllConferencesComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

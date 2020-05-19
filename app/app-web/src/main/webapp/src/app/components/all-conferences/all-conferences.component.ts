@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ConferenceService} from "../../services/conference.service";
-import {Conference} from "../../models/conference.model";
+import {ConferenceService} from '../../services/conference.service';
+import {Conference} from '../../models/conference.model';
 
 @Component({
   selector: 'app-all-conferences',
@@ -9,7 +9,6 @@ import {Conference} from "../../models/conference.model";
 })
 
 export class AllConferencesComponent implements OnInit {
-  username = 'MyNameMyBack...';
   conferences: Conference[];
   constructor(
     private conferenceService: ConferenceService

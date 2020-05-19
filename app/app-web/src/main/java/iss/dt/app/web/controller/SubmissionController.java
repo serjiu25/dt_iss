@@ -34,7 +34,7 @@ public class SubmissionController {
         //log.trace("getSubmission");
         Submission submission = service.findOne(submissionId);
         //log.trace("getSubmission: submissions={}", submission);
-        return new converter.convertModelToDto(submission);
+        return converter.convertModelToDto(submission);
     }
 
     @CrossOrigin(origins = "*")
@@ -43,13 +43,11 @@ public class SubmissionController {
             @PathVariable final Long submissionId,
             @RequestBody final SubmissionDto submissionDto) {
         //log.trace("updateSubmission: submissionId={}, submissionDtoMap={}", submissionId, submissionDto);
-        Submission submission = service.updateSubmission(submissionId,
-                submissionDto.getSerialNumber(),
-                submissionDto.getName(), submissionDto.getGroupNumber());
-        SubmissionDto result = converter.convertModelToDto(submission);
+        submissionDto.setId(submissionId);
+        Submission submission = service.updateSubmission(converter.convertDtoToModel(submissionDto));
         //log.trace("updateSubmission: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(submission);
     }
 
     @CrossOrigin(origins = "*")

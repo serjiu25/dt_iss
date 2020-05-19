@@ -8,9 +8,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class SectionDto extends BaseDto{
+    private UserDto chair;
     private String room;
-    private int chairId;
-    private int eventId;
-    //private CuserDto chair; ???
-    //private EventDto event;
+    private EventDto event;
 }

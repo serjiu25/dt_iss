@@ -23,6 +23,7 @@ public class ProgramCommitteeController {
     private ProgramCommitteeConverter converter;
     @Autowired
     private ProgramCommitteeConverter userConverter;
+
     //todo:updateProgramCommittee fields,addPCMember implementation
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pc/c/{conferenceId}", method = RequestMethod.GET)
@@ -30,7 +31,7 @@ public class ProgramCommitteeController {
         //log.trace("getProgramCommittees");
         ProgramCommittee programCommittee = service.findByConference(conferenceId);
         //log.trace("getProgramCommittees: programCommittees={}", programCommittees);
-        return new converter.convertModelToDto(programCommittee);
+        return converter.convertModelToDto(programCommittee);
     }
     /*
     @CrossOrigin(origins = "*")
@@ -48,7 +49,7 @@ public class ProgramCommitteeController {
         //log.trace("getProgramCommittee");
         ProgramCommittee programCommittee = service.findOne(programCommitteeId);
         //log.trace("getProgramCommittee: programCommittees={}", programCommittee);
-        return new converter.convertModelToDto(programCommittee);
+        return converter.convertModelToDto(programCommittee);
     }
 
     @CrossOrigin(origins = "*")
@@ -57,13 +58,13 @@ public class ProgramCommitteeController {
             @PathVariable final Long programCommitteeId,
             @RequestBody final ProgramCommitteeDto programCommitteeDto) {
         //log.trace("updateProgramCommittee: programCommitteeId={}, programCommitteeDtoMap={}", programCommitteeId, programCommitteeDto);
-        ProgramCommittee programCommittee = service.updateProgramCommittee(programCommitteeId,
-                programCommitteeDto.getSerialNumber(),
-                programCommitteeDto.getName(), programCommitteeDto.getGroupNumber());
-        ProgramCommitteeDto result = converter.convertModelToDto(programCommittee);
+        programCommitteeDto.setId(programCommitteeId);
+        ProgramCommittee programCommittee = service.updateProgramCommittee(
+                converter.convertDtoToModel(programCommitteeDto)
+        );
         //log.trace("updateProgramCommittee: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(programCommittee);
     }
 
     @CrossOrigin(origins = "*")

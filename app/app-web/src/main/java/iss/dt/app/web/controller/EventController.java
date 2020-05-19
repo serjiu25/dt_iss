@@ -25,7 +25,7 @@ public class EventController {
         //log.trace("getEvents");
         Event event = service.findByConference(conferenceId);
         //log.trace("getEvents: events={}", events);
-        return new converter.convertModelToDto(event);
+        return converter.convertModelToDto(event);
     }
 
     @CrossOrigin(origins = "*")
@@ -34,7 +34,7 @@ public class EventController {
         //log.trace("getEvent");
         Event event = service.findOne(eventId);
         //log.trace("getEvent: events={}", event);
-        return new converter.convertModelToDto(event);
+        return converter.convertModelToDto(event);
     }
 
     @CrossOrigin(origins = "*")
@@ -43,13 +43,11 @@ public class EventController {
             @PathVariable final Long eventId,
             @RequestBody final EventDto eventDto) {
         //log.trace("updateEvent: eventId={}, eventDtoMap={}", eventId, eventDto);
-        Event event = service.updateEvent(eventId,
-                eventDto.getSerialNumber(),
-                eventDto.getName(), eventDto.getGroupNumber());
-        EventDto result = converter.convertModelToDto(event);
+        eventDto.setId(eventId);
+        Event event = service.updateEvent(converter.convertDtoToModel(eventDto));
         //log.trace("updateEvent: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(event);
     }
 
     @CrossOrigin(origins = "*")

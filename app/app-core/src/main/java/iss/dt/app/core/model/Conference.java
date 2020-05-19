@@ -12,11 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
+
 public class Conference implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
+
     private String title;
     private String description;
     private String phase;
@@ -30,4 +32,13 @@ public class Conference implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Event event;
 
+    public Conference(Long id, String title, String description, String phase,
+                      ProgramCommittee convertDtoToModel, Event convertDtoToModel1) {
+        this.id=id;
+        this.title=title;
+        this.description=description;
+        this.phase=phase;
+        this.committee=convertDtoToModel;
+        this.event=convertDtoToModel1;
+    }
 }

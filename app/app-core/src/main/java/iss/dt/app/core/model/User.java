@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     private String name;
     private String affiliation;
@@ -32,4 +32,15 @@ public class User {
     @ManyToMany
     private List<ProgramCommittee> pc_co_chairs;
 
+    public User (Long id, String name, String affiliation, String email, String password, Boolean admin, Boolean validated){
+        this.id=id;
+        this.name=name;
+        this.affiliation=affiliation;
+        this.email=email;
+        this.password = password;
+        this.admin=admin;
+        this.validated=validated;
+        //this.section=section;
+//        this.pc_co_chairs=cc;
+    }
 }

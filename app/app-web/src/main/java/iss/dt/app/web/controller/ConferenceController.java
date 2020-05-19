@@ -18,6 +18,7 @@ public class ConferenceController {
     private ConferenceService service;
     @Autowired
     private ConferenceConverter converter;
+
     //todo: updateConference fields
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences", method = RequestMethod.GET)
@@ -43,7 +44,7 @@ public class ConferenceController {
         //log.trace("getConference");
         Conference conference = service.findOne(conferenceId);
         //log.trace("getConference: conferences={}", conference);
-        return new converter.convertModelToDto(conference);
+        return converter.convertModelToDto(conference);
     }
 
     @CrossOrigin(origins = "*")
@@ -52,13 +53,11 @@ public class ConferenceController {
             @PathVariable final Long conferenceId,
             @RequestBody final ConferenceDto conferenceDto) {
         //log.trace("updateConference: conferenceId={}, conferenceDtoMap={}", conferenceId, conferenceDto);
-        Conference conference = service.updateConference(conferenceId,
-                conferenceDto.getSerialNumber(),
-                conferenceDto.getName(), conferenceDto.getGroupNumber());
-        ConferenceDto result = converter.convertModelToDto(conference);
+        conferenceDto.setId(conferenceId);
+        Conference conference = service.updateConference(converter.convertDtoToModel(conferenceDto));
         //log.trace("updateConference: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(conference);
     }
 
     @CrossOrigin(origins = "*")

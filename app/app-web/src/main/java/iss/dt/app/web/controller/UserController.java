@@ -16,9 +16,41 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService service;
+
     @Autowired
     private UserConverter converter;
+
     //todo: login logout posts , updateUser fields
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public UserDto login(@RequestBody UserDto dto) {
+        if (dto == null || dto.getEmail() == null || dto.getPassword() == null) {
+            return null;
+        }
+        User user = service.findByEmail(dto.getEmail());
+        if (user == null) {
+            return null;
+        }
+        if (!user.getPassword().equals(dto.getPassword())) {
+            return null;
+        }
+        return converter.convertModelToDto(user);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public UserDto register(@RequestBody UserDto userDto) {
+        if (service.findByEmail(userDto.getEmail()) != null)
+            return null;
+
+        User user = converter.convertDtoToModel(userDto);
+        user.setAdmin(false);
+        user.setValidated(true);
+
+        return converter.convertModelToDto(service.saveUser(user));
+    }
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<UserDto> getUsers() {
@@ -34,7 +66,7 @@ public class UserController {
         //log.trace("getUser");
         User user = service.findOne(userId);
         //log.trace("getUser: users={}", user);
-        return new converter.convertModelToDto(user);
+        return converter.convertModelToDto(user);
     }
 
     @CrossOrigin(origins = "*")
@@ -43,22 +75,21 @@ public class UserController {
             @PathVariable final Long userId,
             @RequestBody final UserDto userDto) {
         //log.trace("updateUser: userId={}, userDtoMap={}", userId, userDto);
-        User user = service.updateUser(userId,
-                userDto.getSerialNumber(),
-                userDto.getName(), userDto.getGroupNumber());
-        UserDto result = converter.convertModelToDto(user);
+        userDto.setId(userId);
+        User user = service.updateUser(converter.convertDtoToModel(userDto));
         //log.trace("updateUser: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(user);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     UserDto saveUser(@RequestBody UserDto userDto) {
+        User user = converter.convertDtoToModel(userDto);
+        user.setAdmin(false);
+        user.setValidated(true);
         return converter.convertModelToDto(
-                service.saveUser(
-                        converter.convertDtoToModel(userDto)
-                )
+                service.saveUser(user)
         );
     }
 

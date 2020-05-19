@@ -34,7 +34,7 @@ public class EvaluationController {
         //log.trace("getEvaluation");
         Evaluation evaluation = service.findOne(evaluationId);
         //log.trace("getEvaluation: evaluations={}", evaluation);
-        return new converter.convertModelToDto(evaluation);
+        return converter.convertModelToDto(evaluation);
     }
 
     @CrossOrigin(origins = "*")
@@ -43,13 +43,13 @@ public class EvaluationController {
             @PathVariable final Long evaluationId,
             @RequestBody final EvaluationDto evaluationDto) {
         //log.trace("updateEvaluation: evaluationId={}, evaluationDtoMap={}", evaluationId, evaluationDto);
-        Evaluation evaluation = service.updateEvaluation(evaluationId,
-                evaluationDto.getSerialNumber(),
-                evaluationDto.getName(), evaluationDto.getGroupNumber());
-        EvaluationDto result = converter.convertModelToDto(evaluation);
+        evaluationDto.setId(evaluationId);
+        Evaluation evaluation = service.updateEvaluation(
+                converter.convertDtoToModel(evaluationDto)
+        );
         //log.trace("updateEvaluation: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(evaluation);
     }
 
     @CrossOrigin(origins = "*")

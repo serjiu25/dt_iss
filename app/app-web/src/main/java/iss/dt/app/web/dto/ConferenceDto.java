@@ -1,5 +1,6 @@
 package iss.dt.app.web.dto;
 
+import iss.dt.app.core.model.ProgramCommittee;
 import lombok.*;
 
 @NoArgsConstructor
@@ -11,8 +12,8 @@ public class ConferenceDto extends BaseDto{
     private String description;
     private String phase;
     private String title;
-    private int pcId;
-    private int eventId;
-    //private ProgramCommiteeDto pc;
-    //private EventDto event;
+    //private int pcId;
+    //private int eventId;
+    private ProgramCommitteeDto pc;
+    private EventDto event;
 }

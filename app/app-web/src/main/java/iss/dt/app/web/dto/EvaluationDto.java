@@ -8,11 +8,11 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class EvaluationDto extends BaseDto{
-    private String justification;
     private String result;
-    private int userId;
-    private int submissionId;
-    //private CuserDto user;
-    //private SubmissionDto submission;
+    private String justification;
+
+
+    private SubmissionDto submission;
+    private UserDto reviewer;
 
 }

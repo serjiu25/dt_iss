@@ -34,7 +34,7 @@ public class SectionController {
         //log.trace("getSection");
         Section section = service.findOne(sectionId);
         //log.trace("getSection: sections={}", section);
-        return new converter.convertModelToDto(section);
+        return converter.convertModelToDto(section);
     }
 
     @CrossOrigin(origins = "*")
@@ -43,13 +43,11 @@ public class SectionController {
             @PathVariable final Long sectionId,
             @RequestBody final SectionDto sectionDto) {
         //log.trace("updateSection: sectionId={}, sectionDtoMap={}", sectionId, sectionDto);
-        Section section = service.updateSection(sectionId,
-                sectionDto.getSerialNumber(),
-                sectionDto.getName(), sectionDto.getGroupNumber());
-        SectionDto result = converter.convertModelToDto(section);
+        sectionDto.setId(sectionId);
+        Section section = service.updateSection(converter.convertDtoToModel(sectionDto));
         //log.trace("updateSection: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(section);
     }
 
     @CrossOrigin(origins = "*")

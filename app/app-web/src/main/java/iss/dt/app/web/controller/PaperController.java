@@ -4,7 +4,10 @@ import iss.dt.app.core.model.Paper;
 import iss.dt.app.core.service.PaperService;
 import iss.dt.app.web.converter.PaperConverter;
 import iss.dt.app.web.dto.PaperDto;
+import iss.dt.app.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class PaperController {
         //log.trace("getPaper");
         Paper paper = service.findOne(paperId);
         //log.trace("getPaper: papers={}", paper);
-        return new converter.convertModelToDto(paper);
+        return converter.convertModelToDto(paper);
     }
 
     @CrossOrigin(origins = "*")
@@ -41,12 +44,27 @@ public class PaperController {
             @PathVariable final Long paperId,
             @RequestBody final PaperDto paperDto) {
         //log.trace("updatePaper: paperId={}, paperDtoMap={}", paperId, paperDto);
-        Paper paper = service.updatePaper(paperId,
-                paperDto.getSerialNumber(),
-                paperDto.getName(), paperDto.getGroupNumber());
-        PaperDto result = converter.convertModelToDto(paper);
+        paperDto.setId(paperId);
+        Paper paper = service.updatePaper(converter.convertDtoToModel(paperDto));
         //log.trace("updatePaper: result={}", result);
 
-        return result;
+        return converter.convertModelToDto(paper);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/papers", method = RequestMethod.POST)
+    PaperDto savePaper(@RequestBody PaperDto paperDto) {
+        return converter.convertModelToDto(
+                service.savePaper(
+                        converter.convertDtoToModel(paperDto)
+                )
+        );
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/papers/{id}", method = RequestMethod.DELETE)
+    ResponseEntity<?> deletePaper(@PathVariable Long id) {
+        service.deletePaper(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

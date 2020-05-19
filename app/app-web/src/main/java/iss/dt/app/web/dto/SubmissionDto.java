@@ -8,10 +8,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class SubmissionDto extends BaseDto{
-    private int authorId;
-    private int conferenceId;
-    private int paperId;
-    //private CuserDto author; ???
-    //private conferenceDto conference;
-    //private PaperDto paper;
+    private UserDto author;
+    private PaperDto paper;
+    private ConferenceDto conference;
 }

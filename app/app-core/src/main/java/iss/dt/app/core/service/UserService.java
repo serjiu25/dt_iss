@@ -8,6 +8,8 @@ public interface UserService {
 
     User findOne(Long id);
 
+    User findByEmail(String email);
+
     User updateUser(User user); //todo :getparams
 
     User saveUser(User user);

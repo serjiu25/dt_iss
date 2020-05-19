@@ -1,0 +1,1 @@
+web: java -jar app/app-web/build/libs/app-web-1.0-SNAPSHOT.war

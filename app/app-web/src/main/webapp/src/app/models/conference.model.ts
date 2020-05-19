@@ -1,11 +1,13 @@
 export class Conference {
-  id: number;
-  title: string;
-  body: string;
+  id?: number;
+  title?: string;
+  description?: string;
+  eventId?: number;
 
-  constructor(_id, _title, _body) {
-    this.id = _id;
-    this.title = _title;
-    this.body = _body;
+  constructor(id: number, title: string, description: string, eventId: number) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.eventId = eventId;
   }
 }

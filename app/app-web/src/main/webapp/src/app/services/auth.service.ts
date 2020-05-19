@@ -13,9 +13,9 @@ export class AuthService {
     }
 
     getCurrentUser(): Observable<User> {
-        const userId = sessionStorage.getItem('currentUserId')
+        const userId = sessionStorage.getItem('currentUserId');
         const url = this.authUrl + "/users/" + userId;
-        return this.httpClient.get<User>(this.authUrl);
+        return this.httpClient.get<User>(url);
     }
 
     login(email: string, password: string): Observable<Boolean> {

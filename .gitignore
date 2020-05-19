@@ -37,7 +37,9 @@ hs_err_pid*
 /app-web/src/main/webapp/node_modules
 
 # IDEs and editors
+.idea
 */*.idea
+*/*.idea/
 */*.project
 */*.classpath
 */*.c9/

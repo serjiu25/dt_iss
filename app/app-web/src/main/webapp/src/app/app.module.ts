@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { AllConferencesComponent } from './components/all-conferences/all-conferences.component';
 import {NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConferenceService} from "./services/conference.service";
+import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
+    AllConferencesComponent,
+    CardComponent,
     AllConferencesComponent,
     HeaderComponent
   ],

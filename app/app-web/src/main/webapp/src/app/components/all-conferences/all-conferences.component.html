@@ -11,23 +11,6 @@
     </div>
   </div>
   <div class="conference-list-container" *ngFor="let conference of conferences">
-    <div class="conference-container">
-      <div class="conference-header">
-        <h4 class="conference-title">{{conference.title}}</h4>
-        <p class="conference-phase"></p>
-      </div>
-      <p class="conference-body">{{conference.body}}</p>
-    </div>
-<!--    <div class="conference-container">-->
-<!--      <div class="conference-header">-->
-<!--        <h4 class="conference-title">Title</h4>-->
-<!--        <p class="conference-phase"></p>-->
-<!--      </div>-->
-<!--      <p class="conference-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor-->
-<!--        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco-->
-<!--        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit-->
-<!--        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui-->
-<!--        officia deserunt mollit anim id est laborum."</p>-->
-<!--    </div>-->
+    <app-card [conference] = "conference"></app-card>
   </div>
 </div>

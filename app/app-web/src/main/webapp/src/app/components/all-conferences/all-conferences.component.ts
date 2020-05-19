@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ConferenceService} from "../../services/conference.service";
-import {Conference} from "../../models/conference.model";
+import {ConferenceService} from '../../services/conference.service';
+import {Conference} from '../../models/conference.model';
 
 @Component({
   selector: 'app-all-conferences',

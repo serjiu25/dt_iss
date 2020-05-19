@@ -12,8 +12,7 @@ export class LoginComponent implements OnInit {
 
   email = '';
   password = '';
-  hasErrors = false;
-  error = '';
+  errors: String[];
 
   constructor(
     private authService: AuthService,
@@ -24,12 +23,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.errors = new Array<String>();
     this.authService.login(this.email, this.password).subscribe(isLogged => {
       if (isLogged) {
-        this.router.navigate(['']);
+        this.router.navigate(['/all-conferences']);
       } else {
-        this.hasErrors = true;
-        this.error = 'Invalid email/password combination';
+        this.errors.push('Invalid email/password combination');
       }
     },
       (error) => console.error(error));

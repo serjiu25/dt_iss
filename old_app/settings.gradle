@@ -1,4 +1,0 @@
-rootProject.name = 'cms'
-include 'cms-core'
-include 'cms-web'
-

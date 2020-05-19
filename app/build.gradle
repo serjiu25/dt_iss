@@ -43,6 +43,11 @@ allprojects {
 
         //jdbctemplate
         compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"
+//        // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+//        compile group: 'org.springframework.security', name: 'spring-security-core', version: "$springVersion"
+//        // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+//        compile group: 'org.springframework.security', name: 'spring-security-config', version: "$springVersion"
+
 //        compile group: 'org.postgresql', name: 'postgresql', version: "$postgresqlVersion"
         compile group: 'org.apache.commons', name: 'commons-dbcp2', version: "$dbcpVersion"
 

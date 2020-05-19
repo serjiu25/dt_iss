@@ -1,4 +1,4 @@
-package iss.dt.app.core.model;
+/*package iss.dt.app.core.model;
 
 import lombok.*;
 
@@ -16,4 +16,4 @@ public class Discipline extends BaseEntity<Long> {
     private String teacher;
     private int credits;
 
-}
+}*/

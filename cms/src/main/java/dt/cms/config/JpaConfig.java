@@ -20,7 +20,6 @@ import ro.ubb.donation.core.service.RoleService;
 import ro.ubb.donation.core.service.RoleServiceImpl;
 import ro.ubb.donation.core.service.UserService;
 import ro.ubb.donation.core.service.UserServiceImpl;
-
  */
 
 import javax.persistence.EntityManager;

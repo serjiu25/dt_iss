@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.boot:spring-boot-test-autoconfigure:2.2.6.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/2.2.6.RELEASE/f671b2d1f32caaf76f0c11508974ccff2e7d685b/spring-boot-test-autoconfigure-2.2.6.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-test-autoconfigure/2.2.6.RELEASE/5eee95c91e5cdb10555aade0308d4dd47fe42d81/spring-boot-test-autoconfigure-2.2.6.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

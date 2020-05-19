@@ -5,28 +5,11 @@ import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
-import {StudentDetailComponent} from "./students/student-detail/student-detail.component";
-import {StudentsComponent} from "./students/students.component";
-import {StudentListComponent} from "./students/student-list/student-list.component";
-import {StudentService} from "./students/shared/student.service";
-import { DisciplinesComponent } from './disciplines/disciplines.component';
-import { DisciplineListComponent } from './disciplines/discipline-list/discipline-list.component';
-import {DisciplineService} from "./disciplines/shared/discipline.service";
-import { StudentNewComponent } from './students/student-new/student-new.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    StudentDetailComponent,
-    StudentsComponent,
-    StudentListComponent,
-    DisciplinesComponent,
-    DisciplineListComponent,
-    StudentNewComponent,
-
-
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +17,7 @@ import { StudentNewComponent } from './students/student-new/student-new.componen
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [StudentService, DisciplineService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

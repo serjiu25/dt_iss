@@ -16,7 +16,7 @@ public class SubmissionConverter extends BaseConverter<Submission, SubmissionDto
                 dto.getId(),
                 cuc.convertDtoToModel(dto.getAuthor()),
                 pc.convertDtoToModel(dto.getPaper()),
-                cc.convertDtoToModel(dto.getConference())
+                dto.getConferenceId()
         );
     }
 
@@ -27,7 +27,7 @@ public class SubmissionConverter extends BaseConverter<Submission, SubmissionDto
         ConferenceConverter cc= new ConferenceConverter();
         SubmissionDto submissiondtp=new SubmissionDto(cuc.convertModelToDto(submission.getAuthor())
                                                     ,pc.convertModelToDto(submission.getPaper())
-                                                    ,cc.convertModelToDto(submission.getConference()));
+                                                    ,submission.getConference().getId());
         submissiondtp.setId(submission.getId());
         return submissiondtp;
     }

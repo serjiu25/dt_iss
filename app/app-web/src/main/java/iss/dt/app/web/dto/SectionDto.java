@@ -10,5 +10,5 @@ import lombok.*;
 public class SectionDto extends BaseDto{
     private UserDto chair;
     private String room;
-    private EventDto event;
+    private Long eventId;
 }

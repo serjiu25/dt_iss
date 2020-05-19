@@ -10,5 +10,5 @@ import lombok.*;
 public class SubmissionDto extends BaseDto{
     private UserDto author;
     private PaperDto paper;
-    private ConferenceDto conference;
+    private Long conferenceId;
 }

@@ -27,7 +27,7 @@ public class EventConverter extends BaseConverter<Event, EventDto> {
                 .collect(Collectors.toList());*/
 
         Event event = new Event(dto.getId()
-                                ,cc.convertDtoToModel(dto.getConference()));
+                                ,dto.getConferenceId());
 
         return event;
     }
@@ -44,7 +44,7 @@ public class EventConverter extends BaseConverter<Event, EventDto> {
                 .collect(Collectors.toList());
 */
 
-        EventDto eventDto = new EventDto(cc.convertModelToDto(event.getConference()));
+        EventDto eventDto = new EventDto(event.getConference().getId());
 
         eventDto.setId(event.getId());
 

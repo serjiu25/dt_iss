@@ -10,5 +10,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class EventDto extends BaseDto{
-    private ConferenceDto conference;
+    private Long conferenceId;
 }

@@ -20,4 +20,12 @@ export class HeaderComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(user => this.username = user.name);
   }
 
+  setAuthorProfile(): void {
+    this.userService.setAuthorProfile();
+  }
+
+  setPcProfile(): void {
+    this.userService.setPcProfile();
+  }
+
 }

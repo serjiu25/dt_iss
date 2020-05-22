@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="cms:main" external.linked.project.path="$MODULE_DIR$/../../cms" external.root.project.path="$MODULE_DIR$/../../cms" external.system.id="GRADLE" external.system.module.group="dt" external.system.module.type="sourceSet" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping />
+        <naming-strategy-map />
+      </configuration>
+    </facet>
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
@@ -13,7 +21,6 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../cms/build/classes/java/main" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../cms/build/generated/sources/annotationProcessor/java/main" />
     <content url="file://$MODULE_DIR$/../../cms/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../cms/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../cms/src/main/resources" type="java-resource" />

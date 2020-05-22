@@ -62,7 +62,7 @@ public class ConferenceController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences", method = RequestMethod.POST)
-    ConferenceDto saveConference(@RequestBody ConferenceDto conferenceDto) {
+    public ConferenceDto saveConference(@RequestBody ConferenceDto conferenceDto) {
         return converter.convertModelToDto(
                 service.saveConference(
                         converter.convertDtoToModel(conferenceDto)
@@ -72,7 +72,7 @@ public class ConferenceController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/{id}", method = RequestMethod.DELETE)
-    ResponseEntity<?> deleteConference(@PathVariable Long id) {
+    public ResponseEntity<?> deleteConference(@PathVariable Long id) {
         service.deleteConference(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -1,6 +1,5 @@
 package iss.dt.app.web.dto;
 
-import iss.dt.app.core.model.ProgramCommittee;
 import lombok.*;
 
 @NoArgsConstructor

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,12 @@ import {UserService} from "../../services/user.service";
 })
 export class HeaderComponent implements OnInit {
   username = 'Name';
+  @Output() repopulate = new EventEmitter<void>();
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
   }
 
@@ -20,12 +23,18 @@ export class HeaderComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(user => this.username = user.name);
   }
 
-  setAuthorProfile(): void {
+  setAuthorProfile() {
     this.userService.setAuthorProfile();
+    this.repopulate.emit();
   }
 
-  setPcProfile(): void {
+  setPcProfile() {
     this.userService.setPcProfile();
+    this.repopulate.emit();
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/auth"]);
+  }
 }

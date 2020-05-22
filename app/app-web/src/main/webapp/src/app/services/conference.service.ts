@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Conference} from '../models/conference.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class ConferenceService {
@@ -21,6 +22,22 @@ export class ConferenceService {
     ]);
   }
 
+  getConferenceByAuthor(): Observable<Conference[]>{
+    return of([
+      new Conference(1, "Just a title author", "Salam idolul femeilor", 1),
+      new Conference(2, "For testing author", "Inainte sa moara Michael Jackson", 2),
+      new Conference(3, "Title 3 ie o proba pentru Author", "Anainte sa moara Michael Jackson", 3)
+    ]);
+  }
+
+  getConferenceByPc(): Observable<Conference[]>{
+    return of([
+      new Conference(1, "Title 1 proba pc", "Salam idolul femeilor", 1),
+      new Conference(2, "Title 2 proba pc", "Inainte sa moara Michael Jackson", 2),
+      new Conference(3, "Title 3 ie o proba pentru PC", "Anainte sa moara Michael Jackson", 3)
+    ]);
+  }
+
   getConference(conferenceId: number): Observable<Conference> {
     // const url = this.conferenceUrl + '/' + conferenceId;
     // return this.httpClient.get<Conference>(url);
@@ -34,9 +51,9 @@ export class ConferenceService {
     );
   }
 
-  createConference(title: string, description: string, eventId: number): Observable<Conference> {
+  createConference(title: string, description: string, chair: User, ): Observable<Conference> {
     const conference: Conference = {
-      title, description, eventId
+      title, description
     };
     return this.httpClient.post<Conference>(this.conferenceUrl, conference);
   }

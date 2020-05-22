@@ -15,8 +15,8 @@
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle></button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Author Profile</button>
-            <button ngbDropdownItem>PC Member Profile</button>
+            <button ngbDropdownItem (click)="userService.setAuthorProfile()">Author Profile</button>
+            <button ngbDropdownItem (click)="userService.setPcProfile()">PC Member Profile</button>
             <button ngbDropdownItem>Settings</button>
             <button ngbDropdownItem>Log Out</button>
           </div>
@@ -25,11 +25,11 @@
     </ul>
 
     <div class="navbar-right-container">
-      <div class="nav-item active">
-        <a class="right-home" href="#">Home</a>
+      <div class="nav-item">
+        <a class="right-home" routerLink="/home" routerLinkActive="active" >Home</a>
       </div>
       <div class="nav-item">
-        <a class="right-conferences" routerLink="/all-conferences" routerLinkActive="active">All Conferences</a>
+        <a class="right-conferences" routerLink="/all-conferences" routerLinkActive="active" >All Conferences</a>
       </div>
     </div>
   </div>

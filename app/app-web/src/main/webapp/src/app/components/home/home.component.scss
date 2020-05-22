@@ -1,0 +1,19 @@
+.joined-title{
+  padding-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.conference-list-container-home{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+
+  padding: 20px 10%;
+
+  app-card{
+    width: 50%;
+    padding: 0 22px;
+  }
+}

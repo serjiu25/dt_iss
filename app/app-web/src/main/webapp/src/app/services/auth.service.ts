@@ -13,8 +13,8 @@ export class AuthService {
     }
 
     getCurrentUser(): Observable<User> {
-        const userId = sessionStorage.getItem('currentUserId');
-        const url = this.authUrl + '/users/' + userId;
+        const userId = localStorage.getItem('currentUserId');
+        const url = this.authUrl + "/users/" + userId;
         return this.httpClient.get<User>(url);
     }
 
@@ -54,7 +54,7 @@ export class AuthService {
     }
 
     logout(): void {
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserId');
     }
 
 }

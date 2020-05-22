@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Conference} from '../models/conference.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class ConferenceService {
@@ -42,10 +43,10 @@ export class ConferenceService {
     return this.httpClient.get<Conference>(url);
   }
 
-  createConference(title: string, description: string, eventId: number): Observable<Conference> {
+  createConference(title: string, description: string, chair: User, ): Observable<Conference> {
     const conference: Conference = {
-      title, description, eventId
-    };
+      title, description
+    }
     return this.httpClient.post<Conference>(this.conferenceUrl, conference);
   }
 

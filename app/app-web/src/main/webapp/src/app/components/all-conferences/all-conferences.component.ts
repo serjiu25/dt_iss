@@ -13,6 +13,8 @@ export class AllConferencesComponent implements OnInit {
   conferences: Conference[];
 
   conference = new Conference();
+  coChairEmail: string;
+  coChairsEmails = new Array<String>();
 
   constructor(
     private conferenceService: ConferenceService,
@@ -26,6 +28,7 @@ export class AllConferencesComponent implements OnInit {
       this.conferences = conf;
     });
   }
+  
   open(content) {
     this.modalService.open(content);
   }

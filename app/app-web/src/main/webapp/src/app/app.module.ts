@@ -14,6 +14,8 @@ import {NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-b
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
 import {ConferenceService} from './services/conference.service';
+import { HomeComponent } from './components/home/home.component';
+import {UserService} from "./services/user.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import {ConferenceService} from './services/conference.service';
     AllConferencesComponent,
     CardComponent,
     AllConferencesComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import {ConferenceService} from './services/conference.service';
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService],
+  providers: [AuthService, ConferenceService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

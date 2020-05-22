@@ -14,17 +14,17 @@ export class AuthService {
 
     getCurrentUser(): Observable<User> {
         const userId = sessionStorage.getItem('currentUserId');
-        const url = this.authUrl + "/users/" + userId;
+        const url = this.authUrl + '/users/' + userId;
         return this.httpClient.get<User>(url);
     }
 
-    login(email: string, password: string): Observable<Boolean> {
+    login(email: string, password: string): Observable<boolean> {
         const url = this.authUrl + '/login';
         const params = { email, password };
 
         return this.httpClient.post(url, params).pipe(
             map(response => {
-                console.log("LOGIN response: " + response);
+                console.log('LOGIN response: ' + response);
                 if (response == null || response == {}) {
                     return false;
                 }

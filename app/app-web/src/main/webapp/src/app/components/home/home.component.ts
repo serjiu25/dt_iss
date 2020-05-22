@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConferenceService} from '../../services/conference.service';
 import {Conference} from '../../models/conference.model';
 
@@ -9,16 +9,28 @@ import {Conference} from '../../models/conference.model';
 })
 export class HomeComponent implements OnInit {
   conferences: Conference[];
-  pcMemberConferences: Conference[];
-  authorConferences: Conference[];
+
   constructor(
     private conferenceService: ConferenceService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.conferenceService.getConferences().subscribe(conf => {
+    this.conferenceService.getConferenceByAuthor().subscribe(conf => {
       this.conferences = conf;
     });
   }
 
+  populate() {
+
+    if (localStorage.getItem('profile') === "author") {
+      this.conferenceService.getConferenceByAuthor().subscribe(conf => {
+        this.conferences = conf;
+      });
+    } else {
+      this.conferenceService.getConferenceByPc().subscribe(conf => {
+        this.conferences = conf;
+      });
+    }
+  }
 }

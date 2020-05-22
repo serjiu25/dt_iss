@@ -15,9 +15,9 @@
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle></button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem (click)="userService.setAuthorProfile()">Author Profile</button>
-            <button ngbDropdownItem (click)="userService.setPcProfile()">PC Member Profile</button>
-            <button ngbDropdownItem>Settings</button>
+            <button ngbDropdownItem (click)="setAuthorProfile()">Author Profile</button>
+            <button ngbDropdownItem (click)="setPcProfile()">PC Member Profile</button>
+            <button ngbDropdownItem (click)="logout()">Settings</button>
             <button ngbDropdownItem>Log Out</button>
           </div>
         </div>

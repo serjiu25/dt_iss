@@ -25,7 +25,7 @@ export class AuthService {
         return this.httpClient.post(url, params).pipe(
             map(response => {
                 console.log('LOGIN response: ' + response);
-                if (response == null || response == {}) {
+                if (response == null || response === {}) {
                     return false;
                 }
                 const user = (response as User);

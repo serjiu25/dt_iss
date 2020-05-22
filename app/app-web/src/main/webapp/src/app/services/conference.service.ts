@@ -46,7 +46,7 @@ export class ConferenceService {
   createConference(title: string, description: string, chair: User, ): Observable<Conference> {
     const conference: Conference = {
       title, description
-    }
+    };
     return this.httpClient.post<Conference>(this.conferenceUrl, conference);
   }
 

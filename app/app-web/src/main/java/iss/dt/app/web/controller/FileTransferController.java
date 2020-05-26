@@ -110,7 +110,7 @@ public class FileTransferController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/downloadPaper/{paperid}/{abstract}", method = RequestMethod.GET)
     public FileSystemResource downloadPaper(@PathVariable("paperid") Long paperid,
-                                                    @PathVariable("abstract") Boolean abstr) {
+                                            @PathVariable("abstract") Boolean abstr) {
         Paper paper = paperService.findOne(paperid);
         if (paper == null)
             throw new RuntimeException("eeeh asta e, paperid incorect");

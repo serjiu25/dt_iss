@@ -2,14 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Conference} from '../models/conference.model';
-// import { User } from '../models/user.model';
-import { Phase } from '../models/phase.enum';
-import { environment } from 'src/environments/environment';
-import {User} from '../models/user.model';
+import {Phase} from '../models/phase.enum';
+import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class ConferenceService {
-  private conferenceUrl = 'http://${environment.serverAddress}:8080/api/conferences';
+  private conferenceUrl = 'http://109.100.171.87:8080/api/conferences';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -38,25 +36,25 @@ export class ConferenceService {
   getConferenceByAuthor(): Observable<Conference[]> {
     const userId = localStorage.getItem('currentUserId');
     const url = this.conferenceUrl + '/author/' + userId;
-    // return this.httpClient.get<Array<Conference>>(url);
+    return this.httpClient.get<Array<Conference>>(url);
 
-    return of([
-      new Conference(1, "Just a title author", "Salam idolul femeilor", 1),
-      new Conference(2, "For testing author", "Inainte sa moara Michael Jackson", 2),
-      new Conference(3, "Title 3 ie o proba pentru Author", "Anainte sa moara Michael Jackson", 3)
-    ]);
+    // return of([
+    //   new Conference(1, "Just a title author", "Salam idolul femeilor", 1),
+    //   new Conference(2, "For testing author", "Inainte sa moara Michael Jackson", 2),
+    //   new Conference(3, "Title 3 ie o proba pentru Author", "Anainte sa moara Michael Jackson", 3)
+    // ]);
   }
 
   getConferenceByPc(): Observable<Conference[]> {
     const userId = localStorage.getItem('currentUserId');
     const url = this.conferenceUrl + '/pc/' + userId;
-    // return this.httpClient.get<Conference>(url);
+    return this.httpClient.get<Array<Conference>>(url);
 
-    return of([
-      new Conference(1, "Title 1 proba pc", "Salam idolul femeilor", 1),
-      new Conference(2, "Title 2 proba pc", "Inainte sa moara Michael Jackson", 2),
-      new Conference(3, "Title 3 ie o proba pentru PC", "Anainte sa moara Michael Jackson", 3)
-    ]);
+    // return of([
+    //   new Conference(1, "Title 1 proba pc", "Salam idolul femeilor", 1),
+    //   new Conference(2, "Title 2 proba pc", "Inainte sa moara Michael Jackson", 2),
+    //   new Conference(3, "Title 3 ie o proba pentru PC", "Anainte sa moara Michael Jackson", 3)
+    // ]);
   }
 
   getConference(conferenceId: number): Observable<Conference> {

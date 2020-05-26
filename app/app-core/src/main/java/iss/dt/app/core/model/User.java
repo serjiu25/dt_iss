@@ -21,7 +21,7 @@ public class User {
     private String name;
     private String affiliation;
     private String email;
-    private String password;
+    private Password password;
     private Boolean admin;
     private Boolean validated;
 
@@ -32,7 +32,7 @@ public class User {
     @ManyToMany
     private List<ProgramCommittee> pc_co_chairs;
 
-    public User (Long id, String name, String affiliation, String email, String password, Boolean admin, Boolean validated){
+    public User (Long id, String name, String affiliation, String email, Password password, Boolean admin, Boolean validated){
         this.id=id;
         this.name=name;
         this.affiliation=affiliation;

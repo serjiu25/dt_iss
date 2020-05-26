@@ -1,0 +1,59 @@
+.paper-container {
+  width: 50%;
+  //margin-bottom: 20px;
+  border: 2px;
+  border-radius: 10px;
+  margin: 5% auto 0;
+  padding: 20px 40px;
+  transition: background-color 1s ease, color 1s ease-out;
+  background-color: rgba(255, 195, 188, 0.34);
+  color: #225068;
+
+}
+.paper-container:hover {
+  transition: 1s ease-out;
+  background-color: rgba(255, 195, 188, 0.59);
+  color: black;
+}
+.paper-header-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.paper-title{
+  font-size: 25px;
+  padding: 2px;
+  transition: 2s ease-in;
+}
+.conference-phase{
+  color: #999999;
+  transition: 2s ease-in;
+}
+.conference-phase:hover{
+  color: maroon;
+  transition: 0.5s ease-in;
+}
+
+.reviewer-input{
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease-in;
+}
+
+.reviewer-input:focus{
+  height: 100px;
+  transition: 0.5s;
+}
+
+.submit-review-button{
+  margin: 0 auto;
+  background-image:linear-gradient(to bottom, whitesmoke 1%, rgba(255, 236, 224, 0.77));
+  color: #335658;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+}
+
+.paper-description{
+  padding-bottom: 10px;
+}

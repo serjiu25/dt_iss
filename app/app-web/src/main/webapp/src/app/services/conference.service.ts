@@ -48,7 +48,8 @@ export class ConferenceService {
         conferenceId,
         "Long hardcoded title",
         "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
-        5
+        5,
+        Phase.SUBMIT
       )
     );
   }

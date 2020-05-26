@@ -4,3 +4,20 @@
   <div class="conference-page-title">{{conference.title}}</div>
   <div class="conference-page-body">{{conference.description}}</div>
 </div>
+
+<button class="add-paper-button" (click)="displayPaperForm = !displayPaperForm">Add paper</button>
+<div id="add-paper-form" *ngIf="displayPaperForm === true">
+  <input class="input-field left" type="text" placeholder="Title" [(ngModel)]="paper.name" required>
+  <input class="input-field right" type="url" placeholder="Abstract Url" [(ngModel)]="paper.abstractUrl" required>
+  <input class="input-field left" type="url" placeholder="Full paper url" [(ngModel)]="paper.fullUrl">
+  <input class="input-field right" type="text" placeholder="A few keywords" [(ngModel)]="paper.keywords">
+  <input class="input-field left" type="text" placeholder="Topics" required [(ngModel)]="paper.topics">
+  <input class="input-field right" type="text" placeholder="Other authors?" [(ngModel)]="paper.otherAuthors">
+
+  <button class="submit-paper-button" (click)="onSubmit()">Submit paper</button>
+</div>
+
+<div class="all-papers-container" *ngFor="let papers of paperList">
+  <app-paper-card [conferencePhase]="conference.phase" [paper]="papers"></app-paper-card>
+</div>
+

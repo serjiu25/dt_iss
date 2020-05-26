@@ -4,12 +4,13 @@ import iss.dt.app.core.model.Paper;
 import iss.dt.app.core.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.annotation.MultipartConfig;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -80,7 +81,7 @@ public class FileTransferController {
 
         String PATH = this.STORAGE_PATH + "\\papers\\" + paperid + "_" + termination + "." + extension;
 
-        File convertFile = new File(STORAGE_PATH + "" + file.getOriginalFilename());
+        File convertFile = new File(PATH);
         try {
             if (!convertFile.createNewFile())
                 return new ResponseEntity<>("A file with this name already exists! PATH: " + PATH,

@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ProgramCommitteeService } from 'src/app/services/programCommittee.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-conferences',
@@ -24,8 +25,9 @@ export class AllConferencesComponent implements OnInit {
   coChairsEmails = [];
 
   constructor(
-    private conferenceService: ConferenceService,
     private modalService: NgbModal,
+    private router: Router,
+    private conferenceService: ConferenceService,
     private authService: AuthService,
     private userService: UserService,
     private pcService: ProgramCommitteeService
@@ -42,37 +44,36 @@ export class AllConferencesComponent implements OnInit {
   }
 
   saveConference(): void{  
-    console.log("Before save: " + this.conference);
+    console.log("Before save: " + JSON.stringify(this.conference));
 
     let coChairsAux: User[];
     let currentUserAux: User;
 
-    this.userService.getUserByEmail(this.coChairsEmails[0]).subscribe(res => {
-      console.log(res);
-      console.log(JSON.stringify(res));
-    });
-
-    return;
-    // this.authService.getCurrentUser().pipe(
-    //   switchMap(currentUser => {
-    //     console.log('CurrentUser');
-    //     console.log(currentUser);
-    //     currentUserAux = currentUser;
-    //     const coChairsObservables = this.coChairsEmails.map(email => this.userService.getUserByEmail(email));
-    //     return combineLatest(coChairsObservables);
-    //   }),
-    //   switchMap(coChairs => {
-    //     coChairsAux = coChairs;
-    //     console.log('CoChairs');
-    //     console.log(coChairs);
-    //     return this.conferenceService.createConference(this.conference.title, this.conference.description);
-    //   }),
-    //   switchMap(conference => {
-    //     this.conference = conference;
-    //     console.log('Conference: ' + conference);
-    //     return this.pcService.createProgramCommittee(currentUserAux, coChairsAux, this.conference.id);
-    //   }),
-    // ).subscribe(pc => console.log('Program committee: ' + pc));
+    this.authService.getCurrentUser().pipe(
+      switchMap(currentUser => {
+        console.log('CurrentUser');
+        console.log(currentUser);
+        currentUserAux = currentUser;
+        const coChairsObservables = this.coChairsEmails.map(email => this.userService.getUserByEmail(email));
+        return combineLatest(coChairsObservables);
+      }),
+      switchMap(coChairs => {
+        coChairsAux = coChairs;
+        console.log('CoChairs');
+        console.log(coChairs);
+        return this.conferenceService.createConference(this.conference.title, this.conference.description);
+      }),
+      switchMap(conference => {
+        this.conference = conference;
+        console.log('Conference');
+        console.log(conference);
+        return this.pcService.createProgramCommittee(currentUserAux, coChairsAux, this.conference.id);
+      }),
+    ).subscribe(
+      pc => console.log(pc),
+      err => console.error(err),
+      () => this.router.navigate['/conference-page/' + this.conference.id]
+    );
 
     // this.conferenceService.createConference(this.conference.title, this.conference.description).pipe(
     //   switchMap(conference => {

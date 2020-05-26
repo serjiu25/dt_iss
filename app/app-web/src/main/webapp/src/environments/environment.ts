@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  serverAddress: '109.100.171.87'
+  //  serverAddress: 'localhost'
   // serverAddress: '192.168.1.6'
+  serverAddress: '109.100.171.87'
+
 };
 
 /*

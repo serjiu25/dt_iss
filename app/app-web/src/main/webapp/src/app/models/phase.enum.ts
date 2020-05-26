@@ -1,5 +1,5 @@
 export enum Phase {
-    SUBMIT = 'SUBMIT',
-    BIDDING = 'BIDDING',
-    REVIEW = 'REVIEW'
+  SUBMIT = 'SUBMIT',
+  BIDDING = 'BIDDING',
+  REVIEW = 'REVIEW'
 }

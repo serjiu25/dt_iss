@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Conference} from "../../models/conference.model";
 import {ConferenceService} from "../../services/conference.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Paper} from "../../models/paper.model";
 
 @Component({
   selector: 'app-conference',
@@ -12,15 +13,29 @@ export class ConferenceComponent implements OnInit {
   // @Input() conference: Conference;
   conferenceId: number;
   conference: Conference;
+  displayPaperForm = false;
+  paper = new Paper();
+  hardcodedPaper = new Paper();
+  paperList: Paper[];
 
 
   constructor(
     private conferenceService: ConferenceService,
+    // private paperService: PaperService,
     private route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+    this.paperList = new Array<Paper>();
+    this.hardcodedPaper.name = "Title hardcoded";
+    this.hardcodedPaper.abstractUrl = "abstract";
+    this.hardcodedPaper.fullUrl = "full";
+    this.hardcodedPaper.topics = "topics";
+    this.hardcodedPaper.keywords = "keywords";
+    this.hardcodedPaper.otherAuthors = "Other authors";
+
+    this.paperList.push(this.hardcodedPaper);
     this.route.paramMap.subscribe(paramMap => {
       this.conferenceId = Number(paramMap.get('id'));
       this.conferenceService.getConference(
@@ -29,6 +44,13 @@ export class ConferenceComponent implements OnInit {
         this.conference = obj;
       });
     });
+  }
+
+  onSubmit() {
+    console.log(this.conference.phase);
+    console.log("Added paper:", this.paper);
+    this.paperList.push(this.paper);
+    console.log(this.paperList);
   }
 
 }

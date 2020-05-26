@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import {UserService} from "./services/user.service";
 import { ProgramCommitteeService } from './services/programCommittee.service';
 import { ConferenceComponent } from './components/conference/conference.component';
+import { PaperCardComponent } from './components/paper-card/paper-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { ConferenceComponent } from './components/conference/conference.componen
     HeaderComponent,
     HomeComponent,
     ConferenceComponent,
+    PaperCardComponent,
   ],
   imports: [
     BrowserModule,

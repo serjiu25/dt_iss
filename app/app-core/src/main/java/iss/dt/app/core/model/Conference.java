@@ -23,10 +23,10 @@ public class Conference implements Serializable {
     private String description;
     private String phase;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private ProgramCommittee committee;
 
-    @OneToMany(mappedBy = "conference")
+    @OneToMany(mappedBy = "conference", fetch = FetchType.EAGER)
     private List<Submission> submissions;
 
     @OneToOne

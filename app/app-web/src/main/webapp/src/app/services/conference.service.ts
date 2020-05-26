@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Conference} from '../models/conference.model';
-import { User } from '../models/user.model';
+// import { User } from '../models/user.model';
 import { Phase } from '../models/phase.enum';
 import { environment } from 'src/environments/environment';
 import {User} from '../models/user.model';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConferenceService} from '../../services/conference.service';
 import {Conference} from '../../models/conference.model';
 import {NgbModal, NgbModalConfig, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +17,7 @@ import { User } from 'src/app/models/user.model';
 
 export class AllConferencesComponent implements OnInit {
   conferences: Conference[];
+  result: Conference[];
   conference = new Conference();
 
   coChairEmail: string;
@@ -29,14 +30,13 @@ export class AllConferencesComponent implements OnInit {
     private userService: UserService,
     private pcService: ProgramCommitteeService
   ) { }
-
-
   ngOnInit(): void {
     this.conferenceService.getConferences().subscribe(conf => {
       this.conferences = conf;
+      this.result = conf;
     });
   }
-  
+
   open(content) {
     this.modalService.open(content);
   }
@@ -91,7 +91,15 @@ export class AllConferencesComponent implements OnInit {
     //     return this.pcService.createProgramCommittee(currentUser, coChairsAux, this.conference.id);
     //   })
     // ).subscribe(pc => console.log('Program committee: ' + pc));
-
   }
 
+  filter(event) {
+    const filterKey = event.target.value;
+    if (filterKey === '') {
+      this.result = this.conferences;
+    } else {
+      // tslint:disable-next-line:max-line-length
+      this.result = this.conferences.filter(conference => conference.title.search(filterKey) >= 0 || conference.description.search(filterKey) >= 0);
+    }
+  }
 }

@@ -24,9 +24,33 @@ export class ConferenceService {
     ]);
   }
 
+  getConferenceByAuthor(): Observable<Conference[]>{
+    return of([
+      new Conference(1, "Just a title author", "Salam idolul femeilor", 1),
+      new Conference(2, "For testing author", "Inainte sa moara Michael Jackson", 2),
+      new Conference(3, "Title 3 ie o proba pentru Author", "Anainte sa moara Michael Jackson", 3)
+    ]);
+  }
+
+  getConferenceByPc(): Observable<Conference[]>{
+    return of([
+      new Conference(1, "Title 1 proba pc", "Salam idolul femeilor", 1),
+      new Conference(2, "Title 2 proba pc", "Inainte sa moara Michael Jackson", 2),
+      new Conference(3, "Title 3 ie o proba pentru PC", "Anainte sa moara Michael Jackson", 3)
+    ]);
+  }
+
   getConference(conferenceId: number): Observable<Conference> {
-    const url = this.conferenceUrl + '/' + conferenceId;
-    return this.httpClient.get<Conference>(url);
+    // const url = this.conferenceUrl + '/' + conferenceId;
+    // return this.httpClient.get<Conference>(url);
+    return of(
+      new Conference(
+        conferenceId,
+        "Long hardcoded title",
+        "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
+        5
+      )
+    );
   }
 
   createConference(title: string, description: string): Observable<Conference> {

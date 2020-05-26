@@ -12,7 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="app.main" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.18.12" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:5.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:5.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-dbcp2:2.2.0" level="project" />

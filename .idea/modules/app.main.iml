@@ -8,7 +8,6 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/../../app/build/classes/java/main" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../app/build/generated/sources/annotationProcessor/java/main" />
     <content url="file://$MODULE_DIR$/../../app/src/main" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

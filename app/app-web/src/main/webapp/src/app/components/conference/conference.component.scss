@@ -1,0 +1,44 @@
+.conference-page-title {
+  color: black;
+  padding: 0.5% 0.5% 0.5%;
+  cursor: context-menu;
+  font-size: 30px;
+  border-bottom: 1px solid teal;
+  border-left: 1px solid teal;
+  width: 25%;
+  min-width: 15%;
+  max-width: 30%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-bottom-left-radius: 7px;
+  border-bottom-width: inherit;
+  transition: 1s;
+}
+
+.conference-page-title:hover{
+  border-left: 1px solid teal;
+  border-left-width: 4px;
+  border-bottom-width: 4px;
+  padding-left: 3%;
+  transition: 1s ;
+}
+
+.conference-page-body{
+  width: 60%;
+  margin: 0 auto;
+  background-color: #cfe3db;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 2px 3px 8px 1px rgba(58, 99, 101, 0.22);
+  transition: ease-out 0.5s;
+  padding: 15px 20px;
+
+
+}
+
+.conference-page-body:hover{
+  box-shadow: 2px 3px 8px 1px #3a6365;
+  transition: ease-in 0.5s;
+  font-size: 16.1px;
+}

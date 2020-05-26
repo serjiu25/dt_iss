@@ -7,10 +7,10 @@
       <i class="material-icons" id="add-conference-button" (click)="open(content)">control_point</i>
     </div>
     <div class="active-pink-3 active-pink-4 mb-4">
-      <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search">
+      <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search" (keyup)="filter($event)">
     </div>
   </div>
-  <div class="conference-list-container" *ngFor="let conference of conferences">
+  <div class="conference-list-container" *ngFor="let conference of result">
     <app-card [conference] = "conference"></app-card>
   </div>
 </div>
@@ -28,7 +28,7 @@
 
     <input type="text" class="form-control" placeholder="Title" [(ngModel)]="conference.title"><br>
     <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="conference.description"></textarea><br>
-    
+
     <p>Co-chairs</p>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-add"

@@ -1,5 +1,7 @@
 package iss.dt.app.core.service;
 import iss.dt.app.core.model.Conference;
+import iss.dt.app.core.model.ProgramCommittee;
+import iss.dt.app.core.model.Submission;
 import iss.dt.app.core.repository.ConferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,39 @@ public class ConferenceServiceImpl implements ConferenceService{
     public List<Conference> findByTopic(String topic){
         return repo.findAll().stream().filter(conf->conf.getDescription().contains(topic)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<Conference> findForAuthor(Long id) {
+        return repo.findAll().stream().filter(conf->{for(Submission s:conf.getSubmissions()){
+            if(s.getAuthor().getId()==id)
+                return true;
+        };return false;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Conference> findForPC(Long id) {
+        return repo.findAll().stream().filter(conf->{
+            ProgramCommittee pc=conf.getProgramCommittee();
+            if(pc.getChair().getId()==id)
+                return true;
+            return pc.getCo_chairs().stream().filter(user->user.getId()==id).findFirst().isPresent();//todo:change when we add reviewers too
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean isPC(Long id, Long userid) {
+        ProgramCommittee pc= findOne(id).getProgramCommittee();
+        if(pc.getChair().getId()==id)
+            return true;
+        return pc.getCo_chairs().stream().filter(user->user.getId()==userid).findFirst().isPresent(); //todo:change when we add reviewers too
+    }
+
+    @Override
+    public boolean isAuthor(Long id, Long userid) {
+        return findOne(id).getSubmissions().stream().filter(sub->sub.getAuthor().getId()==userid).findFirst().isPresent();
+    }
+
     @Override
     public Conference findOne(Long id){
         return repo.findAll().stream().filter(conference->conference.getId() == id).findAny().orElse(null);

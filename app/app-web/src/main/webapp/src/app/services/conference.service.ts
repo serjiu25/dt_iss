@@ -3,10 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Conference} from '../models/conference.model';
 import { User } from '../models/user.model';
+import { Phase } from '../models/phase.enum';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ConferenceService {
-  private conferenceUrl = 'http://localhost:8080/api/conferences';
+  private conferenceUrl = `http://${environment.serverAddress}:8080/api/conferences`;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -27,9 +29,9 @@ export class ConferenceService {
     return this.httpClient.get<Conference>(url);
   }
 
-  createConference(title: string, description: string, chair: User, ): Observable<Conference> {
+  createConference(title: string, description: string): Observable<Conference> {
     const conference: Conference = {
-      title, description
+      title, description, phase: Phase.SUBMIT
     }
     return this.httpClient.post<Conference>(this.conferenceUrl, conference);
   }

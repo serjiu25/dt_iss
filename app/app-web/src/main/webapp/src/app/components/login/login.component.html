@@ -12,7 +12,8 @@
     
 
     <input class="form-control mb-2" type="text" [(ngModel)]="email" name="email" id="email" placeholder="Email">
-    <input class="form-control mb-4" type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password">
+    <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Password"
+        [(ngModel)]="password" (keyup.enter)="onSubmit()">
 
     <button class="btn btn-primary"  type="submit" (click)="onSubmit()">Login</button>
 </section>

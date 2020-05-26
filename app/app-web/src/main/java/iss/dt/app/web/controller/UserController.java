@@ -1,5 +1,6 @@
 package iss.dt.app.web.controller;
 
+import iss.dt.app.core.model.PasswordHasher;
 import iss.dt.app.core.model.User;
 import iss.dt.app.core.service.UserService;
 import iss.dt.app.web.converter.UserConverter;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,7 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public UserDto login(@RequestBody UserDto dto) {
+    public UserDto login(@RequestBody UserDto dto) throws InvalidKeySpecException, NoSuchAlgorithmException {
         if (dto == null || dto.getEmail() == null || dto.getPassword() == null) {
             return null;
         }
@@ -32,7 +35,8 @@ public class UserController {
         if (user == null) {
             return null;
         }
-        if (!user.getPassword().equals(dto.getPassword())) {
+        PasswordHasher passwordHasher=new PasswordHasher();
+        if(!passwordHasher.validate(dto.getPassword(),user.getPassword())) {
             return null;
         }
         return converter.convertModelToDto(user);

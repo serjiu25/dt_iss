@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 @Entity
@@ -37,7 +39,13 @@ public class User {
         this.name=name;
         this.affiliation=affiliation;
         this.email=email;
-        this.password = password;
+        try {
+            PasswordHasher passwordHasher = new PasswordHasher();
+            this.password = passwordHasher.generate(password);
+        }
+        catch (InvalidKeySpecException | NoSuchAlgorithmException e){
+            System.out.println("User Constructor failed at hashing!");
+        }
         this.admin=admin;
         this.validated=validated;
         //this.section=section;

@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
 public class PasswordHasher {
-    private Password generate(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
+    public String generate(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         int iterations = 1000;
         char[] chars = password.toCharArray();
@@ -19,7 +19,7 @@ public class PasswordHasher {
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = skf.generateSecret(spec).getEncoded();
 
-        return new Password(iterations + ":" + toHex(salt) + ":" + toHex(hash));
+        return iterations + ":" + toHex(salt) + ":" + toHex(hash);
     }
 
     private byte[] getSalt() throws NoSuchAlgorithmException
@@ -51,14 +51,14 @@ public class PasswordHasher {
         }
         return bytes;
     }
-    private boolean validate(Password originalPassword, Password storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException
+    public boolean validate(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
-        String[] parts = storedPassword.getHash().split(":");
+        String[] parts = storedPassword.split(":");
         int iterations = Integer.parseInt(parts[0]);
         byte[] salt = fromHex(parts[1]);
         byte[] hash = fromHex(parts[2]);
 
-        PBEKeySpec spec = new PBEKeySpec(originalPassword.getHash().toCharArray(), salt, iterations, hash.length * 8);
+        PBEKeySpec spec = new PBEKeySpec(originalPassword.toCharArray(), salt, iterations, hash.length * 8);
         SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] testHash = skf.generateSecret(spec).getEncoded();
 

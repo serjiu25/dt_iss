@@ -3,9 +3,8 @@ package iss.dt.app.web.controller;
 import iss.dt.app.core.model.Paper;
 import iss.dt.app.core.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,8 +56,8 @@ public class FileTransferController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPaper", method = RequestMethod.POST)
     public ResponseEntity<Object> uploadPaper(@RequestParam("paperid")Long paperid,
-                                             @RequestParam("abstract")Boolean abstr,
-                                             @RequestParam("file")MultipartFile file) {
+                                              @RequestParam("abstract")Boolean abstr,
+                                              @RequestParam("file")MultipartFile file) {
 
         // Get paper from paper id
         Paper paper = paperService.findOne(paperid);
@@ -101,6 +100,28 @@ public class FileTransferController {
         paperService.updatePaper(paper);
 
         return new ResponseEntity<>("File uploaded successfully! PATH: " + PATH, HttpStatus.OK);
+    }
+
+
+    /**
+        Download a paper with the paperid and abstract true/false
+        Kinda shady, might throw error if the path is incorrect
+     */
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/downloadPaper/{paperid}/{abstract}", method = RequestMethod.GET)
+    public FileSystemResource downloadAbstractPaper(@PathVariable("paperid") Long paperid,
+                                                    @PathVariable("abstract") Boolean abstr) {
+        Paper paper = paperService.findOne(paperid);
+        if (paper == null)
+            throw new RuntimeException("eeeh asta e, paperid incorect");
+
+        String PATH;
+
+        if(abstr)
+            PATH = paper.getAbstractURL();
+        else PATH = paper.getFullURL();
+
+        return new FileSystemResource(PATH);
     }
 
 }

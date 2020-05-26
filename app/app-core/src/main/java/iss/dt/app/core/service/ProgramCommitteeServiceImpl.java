@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProgramCommitteeServiceImpl implements ProgramCommitteeService{
+
     @Autowired
     private ProgramCommitteeRepository repo;
+
     @Override
     public ProgramCommittee findByConference(Long id){
-        return repo.findAll().stream().filter(pc->pc.getConference().getId() == id).findFirst().orElse(null);
+        return repo.findAll().stream().filter(pc-> pc.getConference().getId().equals(id)).findFirst().orElse(null);
     }
     @Override
     public ProgramCommittee findOne(Long id){

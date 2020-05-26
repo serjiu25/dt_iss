@@ -3,6 +3,8 @@ package iss.dt.app.web.controller;
 import iss.dt.app.core.model.Paper;
 import iss.dt.app.core.service.PaperService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,8 +60,8 @@ public class FileTransferController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPaper", method = RequestMethod.POST)
     public ResponseEntity<Object> uploadPaper(@RequestParam("paperid")Long paperid,
-                                             @RequestParam("abstract")Boolean abstr,
-                                             @RequestParam("file")MultipartFile file) {
+                                              @RequestParam("abstract")Boolean abstr,
+                                              @RequestParam("file")MultipartFile file) {
 
         // Get paper from paper id
         Paper paper = paperService.findOne(paperid);
@@ -81,7 +83,7 @@ public class FileTransferController {
 
         String PATH = this.STORAGE_PATH + "\\papers\\" + paperid + "_" + termination + "." + extension;
 
-        File convertFile = new File(PATH);
+        File convertFile = new File(STORAGE_PATH + "" + file.getOriginalFilename());
         try {
             if (!convertFile.createNewFile())
                 return new ResponseEntity<>("A file with this name already exists! PATH: " + PATH,
@@ -102,6 +104,28 @@ public class FileTransferController {
         paperService.updatePaper(paper);
 
         return new ResponseEntity<>("File uploaded successfully! PATH: " + PATH, HttpStatus.OK);
+    }
+
+
+    /**
+        Download a paper with the paperid and abstract true/false
+        Kinda shady, might throw error if the path is incorrect
+     */
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/downloadPaper/{paperid}/{abstract}", method = RequestMethod.GET)
+    public FileSystemResource downloadPaper(@PathVariable("paperid") Long paperid,
+                                            @PathVariable("abstract") Boolean abstr) {
+        Paper paper = paperService.findOne(paperid);
+        if (paper == null)
+            throw new RuntimeException("eeeh asta e, paperid incorect");
+
+        String PATH;
+
+        if(abstr)
+            PATH = paper.getAbstractURL();
+        else PATH = paper.getFullURL();
+
+        return new FileSystemResource(PATH);
     }
 
 }

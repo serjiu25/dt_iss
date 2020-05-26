@@ -10,6 +10,7 @@ import iss.dt.app.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class ProgramCommitteeController {
         return converter.convertModelToDto(programCommittee);
     }
 
+    @Transactional
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pc", method = RequestMethod.POST)
     ProgramCommitteeDto saveProgramCommittee(@RequestBody ProgramCommitteeDto programCommitteeDto) {

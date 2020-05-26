@@ -15,7 +15,7 @@ public class ProgramCommitteeServiceImpl implements ProgramCommitteeService{
     }
     @Override
     public ProgramCommittee findOne(Long id){
-        return repo.findAll().stream().filter(pc->pc.getId() == id).findAny().orElse(null);
+        return repo.findAll().stream().filter(pc-> pc.getId().equals(id)).findAny().orElse(null);
     }
     @Override
     @Transactional

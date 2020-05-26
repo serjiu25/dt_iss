@@ -17,10 +17,16 @@ public class Evaluation {
     private String result;
     private String justification;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Submission submission;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User reviewer;
+
+    public Evaluation (Long id, String result, String justification) {
+        this.id = id;
+        this.result = result;
+        this.justification = justification;
+    }
 
 }

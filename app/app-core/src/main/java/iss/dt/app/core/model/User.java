@@ -25,7 +25,7 @@ public class User {
     private Boolean admin;
     private Boolean validated;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Section section;
 
     // TODO: maybe use another table?

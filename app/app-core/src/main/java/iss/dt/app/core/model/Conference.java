@@ -23,13 +23,13 @@ public class Conference implements Serializable {
     private String description;
     private String phase;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private ProgramCommittee committee;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
+    @OneToMany(mappedBy = "conference")
     private List<Submission> submissions;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Event event;
 
     public Conference(Long id, String title, String description, String phase) {

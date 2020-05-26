@@ -17,7 +17,7 @@ public class ProgramCommittee {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User chair;
 /*
     @ManyToMany(mappedBy = "Program Comitee", fetch = FetchType.EAGER)

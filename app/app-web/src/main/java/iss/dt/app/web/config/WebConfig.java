@@ -22,6 +22,7 @@ public class WebConfig {
                         .allowedOrigins("http://localhost:4200", "http://localhost:8080",
                                         "http://192.168.1.4:4200")
                         .allowedMethods("GET", "PUT", "PATCH", "POST", "DELETE", "OPTIONS")
+                        .allowCredentials(true)
                         .exposedHeaders("Access-Control-Allow-Origin:*")
                         .maxAge(9600);
             }

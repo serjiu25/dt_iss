@@ -1,9 +1,12 @@
 package iss.dt.app.web.converter;
 
+import iss.dt.app.core.model.Conference;
 import iss.dt.app.core.model.ProgramCommittee;
 import iss.dt.app.core.model.User;
+import iss.dt.app.core.service.ConferenceService;
 import iss.dt.app.web.dto.UserDto;
 import iss.dt.app.web.dto.ProgramCommitteeDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,15 +15,18 @@ import java.util.stream.Collectors;
 @Component
 public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, ProgramCommitteeDto> {
 
+    @Autowired private ConferenceService conferenceService;
+
     @Override
     public ProgramCommittee convertDtoToModel(ProgramCommitteeDto dto) {
         UserConverter userConverter = new UserConverter();
-        List<User> co_chairs = dto.getCo_chairs().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
-
+        List<User> co_chairs = dto.getCoChairs().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
+        Conference conference = conferenceService.findOne(dto.getConferenceId());
         return new ProgramCommittee(
                 dto.getId(),
                 userConverter.convertDtoToModel(dto.getChair()),
-                co_chairs
+                co_chairs,
+                conference
         );
     }
 

@@ -19,13 +19,13 @@ public class Submission {
     @ManyToOne
     private User author;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Paper paper;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Conference conference;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "submission")
+    @OneToMany(mappedBy = "submission")
     private List<Evaluation> evaluations;
 
     public Submission(Long id, User convertDtoToModel, Paper convertDtoToModel1) {

@@ -6,11 +6,18 @@ import iss.dt.app.web.converter.UserConverter;
 import iss.dt.app.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+
+class EmailObject {
+    public String email;
+}
 
 @RestController
 public class UserController {
@@ -62,9 +69,18 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public UserDto getUser(@PathVariable final Long userId) {
+    public UserDto getUser(@PathVariable Long userId) {
         //log.trace("getUser");
         User user = service.findOne(userId);
+        //log.trace("getUser: users={}", user);
+        return converter.convertModelToDto(user);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/users/email", method = RequestMethod.POST)
+    public UserDto getUserByEmail(@RequestBody EmailObject emailObject) {
+        //log.trace("getUser");
+        User user = service.findByEmail(emailObject.email);
         //log.trace("getUser: users={}", user);
         return converter.convertModelToDto(user);
     }

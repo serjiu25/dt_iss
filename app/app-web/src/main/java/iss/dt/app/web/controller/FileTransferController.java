@@ -56,7 +56,7 @@ public class FileTransferController {
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/uploadPaper", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> uploadFile(@RequestParam("paperid")Long paperid,
+    public ResponseEntity<Object> uploadPaper(@RequestParam("paperid")Long paperid,
                                              @RequestParam("abstract")Boolean abstr,
                                              @RequestParam("file")MultipartFile file) {
 

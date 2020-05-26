@@ -39,7 +39,23 @@ hs_err_pid*
 # IDEs and editors
 .idea
 .idea/
+/app/.idea
+/app/.idea/
+/app/.idea/*
+app/.idea
+app/.idea/
+app/.idea/*
+**/*.idea
+**/.idea
+**/.idea/
+**/.idea/*
+.idea
+*/.idea
+*/.idea/
+*/.idea/*
 */*.idea
+*/*.idea/
+*/*.idea/*
 */*.project
 */*.classpath
 */*.c9/

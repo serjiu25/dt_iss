@@ -11,9 +11,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AllConferencesComponent } from './components/all-conferences/all-conferences.component';
 import {NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ConferenceService} from "./services/conference.service";
 import { CardComponent } from './components/card/card.component';
 import { HeaderComponent } from './components/header/header.component';
+import {ConferenceService} from './services/conference.service';
+import { HomeComponent } from './components/home/home.component';
+import {UserService} from "./services/user.service";
+import { ProgramCommitteeService } from './services/programCommittee.service';
+import { ConferenceComponent } from './components/conference/conference.component';
+import { PaperCardComponent } from './components/paper-card/paper-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +28,10 @@ import { HeaderComponent } from './components/header/header.component';
     AllConferencesComponent,
     CardComponent,
     AllConferencesComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    ConferenceComponent,
+    PaperCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +40,7 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService],
+  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

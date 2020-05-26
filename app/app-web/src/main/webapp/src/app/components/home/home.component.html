@@ -1,0 +1,14 @@
+<app-header (repopulate)="populate()"></app-header>
+
+<h3 class="joined-title"><u>Joined Conferences</u></h3>
+<div class="home-container">
+
+  <div class="conference-list-container-home" >
+    <app-card *ngFor="let conference of conferences" [conference] = "conference"></app-card>
+  </div>
+
+<!--  <h3 class="joined-title"><u>Favourite Conferences</u></h3>-->
+<!--  <div class="conference-list-container-home" >-->
+<!--    <app-card *ngFor="let conference of conferences" [conference] = "conference"></app-card>-->
+<!--  </div>-->
+</div>

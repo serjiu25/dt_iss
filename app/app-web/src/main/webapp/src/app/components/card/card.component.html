@@ -1,7 +1,7 @@
 <div class="conference-container">
   <div class="conference-header">
-    <h4 class="conference-title">{{conference.title}}</h4>
+    <h4 class="conference-title" (click)="onSubmit(conference.id)">{{conference.title}}</h4>
     <p class="conference-phase"></p>
   </div>
-  <p class="conference-body">{{conference.body}}</p>
+  <p class="conference-body">{{conference.description}}</p>
 </div>

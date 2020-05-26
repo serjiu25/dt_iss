@@ -4,13 +4,50 @@
   <div class="page-navigation-container">
     <div>
       <h5><u>All conferences</u></h5>
-      <i class="material-icons" id="add-conference-button">control_point</i>
+      <i class="material-icons" id="add-conference-button" (click)="open(content)">control_point</i>
     </div>
     <div class="active-pink-3 active-pink-4 mb-4">
-      <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search">
+      <input class="form-control" type="text" placeholder="Search conference..." aria-label="Search" (keyup)="filter($event)">
     </div>
   </div>
-  <div class="conference-list-container" *ngFor="let conference of conferences">
+  <div class="conference-list-container" *ngFor="let conference of result">
     <app-card [conference] = "conference"></app-card>
   </div>
 </div>
+
+
+<ng-template #content let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Conference</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body add-conf-form">
+
+    <input type="text" class="form-control" placeholder="Title" [(ngModel)]="conference.title"><br>
+    <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="conference.description"></textarea><br>
+
+    <p>Co-chairs</p>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-add"
+        [(ngModel)]="coChairEmail" (keyup.enter)="coChairsEmails.push(coChairEmail); coChairEmail = ''">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-add"
+          (click)="coChairsEmails.push(coChairEmail); coChairEmail = ''">Add Co-Chair by email</button>
+      </div>
+    </div>
+    
+    <ul *ngIf="coChairsEmails.length > 0">
+      <li *ngFor="let email of coChairsEmails; index as i">
+        <span>{{email}}</span>
+        <span (click)="coChairsEmails.splice(i, 1)" style="cursor: pointer" class="close">&times;</span>
+      </li>
+    </ul>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="saveConference()">Create</button>
+  </div>
+</ng-template>

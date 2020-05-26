@@ -1,11 +1,23 @@
-export class Conference {
-  id: number;
-  title: string;
-  body: string;
+import { ProgramCommittee } from './programCommittee.model';
+import { Event } from './event.model';
+import {Phase} from "./phase.enum";
 
-  constructor(_id, _title, _body) {
-    this.id = _id;
-    this.title = _title;
-    this.body = _body;
+export class Conference {
+  id?: number;
+  title?: string;
+  description?: string;
+  phase?: string;
+  event?: Event;
+  programCommittee?: ProgramCommittee;
+
+  eventId?: number;
+  programCommitteeId?: number;
+
+  constructor(id?: number, title?: string, description?: string, eventId?: number, phase?: string) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.eventId = eventId;
+    this.phase = phase;
   }
 }

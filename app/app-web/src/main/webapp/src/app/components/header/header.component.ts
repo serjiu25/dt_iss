@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -6,10 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  username = 'MyNameMyBack...';
-  constructor() { }
+  username = 'Name';
+  @Output() repopulate = new EventEmitter<void>();
 
-  ngOnInit(): void {
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router
+  ) {
   }
 
+  ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe(user => this.username = user.name);
+  }
+
+  setAuthorProfile() {
+    this.userService.setAuthorProfile();
+    this.repopulate.emit();
+  }
+
+  setPcProfile() {
+    this.userService.setPcProfile();
+    this.repopulate.emit();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/auth"]);
+  }
 }

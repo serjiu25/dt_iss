@@ -13,19 +13,19 @@ export class AuthService {
     }
 
     getCurrentUser(): Observable<User> {
-        const userId = sessionStorage.getItem('currentUserId')
+        const userId = localStorage.getItem('currentUserId');
         const url = this.authUrl + "/users/" + userId;
-        return this.httpClient.get<User>(this.authUrl);
+        return this.httpClient.get<User>(url);
     }
 
-    login(email: string, password: string): Observable<Boolean> {
+    login(email: string, password: string): Observable<boolean> {
         const url = this.authUrl + '/login';
         const params = { email, password };
 
         return this.httpClient.post(url, params).pipe(
             map(response => {
-                console.log("LOGIN response: " + response);
-                if (response == null || response == {}) {
+                console.log('LOGIN response: ' + response);
+                if (response == null || response === {}) {
                     return false;
                 }
                 const user = (response as User);
@@ -43,18 +43,18 @@ export class AuthService {
         return this.httpClient.post(url, params).pipe(
             map(response => {
                 console.log("Register response: '" + response + "'");
-                if (response == null || response == {}) {
+                if (response == null || response === {}) {
                     return false;
                 }
                 const user = (response as User);
-                localStorage.setItem('currentUserId', user.id.toString())
+                localStorage.setItem('currentUserId', user.id.toString());
                 return true;
             })
         );
     }
 
     logout(): void {
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUserId');
     }
 
 }

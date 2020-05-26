@@ -109,7 +109,7 @@ public class FileTransferController {
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/downloadPaper/{paperid}/{abstract}", method = RequestMethod.GET)
-    public FileSystemResource downloadAbstractPaper(@PathVariable("paperid") Long paperid,
+    public FileSystemResource downloadPaper(@PathVariable("paperid") Long paperid,
                                                     @PathVariable("abstract") Boolean abstr) {
         Paper paper = paperService.findOne(paperid);
         if (paper == null)

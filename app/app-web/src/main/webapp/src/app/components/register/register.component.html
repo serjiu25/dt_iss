@@ -14,7 +14,8 @@
   <input class="form-control mb-2" type="text" [(ngModel)]="lastName" name="lastName" id="lastName" placeholder="Last Name">
   <input class="form-control mb-2" type="text" [(ngModel)]="affiliation" name="affiliation" id="affiliation" placeholder="Affiliation">
   <input class="form-control mb-2" type="email" [(ngModel)]="email" name="email" id="email" placeholder="Email">
-  <input class="form-control mb-2" type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password">
+  <input class="form-control mb-2" type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password"
+    (keyup.enter)="onSubmit()">
 
   <button class="btn btn-primary"  type="submit" (click)="onSubmit()">Register</button>
 </section>

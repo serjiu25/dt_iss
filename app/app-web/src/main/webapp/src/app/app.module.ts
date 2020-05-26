@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
 import {ConferenceService} from './services/conference.service';
 import { HomeComponent } from './components/home/home.component';
 import {UserService} from "./services/user.service";
+import { ProgramCommitteeService } from './services/programCommittee.service';
 import { ConferenceComponent } from './components/conference/conference.component';
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { ConferenceComponent } from './components/conference/conference.componen
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService, UserService],
+  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

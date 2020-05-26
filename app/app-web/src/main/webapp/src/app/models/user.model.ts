@@ -3,6 +3,7 @@ export class User {
     name?: string;
     affiliation?: string;
     email?: string;
+    password?: string;
     admin?: boolean;
     validated?: boolean;
 }

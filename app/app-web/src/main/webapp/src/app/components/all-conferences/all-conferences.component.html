@@ -23,8 +23,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
   <div class="modal-body add-conf-form">
-    <!-- <p>e: </p> -->
+
     <input type="text" class="form-control" placeholder="Title" [(ngModel)]="conference.title"><br>
     <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="conference.description"></textarea><br>
 
@@ -37,6 +38,7 @@
           (click)="coChairsEmails.push(coChairEmail); coChairEmail = ''">Add Co-Chair by email</button>
       </div>
     </div>
+    
     <ul *ngIf="coChairsEmails.length > 0">
       <li *ngFor="let email of coChairsEmails; index as i">
         <span>{{email}}</span>

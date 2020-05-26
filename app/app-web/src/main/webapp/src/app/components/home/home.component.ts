@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ConferenceService} from '../../services/conference.service';
 import {Conference} from '../../models/conference.model';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

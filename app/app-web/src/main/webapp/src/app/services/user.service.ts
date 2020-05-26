@@ -29,8 +29,11 @@ export class UserService {
     return this.httpClient.get<User>(url);
   }
 
-  getUserByEmail(email: string): Observable<any> {
-    const url = this.userUrl + '/email/' + email;
-    return this.httpClient.get<any>(url);
+  getUserByEmail(email: string): Observable<User> {
+    const url = this.userUrl + '/email';
+    const body = {
+      email: email
+    }
+    return this.httpClient.post<User>(url, body);
   }
 }

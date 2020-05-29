@@ -93,6 +93,11 @@ public class ConferenceController {
         return response;
     }
 
+    @RequestMapping(value = "/TEST/{confId}/{userId}", method = RequestMethod.GET)
+    public boolean testTEST(@PathVariable final Long confId,
+                            @PathVariable final Long userId) {
+        return service.isReviewer(confId, userId) && service.isPC(confId, userId);
+    }
 
 
     @CrossOrigin(origins = "*")

@@ -9,6 +9,7 @@ import iss.dt.app.web.dto.ProgramCommitteeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,10 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
     public ProgramCommittee convertDtoToModel(ProgramCommitteeDto dto) {
         UserConverter userConverter = new UserConverter();
         List<User> co_chairs = dto.getCoChairs().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
-        List<User> reviewers = dto.getReviewers().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
+        List<User> reviewers = new ArrayList<>();
+        if (dto.getReviewers() != null) {
+            reviewers = dto.getReviewers().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
+        }
         Conference conference = conferenceService.findOne(dto.getConferenceId());
         return ProgramCommittee.builder()
                 .id(dto.getId())

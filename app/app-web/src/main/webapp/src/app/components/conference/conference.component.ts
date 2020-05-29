@@ -39,10 +39,8 @@ export class ConferenceComponent implements OnInit {
     // this.paperList.push(this.hardcodedPaper);
     this.route.paramMap.subscribe(paramMap => {
       this.conferenceId = Number(paramMap.get('id'));
-      this.conferenceService.getConference(
-        this.conferenceId
-      ).subscribe(obj => {
-        this.conference = obj;
+      this.conferenceService.getConference(this.conferenceId).subscribe(conference => {
+        this.conference = conference;
         this.paperList = new Array<Paper>();
         this.paperService.getPapersByCid(this.conference.id).subscribe(papers => {
           this.paperList = papers;
@@ -53,7 +51,8 @@ export class ConferenceComponent implements OnInit {
 
   onSubmit() {
     console.log(this.conference.phase);
-    console.log("Added paper:", this.paper);
+    console.log("Added paper:");
+    console.log(this.paper);
     this.paperList.push(this.paper);
     console.log(this.paperList);
   }

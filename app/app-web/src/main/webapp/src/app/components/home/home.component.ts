@@ -17,9 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.conferenceService.getConferenceByAuthor().subscribe(conf => {
-      this.conferences = conf;
-    });
+    this.populate();
   }
 
   populate() {

@@ -58,17 +58,18 @@ export class ConferenceService {
   }
 
   getConference(conferenceId: number): Observable<Conference> {
-    // const url = this.conferenceUrl + '/' + conferenceId;
-    // return this.httpClient.get<Conference>(url);
-    return of(
-      new Conference(
-        conferenceId,
-        "Long hardcoded title",
-        "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
-        5,
-        Phase.SUBMIT
-      )
-    );
+    const url = this.conferenceUrl + '/' + conferenceId;
+    return this.httpClient.get<Conference>(url);
+    
+    // return of(
+    //   new Conference(
+    //     conferenceId,
+    //     "Long hardcoded title",
+    //     "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
+    //     5,
+    //     Phase.SUBMIT
+    //   )
+    // );
   }
 
   createConference(title: string, description: string): Observable<Conference> {

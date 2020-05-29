@@ -9,7 +9,7 @@ public interface ConferenceService {
     List<Conference> findByTopic(String topic);
     List<Conference> findForAuthor(Long id);
     List<Conference> findForPC(Long id);
-
+    public boolean isReviewer(Long id, Long userid);
     boolean isPC(Long id,Long userid);
     boolean isAuthor(Long id,Long userid);
     Conference findOne(Long id);

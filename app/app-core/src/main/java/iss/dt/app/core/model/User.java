@@ -25,8 +25,8 @@ public class User {
     private Boolean admin;
     private Boolean validated;
 
-    @ManyToOne
-    private Section section;
+    @ManyToMany
+    private List<Section> sections;
 
     @ManyToMany
     private List<ProgramCommittee> pc_co_chairs;

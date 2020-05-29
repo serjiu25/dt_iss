@@ -13,5 +13,6 @@ import java.util.List;
 public class ProgramCommitteeDto extends BaseDto{
     private UserDto chair;
     private List<UserDto> coChairs; // we forgot to make UsersDto like mpp or don't need?
+    private List<UserDto> reviewers;
     private Long conferenceId;
 }

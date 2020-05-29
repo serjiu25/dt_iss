@@ -21,11 +21,13 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
     public ProgramCommittee convertDtoToModel(ProgramCommitteeDto dto) {
         UserConverter userConverter = new UserConverter();
         List<User> co_chairs = dto.getCoChairs().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
+        List<User> reviewers = dto.getReviewers().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
         Conference conference = conferenceService.findOne(dto.getConferenceId());
         return ProgramCommittee.builder()
                 .id(dto.getId())
                 .chair(userConverter.convertDtoToModel(dto.getChair()))
                 .co_chairs(co_chairs)
+                .reviewers(reviewers)
                 .conference(conference)
                 .build();
     }
@@ -34,9 +36,10 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
     public ProgramCommitteeDto convertModelToDto(ProgramCommittee programCommittee) {
         UserConverter userConverter = new UserConverter();
         List<UserDto> co_chairs = programCommittee.getCo_chairs().stream().map(userConverter::convertModelToDto).collect(Collectors.toList());
+        List<UserDto> reviewers = programCommittee.getReviewers().stream().map(userConverter::convertModelToDto).collect(Collectors.toList());
         ProgramCommitteeDto pcd = new ProgramCommitteeDto (
                 userConverter.convertModelToDto(programCommittee.getChair()),
-                co_chairs,
+                co_chairs,reviewers,
                 programCommittee.getConference().getId()
 
         );

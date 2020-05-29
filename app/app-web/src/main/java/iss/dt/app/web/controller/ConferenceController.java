@@ -84,6 +84,14 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return response;
     }
+    @RequestMapping(value = "/conferences/isReviewer/{confId}/{userId}", method = RequestMethod.GET)
+    public boolean isPC(@PathVariable final Long confId,
+                        @PathVariable final Long userId) {
+        //log.trace("getConference");
+        boolean response = service.isReviewer(confId,userId);
+        //log.trace("getConference: conferences={}", conference);
+        return response;
+    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/{conferenceId}", method = RequestMethod.PUT)

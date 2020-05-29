@@ -1,0 +1,116 @@
+.conference-page-title {
+  color: black;
+  padding: 0.5% 0.5% 0.5%;
+  cursor: default;
+  font-size: 30px;
+  border-bottom: 1px solid teal;
+  border-left: 1px solid teal;
+  width: 25%;
+  min-width: 15%;
+  max-width: 30%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-bottom-left-radius: 7px;
+  border-bottom-width: inherit;
+  transition: 1s;
+}
+
+.conference-page-title:hover{
+  border-left: 1px solid teal;
+  border-left-width: 4px;
+  border-bottom-width: 4px;
+  padding-left: 2%;
+  transition: 1s ;
+}
+
+.conference-page-body{
+  width: 60%;
+  margin: 0 auto;
+  background-color: #cfe3db;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 2px 3px 8px 1px rgba(58, 99, 101, 0.22);
+  transition: ease-out 0.5s;
+  padding: 15px 20px;
+
+
+}
+
+.conference-page-body:hover{
+  box-shadow: 2px 3px 8px 1px #3a6365;
+  transition: ease-in 0.5s;
+  font-size: 16.1px;
+}
+
+.add-paper-button{
+  margin: 20px 45%;
+  background-image:linear-gradient(to bottom, whitesmoke 1%, #c6dad2);
+  color: #335658;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+#add-paper-form{
+  display: block;
+  justify-content: center;
+  width: 30%;
+  justify-self: center;
+  margin: 0 auto;
+  transition: 2s;
+}
+
+
+.input-field {
+  width: 50%;
+  margin-bottom: 5px;
+  transition: ease-in 1s;
+  padding-left: 12px;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 3px;
+  box-shadow: 2px 3px 8px 1px rgba(58, 99, 101, 0.22);
+}
+
+.right {
+  margin-left: 25%;
+}
+
+.left{
+  margin-left: 15%;
+}
+
+#add-paper-form:hover {
+  justify-content: center;
+  .input-field{
+    width: 50%;
+    color: #2b7693;
+    margin-bottom: 5px;
+    transition: ease-in-out 1s;
+    justify-content: center;
+  }
+  .left{
+    //margin: auto;
+    justify-self: center;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  .right{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+.submit-paper-button{
+  margin-top: 10px;
+  margin-left: 32%;
+  margin-right: 20%;
+  background-image: linear-gradient(to bottom, whitesmoke 2%, rgba(255, 99, 71, 0.85));
+  color: #3a6365;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+
+.paper-body{
+}

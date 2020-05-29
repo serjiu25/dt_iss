@@ -1,0 +1,40 @@
+.icon {
+  font-size: 32px;
+  color: antiquewhite;
+}
+
+.my-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.right-home {
+  color: white;
+  position: relative;
+  float: right;
+  top: 6px;
+  font-size: 18px;
+}
+.navbar-right-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+
+#navbarNavDropdown{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-conferences {
+  color: white;
+  //easter-egg-for-sergiu
+  position: relative;
+  float: right;
+  top: 6px;
+  font-size: 18px;
+  //font-weight: bold;
+}

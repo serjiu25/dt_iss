@@ -1,0 +1,21 @@
+<section id="register">
+  <h1 class="register-title">Register</h1>
+  
+  <p class="btn btn-link login-link" (click)="goToLogin()">Already registered?</p>
+
+  <div *ngIf="errors && errors.length > 0" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ errors }}
+    <button type="button" class="close" aria-label="Close" (click)="errors.splice(0, errors.length)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <input class="form-control mb-2" type="text" [(ngModel)]="firstName" name="firstName" id="firstName" placeholder="First Name">
+  <input class="form-control mb-2" type="text" [(ngModel)]="lastName" name="lastName" id="lastName" placeholder="Last Name">
+  <input class="form-control mb-2" type="text" [(ngModel)]="affiliation" name="affiliation" id="affiliation" placeholder="Affiliation">
+  <input class="form-control mb-2" type="email" [(ngModel)]="email" name="email" id="email" placeholder="Email">
+  <input class="form-control mb-2" type="password" [(ngModel)]="password" name="password" id="password" placeholder="Password"
+    (keyup.enter)="onSubmit()">
+
+  <button class="btn btn-primary"  type="submit" (click)="onSubmit()">Register</button>
+</section>

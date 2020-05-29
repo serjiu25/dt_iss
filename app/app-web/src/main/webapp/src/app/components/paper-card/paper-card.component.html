@@ -1,0 +1,12 @@
+<div class="paper-container">
+  <div class="paper-header-container">
+    <div class="paper-title">{{paper.name}}</div>
+    <div class="conference-phase">Conference Phase: {{conferencePhase}}</div>
+  </div>
+    <div class="paper-body">
+    <div class="paper-description">{{paper.abstractUrl}}</div>
+    <textarea class="reviewer-input" placeholder="Reviewer input" *ngIf="conferencePhase === Phases.SUBMIT" [(ngModel)]="reviewerInput"></textarea>
+    <button class="submit-review-button" (click)="submitReview()">Submit review</button>
+  </div>
+</div>
+

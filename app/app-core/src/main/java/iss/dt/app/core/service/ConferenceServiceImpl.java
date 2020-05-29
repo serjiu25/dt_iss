@@ -35,7 +35,7 @@ public class ConferenceServiceImpl implements ConferenceService{
     @Override
     public List<Conference> findForPC(Long id) {
         return repo.findAll().stream().filter(conf->{
-            ProgramCommittee pc=conf.getProgramCommittee();
+            ProgramCommittee pc=conf.getCommittee();
             if(pc.getChair().getId()==id)
                 return true;
             return pc.getCo_chairs().stream().filter(user->user.getId()==id).findFirst().isPresent();//todo:change when we add reviewers too
@@ -44,7 +44,7 @@ public class ConferenceServiceImpl implements ConferenceService{
 
     @Override
     public boolean isPC(Long id, Long userid) {
-        ProgramCommittee pc= findOne(id).getProgramCommittee();
+        ProgramCommittee pc= findOne(id).getCommittee();
         if(pc.getChair().getId()==id)
             return true;
         return pc.getCo_chairs().stream().filter(user->user.getId()==userid).findFirst().isPresent(); //todo:change when we add reviewers too

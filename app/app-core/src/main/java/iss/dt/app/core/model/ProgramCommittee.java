@@ -27,7 +27,7 @@ public class ProgramCommittee {
  */
 
     // TODO: maybe use another table?
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<User> co_chairs;
 
     @OneToOne(mappedBy = "committee")

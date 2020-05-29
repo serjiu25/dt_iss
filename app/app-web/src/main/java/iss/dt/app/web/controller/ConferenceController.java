@@ -59,24 +59,26 @@ public class ConferenceController {
 
         List<Conference> conferences = service.findForAuthor(userId);
         //log.trace("getConference: conferences={}", conference);
-        return ArrayList<>(converter.convertModelsToDtos(conferences));
+        return new ArrayList<>(converter.convertModelsToDtos(conferences));
     }
     @RequestMapping(value = "/conferences/pc/{userId}", method = RequestMethod.GET)
     public List<ConferenceDto> getConferencesByPC(@PathVariable final Long userId) {
         //log.trace("getConference");
         List<Conference> conferences = service.findForPC(userId);
         //log.trace("getConference: conferences={}", conference);
-        return ArrayList<>(converter.convertModelsToDtos(conferences));
+        return new ArrayList<>(converter.convertModelsToDtos(conferences));
     }
     @RequestMapping(value = "/conferences/isAuthor/{confId}/{userId}", method = RequestMethod.GET)
-    public boolean isAuthor(@PathVariable final Long userId) {
+    public boolean isAuthor(@PathVariable final Long confId,
+                            @PathVariable final Long userId) {
         //log.trace("getConference");
         boolean response = service.isAuthor(confId,userId);
         //log.trace("getConference: conferences={}", conference);
         return response;
     }
     @RequestMapping(value = "/conferences/isPC/{confId}/{userId}", method = RequestMethod.GET)
-    public boolean isPC(@PathVariable final Long userId) {
+    public boolean isPC(@PathVariable final Long confId,
+                        @PathVariable final Long userId) {
         //log.trace("getConference");
         boolean response = service.isPC(confId,userId);
         //log.trace("getConference: conferences={}", conference);

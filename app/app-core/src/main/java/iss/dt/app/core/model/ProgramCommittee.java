@@ -19,16 +19,17 @@ public class ProgramCommittee {
 
     @ManyToOne
     private User chair;
-/*
-    @ManyToMany(mappedBy = "Program Comitee", fetch = FetchType.EAGER)
-    private List<User> co_chairs;
-    @OneToMany(mappedBy = "Program Comitee", fetch = FetchType.EAGER)
-    private List<User> reviewers;
- */
 
-    // TODO: maybe use another table?
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "pc_co_chairs", fetch = FetchType.EAGER)
     private List<User> co_chairs;
+
+    @ManyToMany(mappedBy = "pc_reviewers", fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "programcommittee_cuser_reviewer",
+//            joinColumns = { @JoinColumn(name = "employee_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "project_id") }
+//    )
+    private List<User> reviewers;
 
     @OneToOne(mappedBy = "committee")
     private Conference conference;

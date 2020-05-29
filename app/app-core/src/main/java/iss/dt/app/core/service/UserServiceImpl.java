@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         return repo.findAll().stream()
-                .filter(user -> user.getEmail().equals(email))
+                .filter(user -> user.getEmail().contains(email))
                 .findFirst()
                 .orElse(null);
     }
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findOne(Long id) {
         return repo.findAll().stream()
-                .filter(user -> user.getId() == id)
+                .filter(user -> user.getId().equals(id))
                 .findAny()
                 .orElse(null);
     }

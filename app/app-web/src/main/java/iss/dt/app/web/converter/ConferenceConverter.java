@@ -8,20 +8,20 @@ import org.springframework.stereotype.Component;
 public class ConferenceConverter extends BaseConverter<Conference, ConferenceDto> {
     @Override
     public Conference convertDtoToModel(ConferenceDto dto) {
-        ProgramCommitteeConverter pcc = new ProgramCommitteeConverter();
-        return new Conference(dto.getId(),
-                                               dto.getTitle(),
-                                               dto.getDescription(),
-                                               dto.getPhase());
+        return new Conference(
+                dto.getId(),
+                dto.getTitle(),
+                dto.getDescription(),
+                dto.getPhase()
+        );
     }
 
     @Override
     public ConferenceDto convertModelToDto(Conference conference) {
-        ProgramCommitteeConverter pcc = new ProgramCommitteeConverter();
         ConferenceDto conferenceDto = new ConferenceDto(conference.getTitle(),
                                                         conference.getDescription(),
-                                                        conference.getPhase(),
-                                                        conference.getEvent().getId());
+                                                        conference.getPhase()
+        );
         conferenceDto.setId(conference.getId());
         return conferenceDto;
     }

@@ -1,7 +1,9 @@
 package iss.dt.app.web.controller;
 
+import iss.dt.app.core.model.Conference;
 import iss.dt.app.core.model.ProgramCommittee;
 import iss.dt.app.core.model.User;
+import iss.dt.app.core.service.ConferenceService;
 import iss.dt.app.core.service.ProgramCommitteeService;
 import iss.dt.app.web.converter.ProgramCommitteeConverter;
 import iss.dt.app.web.converter.UserConverter;
@@ -10,6 +12,7 @@ import iss.dt.app.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,12 +20,12 @@ import java.util.List;
 
 @RestController
 public class ProgramCommitteeController {
-    @Autowired
-    private ProgramCommitteeService service;
-    @Autowired
-    private ProgramCommitteeConverter converter;
-    @Autowired
-    private ProgramCommitteeConverter userConverter;
+
+    @Autowired private ProgramCommitteeService service;
+    @Autowired private ConferenceService conferenceService;
+
+    @Autowired private ProgramCommitteeConverter converter;
+
 
     //todo:updateProgramCommittee fields,addPCMember implementation
     @CrossOrigin(origins = "*")
@@ -67,14 +70,17 @@ public class ProgramCommitteeController {
         return converter.convertModelToDto(programCommittee);
     }
 
+    @Transactional
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pc", method = RequestMethod.POST)
     ProgramCommitteeDto saveProgramCommittee(@RequestBody ProgramCommitteeDto programCommitteeDto) {
-        return converter.convertModelToDto(
-                service.saveProgramCommittee(
-                        converter.convertDtoToModel(programCommitteeDto)
-                )
+        ProgramCommittee committee =  service.saveProgramCommittee(
+                converter.convertDtoToModel(programCommitteeDto)
         );
+        Conference conference = committee.getConference();
+        conference.setCommittee(committee);
+        this.conferenceService.updateConference(conference);
+        return converter.convertModelToDto(committee);
     }
 
     @CrossOrigin(origins = "*")

@@ -18,7 +18,7 @@ public class Section {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User chair;
 
     private String room;
@@ -33,7 +33,7 @@ public class Section {
     @Column(name = "listener", nullable = false)
     private List<User> listener;*/
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Event event;
 
     public Section (Long id, User chair, String room) {

@@ -1,6 +1,5 @@
 package iss.dt.app.web.dto;
 
-import iss.dt.app.core.model.ProgramCommittee;
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,8 +8,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ConferenceDto extends BaseDto{
+    private String title;
     private String description;
     private String phase;
-    private String title;
-    private Long eventID;
 }

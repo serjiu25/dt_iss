@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class SubmissionDto extends BaseDto{
+public class SubmissionDto extends BaseDto {
     private UserDto author;
     private PaperDto paper;
     private Long conferenceId;

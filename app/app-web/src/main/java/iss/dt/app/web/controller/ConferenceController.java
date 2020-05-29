@@ -2,7 +2,9 @@ package iss.dt.app.web.controller;
 
 import iss.dt.app.core.model.Conference;
 import iss.dt.app.core.service.ConferenceService;
+import iss.dt.app.core.service.UserService;
 import iss.dt.app.web.converter.ConferenceConverter;
+import iss.dt.app.web.converter.UserConverter;
 import iss.dt.app.web.dto.ConferenceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,10 @@ public class ConferenceController {
     private ConferenceService service;
     @Autowired
     private ConferenceConverter converter;
+    @Autowired
+    private UserConverter userConverter;
+    @Autowired
+    private UserService userService;
 
     //todo: updateConference fields
     @CrossOrigin(origins = "*")
@@ -46,6 +52,36 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return converter.convertModelToDto(conference);
     }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/conferences/author/{userId}", method = RequestMethod.GET)
+    public List<ConferenceDto> getConferencesByAuthor(@PathVariable final Long userId) {
+        //log.trace("getConference");
+
+        List<Conference> conferences = service.findForAuthor(userId);
+        //log.trace("getConference: conferences={}", conference);
+        return new ArrayList<>(converter.convertModelsToDtos(conferences));
+    }
+    @RequestMapping(value = "/conferences/pc/{userId}", method = RequestMethod.GET)
+    public List<ConferenceDto> getConferencesByPC(@PathVariable final Long userId) {
+        //log.trace("getConference");
+        List<Conference> conferences = service.findForPC(userId);
+        //log.trace("getConference: conferences={}", conference);
+        return new ArrayList<>(converter.convertModelsToDtos(conferences));
+    }
+    @RequestMapping(value = "/conferences/isAuthor/{confId}/{userId}", method = RequestMethod.GET)
+    public boolean isAuthor(@PathVariable final Long confId, @PathVariable final Long userId) {
+        //log.trace("getConference");
+        boolean response = service.isAuthor(confId,userId);
+        //log.trace("getConference: conferences={}", conference);
+        return response;
+    }
+    @RequestMapping(value = "/conferences/isPC/{confId}/{userId}", method = RequestMethod.GET)
+    public boolean isPC(@PathVariable final Long confId, @PathVariable final Long userId) {
+        //log.trace("getConference");
+        boolean response = service.isPC(confId,userId);
+        //log.trace("getConference: conferences={}", conference);
+        return response;
+    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/{conferenceId}", method = RequestMethod.PUT)
@@ -62,7 +98,7 @@ public class ConferenceController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences", method = RequestMethod.POST)
-    ConferenceDto saveConference(@RequestBody ConferenceDto conferenceDto) {
+    public ConferenceDto saveConference(@RequestBody ConferenceDto conferenceDto) {
         return converter.convertModelToDto(
                 service.saveConference(
                         converter.convertDtoToModel(conferenceDto)
@@ -72,7 +108,7 @@ public class ConferenceController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/{id}", method = RequestMethod.DELETE)
-    ResponseEntity<?> deleteConference(@PathVariable Long id) {
+    public ResponseEntity<?> deleteConference(@PathVariable Long id) {
         service.deleteConference(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

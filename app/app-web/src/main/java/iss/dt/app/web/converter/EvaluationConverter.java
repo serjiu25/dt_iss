@@ -9,24 +9,21 @@ public class EvaluationConverter extends BaseConverter<Evaluation, EvaluationDto
 
     @Override
     public Evaluation convertDtoToModel(EvaluationDto dto) {
-        UserConverter cuc=new UserConverter();
-        SubmissionConverter sc=new SubmissionConverter();
-        return new Evaluation(dto.getId()
-                                              ,dto.getResult()
-                                              ,dto.getJustification()
-                                              ,sc.convertDtoToModel(dto.getSubmission())
-                                              ,cuc.convertDtoToModel(dto.getReviewer()));
+        return new Evaluation(dto.getId(),
+                                dto.getResult(),
+                                dto.getJustification());
     }
 
     @Override
     public EvaluationDto convertModelToDto(Evaluation evaluation) {
 
         UserConverter cuc=new UserConverter();
-        SubmissionConverter sc=new SubmissionConverter();
-        EvaluationDto evaluationdto = new EvaluationDto(evaluation.getResult()
-                                                    ,evaluation.getJustification()
-                                                    ,sc.convertModelToDto(evaluation.getSubmission())
-                                                    ,cuc.convertModelToDto(evaluation.getReviewer()));
+        EvaluationDto evaluationdto = new EvaluationDto(
+                evaluation.getResult(),
+                evaluation.getJustification(),
+                evaluation.getSubmission().getId(),
+                cuc.convertModelToDto(evaluation.getReviewer())
+        );
         evaluationdto.setId(evaluation.getId());
         return evaluationdto;
     }

@@ -1,5 +1,6 @@
 package iss.dt.app.web.controller;
 
+import iss.dt.app.core.model.PasswordHasher;
 import iss.dt.app.core.model.User;
 import iss.dt.app.core.service.UserService;
 import iss.dt.app.web.converter.UserConverter;
@@ -8,9 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
+
+class EmailObject {
+    public String email;
+}
 
 @RestController
 public class UserController {
@@ -24,7 +30,7 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public UserDto login(@RequestBody UserDto dto) {
+    public UserDto login(@RequestBody UserDto dto) throws InvalidKeySpecException, NoSuchAlgorithmException {
         if (dto == null || dto.getEmail() == null || dto.getPassword() == null) {
             return null;
         }
@@ -32,7 +38,8 @@ public class UserController {
         if (user == null) {
             return null;
         }
-        if (!user.getPassword().equals(dto.getPassword())) {
+        PasswordHasher passwordHasher=new PasswordHasher();
+        if(!passwordHasher.validate(dto.getPassword(),user.getPassword())) {
             return null;
         }
         return converter.convertModelToDto(user);
@@ -62,9 +69,18 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public UserDto getUser(@PathVariable final Long userId) {
+    public UserDto getUser(@PathVariable Long userId) {
         //log.trace("getUser");
         User user = service.findOne(userId);
+        //log.trace("getUser: users={}", user);
+        return converter.convertModelToDto(user);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/users/email", method = RequestMethod.POST)
+    public UserDto getUserByEmail(@RequestBody EmailObject emailObject) {
+        //log.trace("getUser");
+        User user = service.findByEmail(emailObject.email);
         //log.trace("getUser: users={}", user);
         return converter.convertModelToDto(user);
     }

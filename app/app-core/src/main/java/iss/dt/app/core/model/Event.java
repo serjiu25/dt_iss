@@ -16,7 +16,7 @@ public class Event {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
+    @OneToMany(mappedBy = "event")
     private List<Section> sections;
 
     @OneToOne(mappedBy = "event")

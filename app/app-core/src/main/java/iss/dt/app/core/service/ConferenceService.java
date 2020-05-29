@@ -7,7 +7,11 @@ public interface ConferenceService {
     List<Conference> findAll();
 
     List<Conference> findByTopic(String topic);
+    List<Conference> findForAuthor(Long id);
+    List<Conference> findForPC(Long id);
 
+    boolean isPC(Long id,Long userid);
+    boolean isAuthor(Long id,Long userid);
     Conference findOne(Long id);
 
     Conference updateConference(Conference conference); //todo :getparams
@@ -15,4 +19,6 @@ public interface ConferenceService {
     Conference saveConference(Conference conference);
 
     void deleteConference(Long id);
+
+
 }

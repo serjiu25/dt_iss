@@ -37,7 +37,25 @@ hs_err_pid*
 /app-web/src/main/webapp/node_modules
 
 # IDEs and editors
+.idea
+.idea/
+/app/.idea
+/app/.idea/
+/app/.idea/*
+app/.idea
+app/.idea/
+app/.idea/*
+**/*.idea
+**/.idea
+**/.idea/
+**/.idea/*
+.idea
+*/.idea
+*/.idea/
+*/.idea/*
 */*.idea
+*/*.idea/
+*/*.idea/*
 */*.project
 */*.classpath
 */*.c9/
@@ -61,6 +79,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 */typings
+.gradle
+.gradle/
+.gradle/*
 
 # e2e
 /e2e/*.js

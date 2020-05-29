@@ -24,6 +24,9 @@ export class AllConferencesComponent implements OnInit {
   coChairEmail: string;
   coChairsEmails = [];
 
+  reviewerEmail: string;
+  reviewerEmails = [];
+
   constructor(
     private modalService: NgbModal,
     private router: Router,
@@ -43,10 +46,11 @@ export class AllConferencesComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  saveConference(): void{  
+  saveConference(): void{
     console.log("Before save: " + JSON.stringify(this.conference));
 
     let coChairsAux: User[];
+    let reviewersAux: User[];
     let currentUserAux: User;
 
     this.authService.getCurrentUser().pipe(
@@ -61,13 +65,21 @@ export class AllConferencesComponent implements OnInit {
         coChairsAux = coChairs;
         console.log('CoChairs');
         console.log(coChairs);
+        // currentUserAux = currentUser;
+        const coChairsObservables = this.reviewerEmails.map(email => this.userService.getUserByEmail(email));
+        return combineLatest(coChairsObservables);
+      }),
+      switchMap(reviewers => {
+        reviewersAux = reviewers;
+        console.log('Reviewers');
+        console.log(reviewers);
         return this.conferenceService.createConference(this.conference.title, this.conference.description);
       }),
       switchMap(conference => {
         this.conference = conference;
         console.log('Conference');
         console.log(conference);
-        return this.pcService.createProgramCommittee(currentUserAux, coChairsAux, this.conference.id);
+        return this.pcService.createProgramCommittee(currentUserAux, coChairsAux, reviewersAux, this.conference.id);
       }),
     ).subscribe(
       pc => console.log(pc),

@@ -45,15 +45,32 @@
   transition: 0.5s;
 }
 
+.agree-buttons-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
 .submit-review-button{
   margin: 0 auto;
   background-image:linear-gradient(to bottom, whitesmoke 1%, rgba(255, 236, 224, 0.77));
   color: #335658;
   border-bottom-left-radius: 12px;
   border-top-right-radius: 12px;
-
+  font-size: 12px;
 }
 
 .paper-description{
   padding-bottom: 10px;
 }
+
+
+.interest-buttons{
+  cursor: pointer;
+  transition: 0.5s;
+}
+.interest-buttons:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+

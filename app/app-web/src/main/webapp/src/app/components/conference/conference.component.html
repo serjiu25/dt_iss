@@ -1,12 +1,15 @@
 <app-header></app-header>
 
 <div class="conference-page-container">
-  <div class="conference-page-title">{{conference.title}}</div>
+  <div class = "conference-page-header">
+    <div class="conference-page-title">{{conference.title}}</div>
+    <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button>
+  </div>
   <div class="conference-page-body">{{conference.description}}</div>
 </div>
 
-<button class="add-paper-button" (click)="displayPaperForm = !displayPaperForm">Add paper</button>
-<div id="add-paper-form" *ngIf="displayPaperForm === true">
+<button class="add-paper-button" *ngIf="conference.phase == 'SUBMIT'" (click)="displayPaperForm = !displayPaperForm">Add paper</button>
+<div id="add-paper-form" *ngIf="displayPaperForm === true && conference.phase == 'SUBMIT'">
   <input class="input-field left" type="text" placeholder="Title" [(ngModel)]="paper.name" required>
   <input class="input-field right" type="url" placeholder="Abstract Url" [(ngModel)]="paper.abstractUrl" required>
   <input class="input-field left" type="url" placeholder="Full paper url" [(ngModel)]="paper.fullUrl">
@@ -18,6 +21,6 @@
 </div>
 
 <div class="all-papers-container" *ngFor="let papers of paperList">
-  <app-paper-card [conferencePhase]="conference.phase" [paper]="papers"></app-paper-card>
+  <app-paper-card *ngIf="conference.phase != 'SUBMIT'" [conferencePhase]="conference.phase" [paper]="papers"></app-paper-card>
 </div>
 

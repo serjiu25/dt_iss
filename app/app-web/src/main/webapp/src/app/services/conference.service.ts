@@ -7,7 +7,7 @@ import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class ConferenceService {
-  private conferenceUrl = 'http://109.100.171.87:8080/api/conferences';
+  private conferenceUrl = `http://${environment.serverAddress}:8080/api/conferences`;
 
   constructor(private httpClient: HttpClient) {
   }

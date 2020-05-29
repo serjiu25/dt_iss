@@ -3,10 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Submission} from "../models/submision.model";
 import {Conference} from "../models/conference.model";
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class SubmissionService {
-  private submissionUrl = 'http://109.100.171.87:8080/api/submissions';
+  private submissionUrl = `http://${environment.serverAddress}:8080/api/submissions`;
 
   constructor(private httpClient: HttpClient) {
   }

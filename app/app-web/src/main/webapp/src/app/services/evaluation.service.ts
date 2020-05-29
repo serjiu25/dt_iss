@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Evaluation} from "../models/evaluation.model";
+import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class PaperService {
-  private evaluationUrl = 'http://109.100.171.87:8080/api/evaluations';
+export class EvaluationService {
+  private evaluationUrl = `http://${environment.serverAddress}:8080/api/evaluations`;
 
   constructor(private httpClient: HttpClient) {
   }

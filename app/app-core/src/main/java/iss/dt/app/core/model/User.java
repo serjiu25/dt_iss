@@ -28,9 +28,11 @@ public class User {
     @ManyToOne
     private Section section;
 
-    // TODO: maybe use another table?
     @ManyToMany
     private List<ProgramCommittee> pc_co_chairs;
+
+    @ManyToMany
+    private List<ProgramCommittee> pc_reviewers;
 
     public User (Long id, String name, String affiliation, String email, String password, Boolean admin, Boolean validated){
         this.id=id;

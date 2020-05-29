@@ -22,12 +22,12 @@ public class ProgramCommitteeConverter extends BaseConverter<ProgramCommittee, P
         UserConverter userConverter = new UserConverter();
         List<User> co_chairs = dto.getCoChairs().stream().map(userConverter::convertDtoToModel).collect(Collectors.toList());
         Conference conference = conferenceService.findOne(dto.getConferenceId());
-        return new ProgramCommittee(
-                dto.getId(),
-                userConverter.convertDtoToModel(dto.getChair()),
-                co_chairs,
-                conference
-        );
+        return ProgramCommittee.builder()
+                .id(dto.getId())
+                .chair(userConverter.convertDtoToModel(dto.getChair()))
+                .co_chairs(co_chairs)
+                .conference(conference)
+                .build();
     }
 
     @Override

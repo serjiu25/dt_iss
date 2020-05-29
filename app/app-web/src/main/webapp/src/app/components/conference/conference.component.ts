@@ -4,6 +4,7 @@ import {ConferenceService} from "../../services/conference.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Paper} from "../../models/paper.model";
 import {PaperService} from "../../services/paper.service";
+import {Phase} from "../../models/phase.enum";
 
 @Component({
   selector: 'app-conference',
@@ -49,6 +50,14 @@ export class ConferenceComponent implements OnInit {
     });
   }
 
+  nextPhase(){
+    console.log(this.conference.phase);
+    if (this.conference.phase == Phase.SUBMIT)
+      this.conference.phase = Phase.BIDDING;
+    else if (this.conference.phase == Phase.BIDDING)
+      this.conference.phase = Phase.REVIEW;
+
+  }
   onSubmit() {
     console.log(this.conference.phase);
     console.log("Added paper:");

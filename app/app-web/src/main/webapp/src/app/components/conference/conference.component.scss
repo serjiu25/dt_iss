@@ -1,5 +1,11 @@
 .conference-page-container {
   padding: 5px 3vw;
+
+  .conference-page-header{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 100%;
 }
 
 .conference-page-title {
@@ -45,6 +51,15 @@
   box-shadow: 2px 3px 8px 1px #3a6365;
   transition: ease-in 0.5s;
   font-size: 16.1px;
+}
+
+.next-phase-button{
+  background-image:linear-gradient(to bottom, whitesmoke 1%, #c6dad2);
+  color: #335658;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 12px;
+  height: 30px;
+  margin: auto 20px auto 0;
 }
 
 .add-paper-button{

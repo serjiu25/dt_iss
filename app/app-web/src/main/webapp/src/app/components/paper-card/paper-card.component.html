@@ -2,11 +2,27 @@
   <div class="paper-header-container">
     <div class="paper-title">{{paper.name}}</div>
     <div class="conference-phase">Conference Phase: {{conferencePhase}}</div>
+    <div class="interestButtons" *ngIf="conferencePhase == Phases.BIDDING">
+      <i class="material-icons interest-buttons" id="interested-button" *ngIf="selectedInterest == null || selectedInterest == 'interested'" (click)="addBidding('interested')">star</i>
+      <i class="material-icons interest-buttons" id="maybe-button" *ngIf="selectedInterest == null || selectedInterest == 'maybe_interested'" (click)="addBidding('maybe_interested')">star_half</i>
+      <i class="material-icons interest-buttons" id="not-interest-button"  *ngIf="selectedInterest == null || selectedInterest == 'not_interested'" (click)="addBidding('not_interested')">star_outline</i>
+    </div>
   </div>
     <div class="paper-body">
     <div class="paper-description">{{paper.abstractUrl}}</div>
-    <textarea class="reviewer-input" placeholder="Reviewer input" *ngIf="conferencePhase === Phases.SUBMIT" [(ngModel)]="reviewerInput"></textarea>
-    <button class="submit-review-button" (click)="submitReview()">Submit review</button>
+    <textarea class="reviewer-input" placeholder="Reviewer input" *ngIf="conferencePhase === Phases.REVIEW && showTextarea == true" [(ngModel)]="reviewerInput"></textarea>
+      <div class="agree-buttons-wrapper" *ngIf="conferencePhase == Phases.REVIEW && selectedAgreement == false">
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.STRONG_ACCEPT)">Strong Accept</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.ACCEPT)">Accept</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.WEAK_ACCEPT)">Weak Accept</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.BORDERLINE_PAPER)">Borderline Paper</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.WEAK_REJECT)">Weak Reject</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.REJECT)">Reject</button>
+        <button class="submit-review-button" (click)="submitReview(PAPER_AGREE.STRONG_REJECT)">Strong Reject</button>
+      </div>
+      <div *ngIf="showTextarea == false">
+        <p>Your message: {{reviewerInput}}</p>
+      </div>
   </div>
 </div>
 

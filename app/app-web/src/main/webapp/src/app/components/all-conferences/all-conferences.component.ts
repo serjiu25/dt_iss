@@ -48,7 +48,7 @@ export class AllConferencesComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  saveConference(): void{  
+  saveConference(): void{
     console.log("Before save: " + JSON.stringify(this.conference));
 
     let coChairsAux: User[];

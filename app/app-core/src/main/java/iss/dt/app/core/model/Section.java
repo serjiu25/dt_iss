@@ -24,6 +24,7 @@ public class Section {
     private String room;
 
     // TODO: what is this?
+
     /*
     @OneToMany
     @Column(name = "speakers", nullable = false)

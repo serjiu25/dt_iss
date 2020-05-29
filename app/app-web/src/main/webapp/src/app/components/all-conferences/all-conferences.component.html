@@ -51,13 +51,19 @@
     <p>Reviewers</p>
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-add"
-             [(ngModel)]="coChairEmail" (keyup.enter)="coChairsEmails.push(coChairEmail); coChairEmail = ''">
+             [(ngModel)]="reviewerEmail" (keyup.enter)="reviewerEmails.push(reviewerEmail); coChairEmail = ''">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" id="button-add-reviewer"
-                (click)="coChairsEmails.push(coChairEmail); coChairEmail = ''">Add Reviewer by email</button>
+              (click)="reviewerEmails.push(reviewerEmail); reviewerEmail = ''">Add Reviewer by email</button>
       </div>
     </div>
 
+    <ul *ngIf="reviewerEmails.length > 0">
+      <li *ngFor="let email of reviewerEmails; index as i">
+        <span>{{email}}</span>
+        <span (click)="reviewerEmails.splice(i, 1)" style="cursor: pointer" class="close">&times;</span>
+      </li>
+    </ul>
 
 
   </div>

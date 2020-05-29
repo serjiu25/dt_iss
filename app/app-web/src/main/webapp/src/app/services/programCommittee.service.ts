@@ -13,9 +13,9 @@ export class ProgramCommitteeService {
     constructor(private httpClient: HttpClient) {
     }
 
-    createProgramCommittee(chair: User, coChairs: User[], conferenceId: number): Observable<ProgramCommittee> {
+    createProgramCommittee(chair: User, coChairs: User[], reviewers: User[], conferenceId: number): Observable<ProgramCommittee> {
         const pc: ProgramCommittee = {
-            chair, coChairs, conferenceId
+            chair, coChairs, reviewers, conferenceId
         };
         return this.httpClient.post<ProgramCommittee>(this.programCommitteeUrl, pc);
     }

@@ -19,6 +19,7 @@ import {UserService} from "./services/user.service";
 import { ProgramCommitteeService } from './services/programCommittee.service';
 import { ConferenceComponent } from './components/conference/conference.component';
 import { PaperCardComponent } from './components/paper-card/paper-card.component';
+import {PaperService} from "./services/paper.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { PaperCardComponent } from './components/paper-card/paper-card.component
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService],
+  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService, PaperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

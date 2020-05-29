@@ -34,17 +34,31 @@
       <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-add"
         [(ngModel)]="coChairEmail" (keyup.enter)="coChairsEmails.push(coChairEmail); coChairEmail = ''">
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="button-add"
+        <button class="btn btn-outline-secondary" type="button" id="button-add-co-chair"
           (click)="coChairsEmails.push(coChairEmail); coChairEmail = ''">Add Co-Chair by email</button>
       </div>
     </div>
-    
+
     <ul *ngIf="coChairsEmails.length > 0">
       <li *ngFor="let email of coChairsEmails; index as i">
         <span>{{email}}</span>
         <span (click)="coChairsEmails.splice(i, 1)" style="cursor: pointer" class="close">&times;</span>
       </li>
     </ul>
+
+    <br>
+
+    <p>Reviewers</p>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-add"
+             [(ngModel)]="coChairEmail" (keyup.enter)="coChairsEmails.push(coChairEmail); coChairEmail = ''">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-add-reviewer"
+                (click)="coChairsEmails.push(coChairEmail); coChairEmail = ''">Add Reviewer by email</button>
+      </div>
+    </div>
+
+
 
   </div>
   <div class="modal-footer">

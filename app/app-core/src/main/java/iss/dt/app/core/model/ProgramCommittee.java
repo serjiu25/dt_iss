@@ -20,15 +20,10 @@ public class ProgramCommittee {
     @ManyToOne
     private User chair;
 
-    @ManyToMany(mappedBy = "pc_co_chairs", fetch = FetchType.EAGER)
+    @ManyToMany( fetch = FetchType.EAGER)
     private List<User> co_chairs;
 
-    @ManyToMany(mappedBy = "pc_reviewers", fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "programcommittee_cuser_reviewer",
-//            joinColumns = { @JoinColumn(name = "employee_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "project_id") }
-//    )
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<User> reviewers;
 
     @OneToOne(mappedBy = "committee")

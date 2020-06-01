@@ -50,6 +50,7 @@ public class SubmissionController {
                 anyMatch(s->s.getReviewer().getId().equals(reviewerId));
     }
 
+    @Transactional
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/submissions/assign/{conferenceId}", method = RequestMethod.GET)
     public void assignSubmissions(@PathVariable final Long conferenceId) {

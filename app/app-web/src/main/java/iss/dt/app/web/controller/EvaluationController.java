@@ -3,6 +3,7 @@ package iss.dt.app.web.controller;
 import iss.dt.app.core.model.Evaluation;
 import iss.dt.app.core.service.EvaluationService;
 import iss.dt.app.web.converter.EvaluationConverter;
+import iss.dt.app.web.dto.ConferenceDto;
 import iss.dt.app.web.dto.EvaluationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,12 @@ public class EvaluationController {
         Evaluation evaluation = service.findOne(evaluationId);
         //log.trace("getEvaluation: evaluations={}", evaluation);
         return converter.convertModelToDto(evaluation);
+    }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/evaluations/reviewer/{conferenceId}/{userId}", method = RequestMethod.GET)
+    public List<EvaluationDto> getForReviewer(@PathVariable final Long conferenceId,
+                                              @PathVariable final Long userId) {
+        return new ArrayList<>(converter.convertModelsToDtos(service.findForReviewer(conferenceId,userId)));
     }
 
     @CrossOrigin(origins = "*")

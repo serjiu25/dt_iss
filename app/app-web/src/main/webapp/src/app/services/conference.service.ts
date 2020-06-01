@@ -17,8 +17,8 @@ export class ConferenceService {
     return this.httpClient.get<boolean>(url);
   }
 
-  isPc(id: number) {
-    const url = this.conferenceUrl + '/isPc/' + id;
+  isPc(confId: number, userId: number) {
+    const url = this.conferenceUrl + '/isPC/' + confId + '/' + userId ;
     return this.httpClient.get<boolean>(url);
   }
 
@@ -60,7 +60,7 @@ export class ConferenceService {
   getConference(conferenceId: number): Observable<Conference> {
     const url = this.conferenceUrl + '/' + conferenceId;
     return this.httpClient.get<Conference>(url);
-    
+
     // return of(
     //   new Conference(
     //     conferenceId,

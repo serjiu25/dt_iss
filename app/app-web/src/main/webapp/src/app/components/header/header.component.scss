@@ -7,6 +7,15 @@
   display: flex;
   flex-direction: row;
   padding: 0.8rem 2rem;
+  transition: 1.5s ease-in;
+}
+
+.pc-navbar{
+  display: flex;
+  background-image:linear-gradient(to right, rgba(26, 52, 66, 0.93), #212529, #007373);
+  flex-direction: row;
+  padding: 0.8rem 2rem;
+  transition: 1.5s ease-in;
 }
 
 .right-home {

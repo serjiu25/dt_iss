@@ -20,6 +20,7 @@ import {ProgramCommitteeService} from './services/programCommittee.service';
 import {ConferenceComponent} from './components/conference/conference.component';
 import {PaperCardComponent} from './components/paper-card/paper-card.component';
 import {PaperService} from "./services/paper.service";
+import {SubmissionService} from "./services/submission.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import {PaperService} from "./services/paper.service";
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService, PaperService],
+  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService, PaperService, SubmissionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

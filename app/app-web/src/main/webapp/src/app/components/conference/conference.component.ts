@@ -5,6 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Paper} from "../../models/paper.model";
 import {PaperService} from "../../services/paper.service";
 import {Phase} from "../../models/phase.enum";
+import {switchMap} from "rxjs/operators";
+import {SubmissionService} from "../../services/submission.service";
+import {Submission} from "../../models/submision.model";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -27,8 +30,9 @@ export class ConferenceComponent implements OnInit {
   constructor(
     private conferenceService: ConferenceService,
     private paperService: PaperService,
-    private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private submissionService: SubmissionService,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -60,7 +64,7 @@ export class ConferenceComponent implements OnInit {
     })
   }
 
-  nextPhase(){
+  nextPhase() {
     console.log('Current phase: ' + this.conference.phase);
     if (this.conference.phase == Phase.SUBMIT)
       this.conference.phase = Phase.BIDDING;
@@ -74,8 +78,41 @@ export class ConferenceComponent implements OnInit {
     console.log("Added paper:");
     console.log(this.paper);
     this.paperList.push(this.paper);
+
+    this.paperService.createPaper(this.paper).pipe(
+      switchMap(
+        paper => {
+          this.paper.id = paper.id;
+          return this.paperService.uploadPaper(paper.id, "true", this.paper.abstractFile);
+        }
+      ),
+      switchMap(
+        name => {
+          console.log('2 switch map');
+          console.log(name);
+          console.log(this.paper.fullFile);
+          if (this.paper.fullFile) {
+            console.log(this.paper.fullFile);
+            return this.paperService.uploadPaper(this.paper.id, "false", this.paper.fullFile);
+          }
+        }
+      ),
+      switchMap(
+        _ => this.authService.getCurrentUser()
+      ),
+      switchMap(
+        currentUser => {
+          const sub: Submission = {
+            id: this.paper.id,
+            author: currentUser,
+            paper: this.paper,
+            conferenceId: this.conferenceId
+          };
+          return this.submissionService.createSubmission(sub);
+        }
+      )
+    ).subscribe(submission => console.log(submission), error => console.log(error));
     console.log(this.paperList);
   }
-
 
 }

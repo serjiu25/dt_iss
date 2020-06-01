@@ -5,15 +5,15 @@
     <div class="conference-page-title">{{conference.title}}</div>
     <div>
       <p class="current-phase">Current phase: {{conference.phase}}</p>
-<!--    <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW' && isPc" (click)="nextPhase()">Next phase</button>-->
-      <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button>
+      <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW' && isPc && isPcProfile" (click)="nextPhase()">Next phase</button>
+      <!-- <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button> -->
     </div>
   </div>
   <div class="conference-page-body">{{conference.description}}</div>
 </div>
 
 
-<div id="add-paper-form" *ngIf="conference.phase == 'SUBMIT'">
+<div id="add-paper-form" *ngIf="conference && conference.phase == 'SUBMIT' && !isPcProfile && !submitted">
   <input class="input-field left" type="text" placeholder="Title" [(ngModel)]="paper.name" required>
   <!-- <input class="input-field right" type="url" placeholder="Abstract Url" [(ngModel)]="paper.abstractUrl" required>
   <input class="input-field left" type="url" placeholder="Full paper url" [(ngModel)]="paper.fullUrl"> -->
@@ -25,8 +25,18 @@
 
   <button class="submit-paper-button" (click)="onSubmit()">Submit paper</button>
 </div>
-
-<div class="all-papers-container" *ngFor="let papers of paperList">
-  <app-paper-card *ngIf="conference.phase != 'SUBMIT'" [conferencePhase]="conference.phase" [paper]="papers"></app-paper-card>
+<div *ngIf="conference && !isPcProfile && submitted">
+  <div *ngIf="conference.phase == 'SUBMIT'">
+    <p style="color: green;">Paper submitted !</p>
+  </div>
+  <div *ngIf="conference.phase == 'BIDDING' || conference.phase == 'REVIEW'">
+    <p style="color: rgb(131, 131, 54);">Submission phase is over.</p>
+  </div>
 </div>
 
+<div class="all-papers-container" *ngFor="let submission of submissionList">
+  <app-paper-card *ngIf="conference.phase != 'SUBMIT' && isPc" 
+        [conferencePhase]="conference.phase"
+        [paper]="submission.paper"
+  ></app-paper-card>
+</div>

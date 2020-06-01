@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface EvaluationService {
     List<Evaluation> findAll();
-
+    List<Evaluation>  findForReviewer(Long confId,Long reviewerId);
     List<Evaluation> findBySubmission(Long id);
 
     Evaluation findOne(Long id);

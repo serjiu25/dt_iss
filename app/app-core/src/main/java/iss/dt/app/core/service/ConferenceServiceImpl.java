@@ -52,11 +52,11 @@ public class ConferenceServiceImpl implements ConferenceService{
         ProgramCommittee pc= findOne(id).getCommittee();
         if(pc.getChair().getId()==id)
             return true;
-        boolean cochair=pc.getCo_chairs().stream().filter(user->user.getId()==userid).findFirst().isPresent();
-        if(cochair)
-            return true;
-        boolean reviewer=pc.getReviewers().stream().filter(user->user.getId()==userid).findFirst().isPresent();
-        return reviewer;
+        return pc.getCo_chairs().stream().filter(user->user.getId()==userid).findFirst().isPresent();
+//        if(cochair)
+//            return true;
+//        boolean reviewer=pc.getReviewers().stream().filter(user->user.getId()==userid).findFirst().isPresent();
+//        return reviewer;
     }
     @Override
     public boolean isReviewer(Long id, Long userid) {

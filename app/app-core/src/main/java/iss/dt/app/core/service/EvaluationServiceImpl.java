@@ -16,6 +16,13 @@ public class EvaluationServiceImpl implements EvaluationService{
     public List<Evaluation> findAll(){
         return repo.findAll();
     }
+
+    @Override
+    public List<Evaluation> findForReviewer(Long confId, Long reviewerId) {
+        return repo.findAll().stream().filter(eval->{
+            return eval.getReviewer().getId().equals(reviewerId) && eval.getSubmission().getConference().getId().equals(confId);
+        }).collect(Collectors.toList());
+    }
     @Override
     public List<Evaluation> findBySubmission(Long id){
         return repo.findAll().stream().filter(eval->eval.getSubmission().getId() == id).collect(Collectors.toList());

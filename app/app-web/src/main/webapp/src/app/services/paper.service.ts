@@ -52,4 +52,10 @@ export class PaperService {
     return this.httpClient.post(`http://${environment.serverAddress}:8080/api/uploadPaper`, formData);
   }
 
+  downloadPaper(paperId: number, abstract: string): Observable<any> {
+    const abstr = abstract == 'abstract';
+    const url = `http://${environment.serverAddress}:8080/api/downloadPaper/${paperId}/${abstr}`;
+    return this.httpClient.get(url);
+  }
+
 }

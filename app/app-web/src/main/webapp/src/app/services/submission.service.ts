@@ -35,4 +35,18 @@ export class SubmissionService {
     const url = this.submissionUrl + '/' + submissionId;
     return this.httpClient.delete<any>(url);
   }
+
+  bidSubmission(submissionId: number, reviewerId: number, interest: string): void {
+    // rate = 1 daca interested
+    // rate = 0 daca maybe_interested
+    const rate = interest == 'interested' ? 1 : 0;
+    const url = this.submissionUrl + '/bid/' + submissionId + '/' + reviewerId + '/' + rate;
+    console.log('Got in bid submission');
+    this.httpClient.get(url).subscribe(res => console.log(res), err => console.error(err));
+  }
+
+  assignSubmissions(conferenceId: number): void {
+    const url = this.submissionUrl + '/assign/' + conferenceId;
+    this.httpClient.get(url).subscribe(res => console.log(res), err => console.error(err));
+  }
 }

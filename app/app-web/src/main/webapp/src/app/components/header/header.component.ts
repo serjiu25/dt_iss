@@ -21,19 +21,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(user => this.username = user.name);
-    this.pcProfile = false;
+    this.pcProfile = this.userService.isPcProfile();
   }
 
   setAuthorProfile() {
     this.userService.setAuthorProfile();
     this.repopulate.emit();
-    this.pcProfile = false;
   }
 
   setPcProfile() {
     this.userService.setPcProfile();
     this.repopulate.emit();
-    this.pcProfile = true;
   }
 
   logout() {

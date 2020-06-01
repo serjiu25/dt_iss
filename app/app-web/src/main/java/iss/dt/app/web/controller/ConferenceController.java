@@ -2,6 +2,7 @@ package iss.dt.app.web.controller;
 
 import iss.dt.app.core.model.Conference;
 import iss.dt.app.core.service.ConferenceService;
+import iss.dt.app.core.service.EvaluationService;
 import iss.dt.app.core.service.UserService;
 import iss.dt.app.web.converter.ConferenceConverter;
 import iss.dt.app.web.converter.UserConverter;
@@ -25,6 +26,11 @@ public class ConferenceController {
     private UserConverter userConverter;
     @Autowired
     private UserService userService;
+    @Autowired
+    private EvaluationController evalConverter;
+    @Autowired
+    private EvaluationService evalService;
+
 
     //todo: updateConference fields
     @CrossOrigin(origins = "*")

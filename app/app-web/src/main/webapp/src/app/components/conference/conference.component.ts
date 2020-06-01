@@ -51,13 +51,14 @@ export class ConferenceComponent implements OnInit {
   }
 
   nextPhase(){
-    console.log(this.conference.phase);
+    console.log('Current phase: ' + this.conference.phase);
     if (this.conference.phase == Phase.SUBMIT)
       this.conference.phase = Phase.BIDDING;
     else if (this.conference.phase == Phase.BIDDING)
       this.conference.phase = Phase.REVIEW;
-
+    console.log('Changed to phase: ' + this.conference.phase);
   }
+
   onSubmit() {
     console.log(this.conference.phase);
     console.log("Added paper:");

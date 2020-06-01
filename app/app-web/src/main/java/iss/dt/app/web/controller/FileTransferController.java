@@ -16,7 +16,7 @@ import java.util.Arrays;
 @RestController
 public class FileTransferController {
     String STORAGE_PATH = System.getProperty("user.dir") + "\\storage";
-    String[] PAPER_VALID_EXTENSIONS = {".pdf", ".docx"};
+    String[] PAPER_VALID_EXTENSIONS = {"pdf", "docx", "png"};
 
     @Autowired
     PaperService paperService;
@@ -79,7 +79,7 @@ public class FileTransferController {
 
         String PATH = this.STORAGE_PATH + "\\papers\\" + paperid + "_" + termination + "." + extension;
 
-        File convertFile = new File(STORAGE_PATH + "" + file.getOriginalFilename());
+        File convertFile = new File(PATH);
         try {
             if (!convertFile.createNewFile())
                 return new ResponseEntity<>("A file with this name already exists! PATH: " + PATH,
@@ -99,7 +99,7 @@ public class FileTransferController {
 
         paperService.updatePaper(paper);
 
-        return new ResponseEntity<>("File uploaded successfully! PATH: " + PATH, HttpStatus.OK);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
 

@@ -21,6 +21,7 @@ import {ConferenceComponent} from './components/conference/conference.component'
 import {PaperCardComponent} from './components/paper-card/paper-card.component';
 import {PaperService} from "./services/paper.service";
 import {SubmissionService} from "./services/submission.service";
+import { EvaluationService } from './services/evaluation.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {SubmissionService} from "./services/submission.service";
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService, PaperService, SubmissionService],
+  providers: [AuthService, ConferenceService, UserService, ProgramCommitteeService, 
+    PaperService, SubmissionService, EvaluationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

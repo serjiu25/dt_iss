@@ -41,6 +41,7 @@ public class SubmissionController {
         bidService.save(bid);
     }
 
+    @Transactional
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/submissions/assign/{conferenceId}", method = RequestMethod.GET)
     public void assignSubmissions(@PathVariable final Long conferenceId) {

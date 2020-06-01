@@ -58,6 +58,7 @@ public class ConferenceServiceImpl implements ConferenceService{
 //        boolean reviewer=pc.getReviewers().stream().filter(user->user.getId()==userid).findFirst().isPresent();
 //        return reviewer;
     }
+
     @Override
     public boolean isReviewer(Long id, Long userid) {
         ProgramCommittee pc= findOne(id).getCommittee();

@@ -83,7 +83,7 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return response;
     }
-    
+
     @RequestMapping(value = "/conferences/isPC/{confId}/{userId}", method = RequestMethod.GET)
     public boolean isPC(@PathVariable final Long confId,
                         @PathVariable final Long userId) {

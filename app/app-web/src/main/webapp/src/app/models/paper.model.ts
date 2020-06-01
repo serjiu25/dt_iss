@@ -6,4 +6,7 @@ export class Paper{
   keywords?: string;
   topics?: string;
   otherAuthors?: string;
+
+  abstractFile?: File;
+  fullFile?: File;
 }

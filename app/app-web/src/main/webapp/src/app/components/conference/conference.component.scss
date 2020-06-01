@@ -1,3 +1,7 @@
+.conference-page-container {
+  padding: 5px 3vw;
+}
+
 .conference-page-header{
   display: flex;
   justify-content: space-between;
@@ -23,7 +27,7 @@
   transition: 1s;
 }
 
-.conference-page-title:hover{
+.conference-page-title:hover {
   border-left: 1px solid teal;
   border-left-width: 4px;
   border-bottom-width: 4px;
@@ -31,7 +35,7 @@
   transition: 1s ;
 }
 
-.conference-page-body{
+.conference-page-body {
   width: 60%;
   margin: 0 auto;
   background-color: #cfe3db;
@@ -40,17 +44,15 @@
   box-shadow: 2px 3px 8px 1px rgba(58, 99, 101, 0.22);
   transition: ease-out 0.5s;
   padding: 15px 20px;
-
-
 }
 
-.conference-page-body:hover{
+.conference-page-body:hover {
   box-shadow: 2px 3px 8px 1px #3a6365;
   transition: ease-in 0.5s;
   font-size: 16.1px;
 }
 
-.next-phase-button{
+.next-phase-button {
   background-image:linear-gradient(to bottom, whitesmoke 1%, #c6dad2);
   color: #335658;
   border-bottom-left-radius: 12px;
@@ -59,7 +61,7 @@
   margin: auto 20px auto 0;
 }
 
-.add-paper-button{
+.add-paper-button {
   margin: 20px 45%;
   background-image:linear-gradient(to bottom, whitesmoke 1%, #c6dad2);
   color: #335658;
@@ -67,7 +69,7 @@
   border-top-right-radius: 12px;
 }
 
-#add-paper-form{
+#add-paper-form {
   display: block;
   justify-content: center;
   width: 30%;
@@ -92,7 +94,7 @@
   margin-left: 25%;
 }
 
-.left{
+.left {
   margin-left: 15%;
 }
 
@@ -127,6 +129,3 @@
   border-top-right-radius: 12px;
 }
 
-
-.paper-body{
-}

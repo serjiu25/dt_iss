@@ -1,6 +1,6 @@
 import { ProgramCommittee } from './programCommittee.model';
 import { Event } from './event.model';
-import {Phase} from "./phase.enum";
+import { Submission } from './submision.model';
 
 export class Conference {
   id?: number;
@@ -9,6 +9,7 @@ export class Conference {
   phase?: string;
   event?: Event;
   programCommittee?: ProgramCommittee;
+  submissions?: Submission[];
 
   eventId?: number;
   programCommitteeId?: number;

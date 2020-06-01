@@ -7,7 +7,7 @@ import {environment} from 'src/environments/environment';
 
 @Injectable()
 export class ConferenceService {
-  private conferenceUrl = 'http://109.100.171.87:8080/api/conferences';
+  private conferenceUrl = `http://${environment.serverAddress}:8080/api/conferences`;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -58,17 +58,18 @@ export class ConferenceService {
   }
 
   getConference(conferenceId: number): Observable<Conference> {
-    // const url = this.conferenceUrl + '/' + conferenceId;
-    // return this.httpClient.get<Conference>(url);
-    return of(
-      new Conference(
-        conferenceId,
-        "Long hardcoded title",
-        "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
-        5,
-        Phase.SUBMIT
-      )
-    );
+    const url = this.conferenceUrl + '/' + conferenceId;
+    return this.httpClient.get<Conference>(url);
+    
+    // return of(
+    //   new Conference(
+    //     conferenceId,
+    //     "Long hardcoded title",
+    //     "Epson didn't kill himself! Don't forget to modify getConference from conferenceService",
+    //     5,
+    //     Phase.SUBMIT
+    //   )
+    // );
   }
 
   createConference(title: string, description: string): Observable<Conference> {

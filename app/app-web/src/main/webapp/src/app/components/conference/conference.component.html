@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="conference-page-container">
+<div class="conference-page-container" *ngIf="conference">
   <div class = "conference-page-header">
     <div class="conference-page-title">{{conference.title}}</div>
     <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button>
@@ -8,11 +8,13 @@
   <div class="conference-page-body">{{conference.description}}</div>
 </div>
 
-<button class="add-paper-button" *ngIf="conference.phase == 'SUBMIT'" (click)="displayPaperForm = !displayPaperForm">Add paper</button>
-<div id="add-paper-form" *ngIf="displayPaperForm === true && conference.phase == 'SUBMIT'">
+
+<div id="add-paper-form" *ngIf="conference.phase == 'SUBMIT'">
   <input class="input-field left" type="text" placeholder="Title" [(ngModel)]="paper.name" required>
-  <input class="input-field right" type="url" placeholder="Abstract Url" [(ngModel)]="paper.abstractUrl" required>
-  <input class="input-field left" type="url" placeholder="Full paper url" [(ngModel)]="paper.fullUrl">
+  <!-- <input class="input-field right" type="url" placeholder="Abstract Url" [(ngModel)]="paper.abstractUrl" required>
+  <input class="input-field left" type="url" placeholder="Full paper url" [(ngModel)]="paper.fullUrl"> -->
+  <input class="input-field right" type="file" (change)="paper.abstractFile = $event.target.files[0]">
+  <input class="input-field left" type="file" (change)="paper.fullFile = $event.target.files[0]">
   <input class="input-field right" type="text" placeholder="A few keywords" [(ngModel)]="paper.keywords">
   <input class="input-field left" type="text" placeholder="Topics" required [(ngModel)]="paper.topics">
   <input class="input-field right" type="text" placeholder="Other authors?" [(ngModel)]="paper.otherAuthors">

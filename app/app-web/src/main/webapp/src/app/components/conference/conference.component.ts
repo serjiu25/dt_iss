@@ -40,10 +40,8 @@ export class ConferenceComponent implements OnInit {
     // this.paperList.push(this.hardcodedPaper);
     this.route.paramMap.subscribe(paramMap => {
       this.conferenceId = Number(paramMap.get('id'));
-      this.conferenceService.getConference(
-        this.conferenceId
-      ).subscribe(obj => {
-        this.conference = obj;
+      this.conferenceService.getConference(this.conferenceId).subscribe(conference => {
+        this.conference = conference;
         this.paperList = new Array<Paper>();
         this.paperService.getPapersByCid(this.conference.id).subscribe(papers => {
           this.paperList = papers;
@@ -53,16 +51,18 @@ export class ConferenceComponent implements OnInit {
   }
 
   nextPhase(){
-    console.log(this.conference.phase);
+    console.log('Current phase: ' + this.conference.phase);
     if (this.conference.phase == Phase.SUBMIT)
       this.conference.phase = Phase.BIDDING;
     else if (this.conference.phase == Phase.BIDDING)
       this.conference.phase = Phase.REVIEW;
-
+    console.log('Changed to phase: ' + this.conference.phase);
   }
+
   onSubmit() {
     console.log(this.conference.phase);
-    console.log("Added paper:", this.paper);
+    console.log("Added paper:");
+    console.log(this.paper);
     this.paperList.push(this.paper);
     console.log(this.paperList);
   }

@@ -9,6 +9,7 @@ import {switchMap} from "rxjs/operators";
 import {SubmissionService} from "../../services/submission.service";
 import {Submission} from "../../models/submision.model";
 import {AuthService} from "../../services/auth.service";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-conference',
@@ -22,15 +23,17 @@ export class ConferenceComponent implements OnInit {
   displayPaperForm = false;
   paper = new Paper();
   hardcodedPaper = new Paper();
-  paperList: Paper[];
+  submissionList: Submission[];
   userId: number;
   isPc: Boolean;
-
+  isPcProfile: Boolean;
+  submitted: Boolean = true;
 
   constructor(
     private conferenceService: ConferenceService,
     private paperService: PaperService,
     private authService: AuthService,
+    private userService: UserService,
     private submissionService: SubmissionService,
     private route: ActivatedRoute
   ) {
@@ -46,22 +49,28 @@ export class ConferenceComponent implements OnInit {
     // this.hardcodedPaper.otherAuthors = "Other authors";
 
     // this.paperList.push(this.hardcodedPaper);
+    this.isPcProfile = this.userService.isPcProfile();
     this.route.paramMap.subscribe(paramMap => {
       this.conferenceId = Number(paramMap.get('id'));
+
       this.conferenceService.getConference(this.conferenceId).subscribe(conference => {
         this.conference = conference;
-        this.paperList = new Array<Paper>();
-        this.paperService.getPapersByCid(this.conference.id).subscribe(papers => {
-          this.paperList = papers;
+        this.submissionList = new Array<Submission>();
+
+        this.submissionService.getSubmissionsByCid(this.conference.id).subscribe(submissions => {
+          this.submissionList = submissions;
+
+          this.authService.getCurrentUser().subscribe(user=>{
+            this.userId = user.id;
+            
+            this.submitted = this.submissionList.find(sub => sub.author.id == user.id) !== undefined;
+            this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
+              this.isPc = isPc;
+            });
+          });
         });
       });
     });
-    this.authService.getCurrentUser().subscribe(user=>{
-      this.userId = user.id;
-    });
-    this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
-      this.isPc = isPc;
-    })
   }
 
   nextPhase() {
@@ -71,13 +80,14 @@ export class ConferenceComponent implements OnInit {
     else if (this.conference.phase == Phase.BIDDING)
       this.conference.phase = Phase.REVIEW;
     console.log('Changed to phase: ' + this.conference.phase);
+    this.conferenceService.updateConference(this.conference).subscribe(conference => this.conference = conference);
   }
 
   onSubmit() {
     console.log(this.conference.phase);
     console.log("Added paper:");
     console.log(this.paper);
-    this.paperList.push(this.paper);
+    // this.paperList.push(this.paper);
 
     this.paperService.createPaper(this.paper).pipe(
       switchMap(
@@ -112,7 +122,7 @@ export class ConferenceComponent implements OnInit {
         }
       )
     ).subscribe(submission => console.log(submission), error => console.log(error));
-    console.log(this.paperList);
+    // console.log(this.paperList);
   }
 
 }

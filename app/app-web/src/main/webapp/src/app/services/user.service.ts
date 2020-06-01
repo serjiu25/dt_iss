@@ -4,12 +4,15 @@ import {Observable, of} from 'rxjs';
 import {environment} from 'src/environments/environment';
 import {User} from '../models/user.model';
 import {map, catchError} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
   private userUrl = `http://${environment.serverAddress}:8080/api/users`;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
 
   isPcProfile(): boolean {
@@ -18,10 +21,12 @@ export class UserService {
 
   setPcProfile(): void {
     localStorage.setItem("profile", "pc");
+    location.reload();
   }
 
   setAuthorProfile(): void {
     localStorage.setItem("profile", "author");
+    location.reload();
   }
 
   getUserById(id: number): Observable<User> {

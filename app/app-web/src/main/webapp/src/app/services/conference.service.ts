@@ -17,20 +17,25 @@ export class ConferenceService {
     return this.httpClient.get<boolean>(url);
   }
 
-  isPc(confId: number, userId: number) {
-    const url = this.conferenceUrl + '/isPC/' + confId + '/' + userId ;
+  isPc(conferenceId: number, userId: number) {
+    const url = this.conferenceUrl + '/isPC/' + conferenceId + '/' + userId ;
+    return this.httpClient.get<boolean>(url);
+  }
+
+  isReviewer(conferenceId: number, userId: number) {
+    const url = this.conferenceUrl + '/isPC/' + conferenceId + '/' + userId ;
     return this.httpClient.get<boolean>(url);
   }
 
   getConferences(): Observable<Conference[]> {
-    // return this.httpClient.get<Array<Conference>>(this.conferenceUrl);
+    return this.httpClient.get<Array<Conference>>(this.conferenceUrl);
 
-    return of([
-      new Conference(1, "Title 1 proba", "Salam idolul femeilor", 1),
-      new Conference(2, "Title 2 proba", "Inainte sa moara Michael Jackson", 2),
-      new Conference(3, "Title 3 nu mai e proba", "Anainte sa moara Michael Jackson", 3),
-      new Conference(4, "Title 4 ie tot un fel de proba", "Pe bune zic sa moara gibi de nu", 4)
-    ]);
+    // return of([
+    //   new Conference(1, "Title 1 proba", "Salam idolul femeilor", 1),
+    //   new Conference(2, "Title 2 proba", "Inainte sa moara Michael Jackson", 2),
+    //   new Conference(3, "Title 3 nu mai e proba", "Anainte sa moara Michael Jackson", 3),
+    //   new Conference(4, "Title 4 ie tot un fel de proba", "Pe bune zic sa moara gibi de nu", 4)
+    // ]);
   }
 
   getConferenceByAuthor(): Observable<Conference[]> {

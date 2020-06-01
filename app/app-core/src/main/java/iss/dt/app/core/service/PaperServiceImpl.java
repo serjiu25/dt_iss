@@ -14,7 +14,9 @@ public class PaperServiceImpl implements PaperService{
     private PaperRepository repo;
 
     public List<Paper> findByConference(Long id){
-        return repo.findAll().stream().filter(paper->paper.getSubmission().getConference().getId() == id).collect(Collectors.toList());
+        return repo.findAll().stream()
+                .filter(paper->paper.getSubmission().getConference().getId() == id)
+                .collect(Collectors.toList());
     }
     @Override
     public Paper findOne(Long id){

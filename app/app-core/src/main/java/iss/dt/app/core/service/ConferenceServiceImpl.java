@@ -23,6 +23,7 @@ public class ConferenceServiceImpl implements ConferenceService{
         return repo.findAll().stream().filter(conf->conf.getDescription().contains(topic)).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public List<Conference> findForAuthor(Long id) {
         return repo.findAll().stream().filter(conf->{for(Submission s:conf.getSubmissions()){
@@ -32,6 +33,7 @@ public class ConferenceServiceImpl implements ConferenceService{
         }).collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public List<Conference> findForPC(Long id) {
         return repo.findAll().stream().filter(conf->{

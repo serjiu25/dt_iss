@@ -9,6 +9,7 @@ import iss.dt.app.web.dto.ConferenceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class ConferenceController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/conferences/{topic}", method = RequestMethod.GET)
+    @RequestMapping(value = "/conferences/topic/{topic}", method = RequestMethod.GET)
     public List<ConferenceDto> getConferencesByTopic(@PathVariable final String topic) {
         //log.trace("getConferences");
         List<Conference> conferences = service.findByTopic(topic);
@@ -52,6 +53,8 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return converter.convertModelToDto(conference);
     }
+
+    @Transactional
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/author/{userId}", method = RequestMethod.GET)
     public List<ConferenceDto> getConferencesByAuthor(@PathVariable final Long userId) {
@@ -61,6 +64,9 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return new ArrayList<>(converter.convertModelsToDtos(conferences));
     }
+
+    @Transactional
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/conferences/pc/{userId}", method = RequestMethod.GET)
     public List<ConferenceDto> getConferencesByPC(@PathVariable final Long userId) {
         //log.trace("getConference");
@@ -68,6 +74,7 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return new ArrayList<>(converter.convertModelsToDtos(conferences));
     }
+
     @RequestMapping(value = "/conferences/isAuthor/{confId}/{userId}", method = RequestMethod.GET)
     public boolean isAuthor(@PathVariable final Long confId,
                             @PathVariable final Long userId) {
@@ -76,6 +83,7 @@ public class ConferenceController {
         //log.trace("getConference: conferences={}", conference);
         return response;
     }
+    
     @RequestMapping(value = "/conferences/isPC/{confId}/{userId}", method = RequestMethod.GET)
     public boolean isPC(@PathVariable final Long confId,
                         @PathVariable final Long userId) {

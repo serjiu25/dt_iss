@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
+
 @Entity
 @Table(name = "submission")
 @NoArgsConstructor
@@ -22,15 +24,22 @@ public class Submission {
     @OneToOne
     private Paper paper;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Conference conference;
 
     @OneToMany(mappedBy = "submission")
     private List<Evaluation> evaluations;
 
+    @OneToMany(mappedBy = "submission")
+    private List<Bid> biddings;
+
     public Submission(Long id, User convertDtoToModel, Paper convertDtoToModel1) {
         this.id=id;
         this.author=convertDtoToModel;
         this.paper=convertDtoToModel1;
+    }
+
+    public void addBid(Bid bid) {
+        this.biddings.add(bid);
     }
 }

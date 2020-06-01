@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table (name = "section")
@@ -23,16 +24,11 @@ public class Section {
 
     private String room;
 
-    // TODO: what is this?
-
-    /*
-    @OneToMany
-    @Column(name = "speakers", nullable = false)
-    private List<User> speakers;
-
-    @OneToMany
-    @Column(name = "listener", nullable = false)
-    private List<User> listener;*/
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private List<User> speakers;
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private List<User> listener;
 
     @ManyToOne
     private Event event;

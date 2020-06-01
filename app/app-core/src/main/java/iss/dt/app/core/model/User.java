@@ -25,14 +25,20 @@ public class User {
     private Boolean admin;
     private Boolean validated;
 
-    @ManyToMany
-    private List<Section> sections;
+//    @OneToMany
+//    private List<Section> sectionChair;
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private List<Section> sectionsWhereListener;
 
     @ManyToMany
     private List<ProgramCommittee> pc_co_chairs;
 
     @ManyToMany
     private List<ProgramCommittee> pc_reviewers;
+
+    @OneToMany(mappedBy = "reviewer")
+    private List<Bid> bidded;
 
     public User (Long id, String name, String affiliation, String email, String password, Boolean admin, Boolean validated){
         this.id=id;

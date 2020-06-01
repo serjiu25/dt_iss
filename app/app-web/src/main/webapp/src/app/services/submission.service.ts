@@ -37,7 +37,7 @@ export class SubmissionService {
   }
 
   getSubmissionsForReviewer(conferenceId: number, reviewerId: number): Observable<Submission[]> {
-    const url = this.submissionUrl + '/reviewer/s/' + conferenceId + '/' + reviewerId;
+    const url = `http://${environment.serverAddress}:8080/api/evaluations` + '/reviewer/s/' + conferenceId + '/' + reviewerId;
     return this.httpClient.get<Submission[]>(url);
   }
 

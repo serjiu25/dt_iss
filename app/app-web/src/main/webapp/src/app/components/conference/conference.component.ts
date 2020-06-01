@@ -27,6 +27,7 @@ export class ConferenceComponent implements OnInit {
   submissionList: Submission[];
   userId: number;
   isPc: Boolean;
+  isReviewer: Boolean;
   isPcProfile: Boolean;
   submitted: Boolean = true;
   submissionsToReview: Submission[];
@@ -71,13 +72,19 @@ export class ConferenceComponent implements OnInit {
               this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
                 this.isPc = isPc;
               });
+              this.conferenceService.isReviewer(this.conferenceId, this.userId).subscribe(isReviewer => {
+                this.isReviewer = isReviewer;
+              })
             });
           });
         } else if (this.conference.phase == Phase.REVIEW) {
           this.authService.getCurrentUser().subscribe(currentUser => {
             this.userId = currentUser.id;
             this.submissionService.getSubmissionsForReviewer(this.conference.id, currentUser.id).subscribe(
-              submissions => this.submissionsToReview = submissions
+              submissions => {
+                this.submissionsToReview = submissions;
+                console.log(submissions);
+            }
             );
           });
         }

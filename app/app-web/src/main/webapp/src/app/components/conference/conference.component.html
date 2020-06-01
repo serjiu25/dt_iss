@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div *ngIf="conference && conference.phase == 'BIDDING' && isPc && isPcProfile">
+<div *ngIf="conference && conference.phase == 'BIDDING' && (isPc || isReviewer) && isPcProfile">
   <div class="all-papers-container" *ngFor="let submission of submissionList">
     <app-paper-card
           [conferencePhase]="conference.phase"

@@ -2,6 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Paper} from "../../models/paper.model";
 import {Phase} from "../../models/phase.enum";
 import {PaperAgree} from "../../models/paper.agree";
+import { PaperService } from 'src/app/services/paper.service';
+import { SubmissionService } from 'src/app/services/submission.service';
+import { Submission } from 'src/app/models/submision.model';
+import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-paper-card',
@@ -10,7 +15,7 @@ import {PaperAgree} from "../../models/paper.agree";
 })
 export class PaperCardComponent implements OnInit {
   @Input() conferencePhase: string;
-  @Input() paper: Paper;
+  @Input() submission: Submission;
   Phases = Phase;
   PAPER_AGREE = PaperAgree;
   // paper: Paper;
@@ -18,7 +23,12 @@ export class PaperCardComponent implements OnInit {
   selectedInterest: string;
   selectedAgreement: Boolean;
   showTextarea: Boolean;
-  constructor() { }
+
+  constructor(
+    private paperService: PaperService,
+    private authService: AuthService,
+    private submissionService: SubmissionService
+  ) { }
 
   ngOnInit(): void {
     this.selectedInterest = null;
@@ -34,8 +44,21 @@ export class PaperCardComponent implements OnInit {
 
   addBidding(interestLevel: string) {
     console.log(interestLevel);
-    // alert("Thank you for your interest!");
     this.selectedInterest = interestLevel;
-    // call some method
+    if (interestLevel === 'not_interested')
+      return;
+    this.authService.getCurrentUser().subscribe(
+      user => {
+        this.submissionService.bidSubmission(this.submission.id, user.id, interestLevel);
+      }
+    );
+  }
+
+  download() {
+    this.paperService.downloadPaper(this.submission.paper.id, 'abstract').subscribe(
+      whatisthis => console.log(whatisthis),
+      err => console.error(err),
+      () => console.log('Download completed')
+    );
   }
 }

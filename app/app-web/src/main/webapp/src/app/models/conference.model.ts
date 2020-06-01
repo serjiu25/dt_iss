@@ -11,6 +11,8 @@ export class Conference {
   programCommittee?: ProgramCommittee;
   submissions?: Submission[];
 
+  committee_id?: number;
+  committeeId?: number;
   eventId?: number;
   programCommitteeId?: number;
 

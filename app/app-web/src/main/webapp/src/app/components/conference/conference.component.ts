@@ -75,11 +75,14 @@ export class ConferenceComponent implements OnInit {
 
   nextPhase() {
     console.log('Current phase: ' + this.conference.phase);
-    if (this.conference.phase == Phase.SUBMIT)
+    if (this.conference.phase == Phase.SUBMIT) 
       this.conference.phase = Phase.BIDDING;
-    else if (this.conference.phase == Phase.BIDDING)
+    else if (this.conference.phase == Phase.BIDDING) {
       this.conference.phase = Phase.REVIEW;
+      this.submissionService.assignSubmissions(this.conference.id);
+    }
     console.log('Changed to phase: ' + this.conference.phase);
+
     this.conferenceService.updateConference(this.conference).subscribe(conference => this.conference = conference);
   }
 

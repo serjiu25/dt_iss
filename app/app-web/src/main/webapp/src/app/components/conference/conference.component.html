@@ -25,6 +25,8 @@
 
   <button class="submit-paper-button" (click)="onSubmit()">Submit paper</button>
 </div>
+
+
 <div *ngIf="conference && !isPcProfile && submitted">
   <div *ngIf="conference.phase == 'SUBMIT'">
     <p style="color: green;">Paper submitted !</p>
@@ -34,9 +36,19 @@
   </div>
 </div>
 
-<div class="all-papers-container" *ngFor="let submission of submissionList">
-  <app-paper-card *ngIf="conference.phase != 'SUBMIT' && isPc" 
-        [conferencePhase]="conference.phase"
-        [paper]="submission.paper"
-  ></app-paper-card>
+<div *ngIf="conference.phase == 'BIDDING' && isPc && isPcProfile">
+  <div class="all-papers-container" *ngFor="let submission of submissionList">
+    <app-paper-card 
+          [conferencePhase]="conference.phase"
+          [submission]="submission"
+    ></app-paper-card>
+  </div>  
+</div>
+<div *ngIf="conference.phase == 'REVIEW'">
+  <div class="all-papers-container" *ngFor="let submission of submissionList">
+    <app-paper-card
+          [conferencePhase]="conference.phase"
+          [submission]="submission"
+    ></app-paper-card>
+  </div>
 </div>

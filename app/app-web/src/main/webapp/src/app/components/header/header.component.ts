@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
   username = 'Name';
   @Output() repopulate = new EventEmitter<void>();
-
+  pcProfile: boolean;
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -21,16 +21,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(user => this.username = user.name);
+    this.pcProfile = false;
   }
 
   setAuthorProfile() {
     this.userService.setAuthorProfile();
     this.repopulate.emit();
+    this.pcProfile = false;
   }
 
   setPcProfile() {
     this.userService.setPcProfile();
     this.repopulate.emit();
+    this.pcProfile = true;
   }
 
   logout() {

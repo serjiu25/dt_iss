@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Paper} from "../../models/paper.model";
 import {PaperService} from "../../services/paper.service";
 import {Phase} from "../../models/phase.enum";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-conference',
@@ -19,12 +20,15 @@ export class ConferenceComponent implements OnInit {
   paper = new Paper();
   hardcodedPaper = new Paper();
   paperList: Paper[];
+  userId: number;
+  isPc: Boolean;
 
 
   constructor(
     private conferenceService: ConferenceService,
     private paperService: PaperService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
   }
 
@@ -48,6 +52,12 @@ export class ConferenceComponent implements OnInit {
         });
       });
     });
+    this.authService.getCurrentUser().subscribe(user=>{
+      this.userId = user.id;
+    });
+    this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
+      this.isPc = isPc;
+    })
   }
 
   nextPhase(){
@@ -66,5 +76,6 @@ export class ConferenceComponent implements OnInit {
     this.paperList.push(this.paper);
     console.log(this.paperList);
   }
+
 
 }

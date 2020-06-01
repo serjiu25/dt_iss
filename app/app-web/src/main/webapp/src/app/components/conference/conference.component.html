@@ -3,7 +3,11 @@
 <div class="conference-page-container" *ngIf="conference">
   <div class = "conference-page-header">
     <div class="conference-page-title">{{conference.title}}</div>
-    <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button>
+    <div>
+      <p class="current-phase">Current phase: {{conference.phase}}</p>
+<!--    <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW' && isPc" (click)="nextPhase()">Next phase</button>-->
+      <button class="next-phase-button" *ngIf="conference.phase != 'REVIEW'" (click)="nextPhase()">Next phase</button>
+    </div>
   </div>
   <div class="conference-page-body">{{conference.description}}</div>
 </div>

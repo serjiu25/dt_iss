@@ -27,22 +27,22 @@
 </div>
 
 
-<div *ngIf="conference && !isPcProfile && submitted">
+<div class="paper-submitted" *ngIf="conference && !isPcProfile && submitted">
   <div *ngIf="conference.phase == 'SUBMIT'">
-    <p style="color: green;">Paper submitted !</p>
+    <p style="color: whitesmoke; margin: 0 auto">Paper submitted !</p>
   </div>
   <div *ngIf="conference.phase == 'BIDDING' || conference.phase == 'REVIEW'">
-    <p style="color: rgb(131, 131, 54);">Submission phase is over.</p>
+    <p style="color: whitesmoke;">Submission phase is over.</p>
   </div>
 </div>
 
 <div *ngIf="conference.phase == 'BIDDING' && isPc && isPcProfile">
   <div class="all-papers-container" *ngFor="let submission of submissionList">
-    <app-paper-card 
+    <app-paper-card
           [conferencePhase]="conference.phase"
           [submission]="submission"
     ></app-paper-card>
-  </div>  
+  </div>
 </div>
 <div *ngIf="conference.phase == 'REVIEW'">
   <div class="all-papers-container" *ngFor="let submission of submissionList">

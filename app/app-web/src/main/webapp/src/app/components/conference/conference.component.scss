@@ -16,9 +16,9 @@
   font-size: 30px;
   border-bottom: 1px solid teal;
   border-left: 1px solid teal;
-  width: 25%;
-  min-width: 15%;
-  max-width: 30%;
+  width: 40%;
+  min-width: 25%;
+  max-width: 50%;
   margin-left: 2%;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -77,6 +77,9 @@
   justify-self: center;
   margin: 0 auto;
   transition: 2s;
+  border-radius: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -130,3 +133,10 @@
   border-top-right-radius: 12px;
 }
 
+.paper-submitted{
+  margin: 10px auto;
+  text-align: center;
+  background-color: rgba(255, 99, 71, 0.72);
+  border-radius: 12px;
+  width: 20%;
+}

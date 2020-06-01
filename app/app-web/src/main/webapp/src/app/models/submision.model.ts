@@ -6,4 +6,5 @@ export class Submission {
   author?: User;
   paper?: Paper;
   conferenceId?: number;
+  isBidded?: boolean;
 }

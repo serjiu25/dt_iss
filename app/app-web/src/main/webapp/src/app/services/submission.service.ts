@@ -36,6 +36,11 @@ export class SubmissionService {
     return this.httpClient.delete<any>(url);
   }
 
+  getSubmissionsForReviewer(conferenceId: number, reviewerId: number): Observable<Submission[]> {
+    const url = this.submissionUrl + '/reviewer/s/' + conferenceId + '/' + reviewerId;
+    return this.httpClient.get<Submission[]>(url);
+  }
+
   bidSubmission(submissionId: number, reviewerId: number, interest: string): void {
     // rate = 1 daca interested
     // rate = 0 daca maybe_interested

@@ -3,9 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Evaluation} from "../models/evaluation.model";
 import { environment } from 'src/environments/environment';
+import { Submission } from '../models/submision.model';
 
 @Injectable()
-export class PaperService {
+export class EvaluationService {
   private evaluationUrl = `http://${environment.serverAddress}:8080/api/evaluations`;
 
   constructor(private httpClient: HttpClient) {
@@ -21,6 +22,11 @@ export class PaperService {
     return this.httpClient.get<Evaluation>(url);
   }
 
+  getEvaluationsForReviewer(conferenceId: number, reviewerId: number): Observable<Evaluation[]> {
+    const url = this.evaluationUrl + '/reviewer/' + conferenceId + '/' + reviewerId;
+    return this.httpClient.get<Evaluation[]>(url);
+  }
+
   createEvaluation(evaluation: Evaluation): Observable<Evaluation> {// maybe change with sub fields instead of object
     return this.httpClient.post<Evaluation>(this.evaluationUrl, evaluation);
   }
@@ -34,5 +40,4 @@ export class PaperService {
     const url = this.evaluationUrl + '/' + evaluationId;
     return this.httpClient.delete<any>(url);
   }
-
 }

@@ -10,6 +10,7 @@ import {SubmissionService} from "../../services/submission.service";
 import {Submission} from "../../models/submision.model";
 import {AuthService} from "../../services/auth.service";
 import { UserService } from 'src/app/services/user.service';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 
 @Component({
   selector: 'app-conference',
@@ -28,6 +29,7 @@ export class ConferenceComponent implements OnInit {
   isPc: Boolean;
   isPcProfile: Boolean;
   submitted: Boolean = true;
+  submissionsToReview: Submission[];
 
   constructor(
     private conferenceService: ConferenceService,
@@ -35,6 +37,7 @@ export class ConferenceComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private submissionService: SubmissionService,
+    private evaluationService: EvaluationService,
     private route: ActivatedRoute
   ) {
   }
@@ -56,19 +59,28 @@ export class ConferenceComponent implements OnInit {
       this.conferenceService.getConference(this.conferenceId).subscribe(conference => {
         this.conference = conference;
         this.submissionList = new Array<Submission>();
-
-        this.submissionService.getSubmissionsByCid(this.conference.id).subscribe(submissions => {
-          this.submissionList = submissions;
-
-          this.authService.getCurrentUser().subscribe(user=>{
-            this.userId = user.id;
-            
-            this.submitted = this.submissionList.find(sub => sub.author.id == user.id) !== undefined;
-            this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
-              this.isPc = isPc;
+        
+        if (this.conference.phase == Phase.SUBMIT || this.conference.phase == Phase.BIDDING) {
+          this.submissionService.getSubmissionsByCid(this.conference.id).subscribe(submissions => {
+            this.submissionList = submissions;
+  
+            this.authService.getCurrentUser().subscribe(user=>{
+              this.userId = user.id;
+              
+              this.submitted = this.submissionList.find(sub => sub.author.id == user.id) !== undefined;
+              this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
+                this.isPc = isPc;
+              });
             });
           });
-        });
+        } else if (this.conference.phase == Phase.REVIEW) {
+          this.authService.getCurrentUser().subscribe(currentUser => {
+            this.userId = currentUser.id;
+            this.submissionService.getSubmissionsForReviewer(this.conference.id, currentUser.id).subscribe(
+              submissions => this.submissionsToReview = submissions
+            );
+          });
+        }
       });
     });
   }
@@ -124,7 +136,10 @@ export class ConferenceComponent implements OnInit {
           return this.submissionService.createSubmission(sub);
         }
       )
-    ).subscribe(submission => console.log(submission), error => console.log(error));
+    ).subscribe(submission => {
+      console.log(submission);
+      this.submitted = true;
+    }, error => console.log(error));
     // console.log(this.paperList);
   }
 

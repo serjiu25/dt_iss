@@ -23,7 +23,7 @@ export class ConferenceService {
   }
 
   isReviewer(conferenceId: number, userId: number) {
-    const url = this.conferenceUrl + '/isPC/' + conferenceId + '/' + userId ;
+    const url = this.conferenceUrl + '/isReviewer/' + conferenceId + '/' + userId ;
     return this.httpClient.get<boolean>(url);
   }
 

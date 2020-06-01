@@ -7,6 +7,7 @@ import { SubmissionService } from 'src/app/services/submission.service';
 import { Submission } from 'src/app/models/submision.model';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 
 @Component({
   selector: 'app-paper-card',
@@ -27,7 +28,8 @@ export class PaperCardComponent implements OnInit {
   constructor(
     private paperService: PaperService,
     private authService: AuthService,
-    private submissionService: SubmissionService
+    private submissionService: SubmissionService,
+    private evaluationService: EvaluationService
   ) { }
 
   ngOnInit(): void {

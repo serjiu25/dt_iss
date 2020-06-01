@@ -74,7 +74,7 @@ export class ConferenceComponent implements OnInit {
               });
               this.conferenceService.isReviewer(this.conferenceId, this.userId).subscribe(isReviewer => {
                 this.isReviewer = isReviewer;
-              })
+              });
             });
           });
         } else if (this.conference.phase == Phase.REVIEW) {
@@ -84,7 +84,13 @@ export class ConferenceComponent implements OnInit {
               submissions => {
                 this.submissionsToReview = submissions;
                 console.log(submissions);
-            }
+                this.conferenceService.isPc(this.conferenceId, this.userId).subscribe(isPc => {
+                  this.isPc = isPc;
+                });
+                this.conferenceService.isReviewer(this.conferenceId, this.userId).subscribe(isReviewer => {
+                  this.isReviewer = isReviewer;
+                });
+              }
             );
           });
         }
@@ -103,6 +109,7 @@ export class ConferenceComponent implements OnInit {
     console.log('Changed to phase: ' + this.conference.phase);
 
     this.conferenceService.updateConference(this.conference).subscribe(conference => this.conference = conference);
+    location.reload();
   }
 
   onSubmit() {

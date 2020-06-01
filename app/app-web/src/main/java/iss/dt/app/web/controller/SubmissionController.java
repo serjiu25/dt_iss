@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -39,6 +40,14 @@ public class SubmissionController {
         User user = userService.findOne(reviewerId);
         Bid bid = new Bid(null, user, submission, rate);
         bidService.save(bid);
+    }
+    @RequestMapping(value = "/submissions/hasBid/{submissionId}/{reviewerId}", method = RequestMethod.GET)
+    public boolean hasBid(
+            @PathVariable final Long submissionId,
+            @PathVariable final Long reviewerId
+    ) {
+        return bidService.findBySubmission(submissionId).stream().
+                anyMatch(s->s.getReviewer().getId().equals(reviewerId));
     }
 
     @CrossOrigin(origins = "*")
